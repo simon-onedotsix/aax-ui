@@ -1,0 +1,7 @@
+.rad-global { border-radius: var(--default-radius, .5rem); }
+
+.rad-xs { border-radius: calc(var(--default-radius, .25rem) * 0.5); }
+.rad-sm { border-radius: calc(var(--default-radius, .75rem) * 0.75); }
+.rad-md { border-radius: calc(var(--default-radius, .5rem) * 1); }
+.rad-lg { border-radius: calc(var(--default-radius, 1.5rem) * 2); }
+.rad-xl { border-radius: calc(var(--default-radius, 3rem) * 4); }

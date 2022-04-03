@@ -1,0 +1,8 @@
+/* 
+    --default-line-height
+*/
+
+p {
+    font-size: var(--default-font-size, 1rem); 
+    line-height: var(--default-line-height, 1.2); 
+}

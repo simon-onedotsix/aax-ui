@@ -1,0 +1,51 @@
+:root {
+    --mobile-multiplier: 0.5;    
+    --space-xs: calc(var(--unit-xs, 1rem) * var(--mobile-multiplier));
+    --space-sm: calc(var(--unit-sm, 2rem) * var(--mobile-multiplier));
+    --space-md: calc(var(--unit-md, 4rem) * var(--mobile-multiplier));
+    --space-lg: calc(var(--unit-lg, 8rem) * var(--mobile-multiplier));
+    --space-xl: calc(var(--unit-xl, 12rem) * var(--mobile-multiplier));
+}
+
+@media (min-width: 600px) {   
+    :root {
+        --tablet-portrait-up-multiplier: 0.675;    
+        --space-xs: calc(var(--unit-xs, 1rem) * var(--tablet-portrait-up-multiplier));
+        --space-sm: calc(var(--unit-sm, 2rem) * var(--tablet-portrait-up-multiplier));
+        --space-md: calc(var(--unit-md, 4rem) * var(--tablet-portrait-up-multiplier));
+        --space-lg: calc(var(--unit-lg, 8rem) * var(--tablet-portrait-up-multiplier));
+        --space-xl: calc(var(--unit-xl, 12rem) * var(--tablet-portrait-up-multiplier));
+    }
+}
+
+@media (min-width: 900px) {   
+    :root {
+        --tablet-landscape-up-multiplier: 0.75;    
+        --space-xs: calc(var(--unit-xs, 1rem) * var(--tablet-landscape-up-multiplier));
+        --space-sm: calc(var(--unit-sm, 2rem) * var(--tablet-landscape-up-multiplier));
+        --space-md: calc(var(--unit-md, 4rem) * var(--tablet-landscape-up-multiplier));
+        --space-lg: calc(var(--unit-lg, 8rem) * var(--tablet-landscape-up-multiplier));
+        --space-xl: calc(var(--unit-xl, 12rem) * var(--tablet-landscape-up-multiplier));
+    }
+}
+
+@media (min-width: 1200px) {       
+    :root {
+        --space-xs: var(--unit-xs, 1rem);
+        --space-sm: var(--unit-sm, 2rem);
+        --space-md: var(--unit-md, 4rem);
+        --space-lg: var(--unit-lg, 8rem);
+        --space-xl: var(--unit-xl, 12rem);
+    }
+}
+
+@media (min-width: 1800px) {
+    :root {
+        --desktop-hd-up-multiplier: 1.4;    
+        --space-xs: calc(var(--unit-xs, 1rem) * var(--desktop-hd-up-multiplier));
+        --space-sm: calc(var(--unit-sm, 2rem) * var(--desktop-hd-up-multiplier));
+        --space-md: calc(var(--unit-md, 4rem) * var(--desktop-hd-up-multiplier));
+        --space-lg: calc(var(--unit-lg, 8rem) * var(--desktop-hd-up-multiplier));
+        --space-xl: calc(var(--unit-xl, 12rem) * var(--desktop-hd-up-multiplier));
+    }
+}

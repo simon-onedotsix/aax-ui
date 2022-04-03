@@ -1,0 +1,20 @@
+.hover\:inverse:hover { color: white !important; }
+.hover\:inverse:hover * { fill: white; transition: all 200ms ease; }
+
+.hover:hover {
+    background-color: var(--button-default-bg-hover, black) !important;
+    border-color: var(--button-default-bg-hover, black);
+}
+
+.hover\:primary:hover {
+    background-color: var(--primary, black) !important;
+    border-color: var(--primary, black);
+}
+.hover\:secondary:hover {
+    background-color: var(--secondary, black) !important;
+    border-color: var(--secondary, black);
+}
+.hover\:accent:hover {
+    background-color: var(--accent, black) !important;
+    border-color: var(--accent, black);
+}

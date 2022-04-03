@@ -1,0 +1,23 @@
+.gap-xs { gap: var(--space-xs, .5rem); }
+.gap-sm { gap: var(--space-sm, 1rem); }
+.gap-md { gap: var(--space-md, 2rem); }
+.gap-lg { gap: var(--space-lg, 4rem); }
+.gap-xl { gap: var(--space-xl, 6rem); }
+
+.cgap-xs { column-gap: var(--space-xs, .5rem); }
+.cgap-sm { column-gap: var(--space-sm, 1rem); }
+.cgap-md { column-gap: var(--space-md, 2rem); }
+.cgap-lg { column-gap: var(--space-lg, 4rem); }
+.cgap-xl { column-gap: var(--space-xl, 6rem); }
+
+.rgap-xs { row-gap: var(--space-xs, .5rem); }
+.rgap-sm { row-gap: var(--space-sm, 1rem); }
+.rgap-md { row-gap: var(--space-md, 2rem); }
+.rgap-lg { row-gap: var(--space-lg, 4rem); }
+.rgap-xl { row-gap: var(--space-xl, 6rem); }
+
+.gap-1px { gap: 1px; }
+.gap-2px { gap: 2px; }
+.gap-3px { gap: 3px; }
+.gap-4px { gap: 4px; }
+.gap-5px { gap: 5px; }

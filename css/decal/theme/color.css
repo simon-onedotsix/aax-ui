@@ -1,0 +1,12 @@
+.c-primary { color: var(--primary, rgb(99, 0, 138)); }
+.c-secondary { color: var(--secondary, rgb(140, 0, 196)); }
+.c-accent { color: var(--accent, rgb(204, 77, 255)); }
+
+.c-p { color: var(--default-text-color, rgb(94, 94, 94)); }
+.c-h { color: var(--default-heading-color, rgb(0, 0, 0)); }
+
+.c-black { color: black; }
+.c-white { color: white; }
+
+
+

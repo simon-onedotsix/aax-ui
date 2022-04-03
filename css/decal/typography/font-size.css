@@ -1,0 +1,88 @@
+/*
+    --default-font-size
+*/
+
+.fs-xs {
+    font-size: calc(var(--default-font-size, 1rem) * 0.75);
+}
+.fs-sm {
+    font-size: calc(var(--default-font-size, 1rem) * 0.875);
+}
+.fs-base {
+    font-size: var(--default-font-size, 1rem);
+}
+.fs-6, .h6 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.125);
+}
+.fs-5, .h5 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.25);
+}
+.fs-4, .h4 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.375);
+}
+.fs-3, .h3 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.5);
+}
+.fs-2, .h2 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.75);
+}
+.fs-1, .h1 {
+    font-size: calc(var(--default-font-size, 1rem) * 2);
+}
+.fs-0 {
+    font-size: calc(var(--default-font-size, 1rem) * 2.35);
+}
+.fs-lg {
+    font-size: calc(var(--default-font-size, 1rem) * 2.75);
+}
+.fs-xl {
+    font-size: calc(var(--default-font-size, 1rem) * 3.2);
+}
+
+@media(min-width:600px) {
+    .fs-4, .h4 {
+        font-size: calc(var(--default-font-size, 1rem) * 1.5);
+    }
+    .fs-3, .h3 {
+        font-size: calc(var(--default-font-size, 1rem) * 1.75);
+    }
+    .fs-2, .h2 {
+        font-size: calc(var(--default-font-size, 1rem) * 2.25);
+    }
+    .fs-1, .h1 {
+        font-size: calc(var(--default-font-size, 1rem) * 2.75);
+    }
+    .fs-0 {
+        font-size: calc(var(--default-font-size, 1rem) * 3);
+    }
+    .fs-lg {
+        font-size: calc(var(--default-font-size, 1rem) * 3.75);
+    }
+    .fs-xl {
+        font-size: calc(var(--default-font-size, 1rem) * 4);
+    }
+}
+
+@media(min-width:900px) {
+    .fs-4, .h4 {
+        font-size: calc(var(--default-font-size, 1rem) * 1.5);
+    }
+    .fs-3, .h3 {
+        font-size: calc(var(--default-font-size, 1rem) * 1.75);
+    }
+    .fs-2, .h2 {
+        font-size: calc(var(--default-font-size, 1rem) * 2.25);
+    }
+    .fs-1, .h1 {
+        font-size: calc(var(--default-font-size, 1rem) * 3);
+    }
+    .fs-0 {
+        font-size: calc(var(--default-font-size, 1rem) * 4);
+    }
+    .fs-lg {
+        font-size: calc(var(--default-font-size, 1rem) * 5);
+    }
+    .fs-xl {
+        font-size: calc(var(--default-font-size, 1rem) * 6);
+    }
+}

@@ -1,0 +1,83 @@
+/* purgecss start ignore */
+
+.editable p:not(:last-child),
+.paras p:not(:last-child) { 
+    margin-bottom: calc(var(--default-line-height, 1.2) * 0.5rem); 
+}
+
+.editable p + h1, .editable p + h2, .editable p + h3, .editable p + h4, .editable p + h5, .editable p + h6 {
+    margin-top: calc(var(--default-line-height, 1.5) * 1rem);
+}
+
+.editable h1, 
+.editable h2, 
+.editable h3, 
+.editable h4, 
+.editable h5, 
+.editable h6 { 
+    color: var(--primary, black);
+    margin-bottom: calc(var(--default-line-height, 1.2) * 0.75rem);
+}
+
+.editable h6 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.125);
+}
+.editable h5 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.25);
+}
+.editable h4 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.5);
+}
+.editable h3 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.75);
+}
+.editable h2 {
+    font-size: calc(var(--default-font-size, 1rem) * 2.25);
+}
+.editable h1 {
+    font-size: calc(var(--default-font-size, 1rem) * 3);
+}
+
+
+.editable figure img {
+    display: block;
+}
+.editable figure figcaption {
+    margin-top: 1rem;
+}
+.editable figure + p,
+.editable figure + h1,
+.editable figure + h2,
+.editable figure + h3,
+.editable figure + h4,
+.editable figure + h5,
+.editable figure + h6,
+.editable p + figure {
+    margin-top: var(--space-sm, 2rem);
+}
+
+.editable ul + h1, .editable ol + h1,
+.editable ul + h2, .editable ol + h2,
+.editable ul + h3, .editable ol + h3,
+.editable ul + h4, .editable ol + h4,
+.editable ul + h5, .editable ol + h5,
+.editable ul + h6, .editable ol + h6 {
+    padding-top: .5rem;
+}
+.editable ul,
+.editable ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+.editable ul li, 
+.editable ol li { line-height: var(--default-line-height, 1.2); }
+
+.editable ul li:not(:last-child),
+.editable ol li:not(:last-child) { margin-bottom: calc(var(--default-line-height, 1.2) * 0.25rem); }
+
+.editable p > a.button { margin-top: var(--space-xs);}
+.editable p:not(:last-child) > a.button { margin-bottom: var(--space-xs);}
+
+
+/* purgecss end ignore */
+

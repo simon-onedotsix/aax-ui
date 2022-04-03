@@ -1,0 +1,59 @@
+:root {
+
+    /* colour */
+
+    --primary: hsl(211, 100%, 50%);
+    --secondary: hsl(0, 0%, 13%);
+    --accent: hsl(197, 100%, 11%);
+
+    --bg-global: rgb(255, 255, 255);
+
+    --default-text-color: #212121;
+    --default-heading-color: #212121;
+
+    --wash: hsl(240, 9%, 98%);
+    --light: hsl(233, 18%, 96%);
+    --medium: hsl(267, 4%, 45%);
+    --dark: hsl(0, 0%, 13%);
+
+    --error: rgb(255, 68, 0);
+    --success: rgb(121, 173, 0);
+    --warning: rgb(255, 166, 0);
+
+
+    /* spacing */
+
+    --container-max-width: 100rem;
+    --container-adjacent-spacing-factor: 0.5;
+
+    --unit-xxs: .5rem;
+    --unit-xs: 1rem;
+    --unit-sm: 2rem;
+    --unit-md: 4rem;
+    --unit-lg: 6rem;
+    --unit-xl: 8rem;
+
+
+    /* type */
+
+    --default-font-family: 'Roboto', sans-serif;
+    --default-font-weight: 300;
+    --default-font-size: 1rem;
+    --default-line-height: 1.4;
+
+    --default-heading-font-family: 'Roboto', serif;
+    --default-heading-weight: 500;
+    --default-heading-line-height: 1.1;
+
+
+    /* global UI styling */
+
+    --default-radius: 0;
+    --default-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.2);
+    --default-shadow-size: 20px;
+    --default-shadow-opacity: 0.2;
+
+    --gap-divider-color: currentColor;
+
+
+}

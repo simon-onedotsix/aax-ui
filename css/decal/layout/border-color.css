@@ -1,0 +1,9 @@
+.bc-primary { border-color: var(--primary, rgb(56, 66, 28));}
+.bc-secondary { border-color: var(--secondary, rgb(56, 66, 28));}
+.bc-accent { border-color: var(--accent, rgb(56, 66, 28));}
+
+.bc-grey-10 { border-color: rgb(231, 231, 231); }
+.bc-grey-20 { border-color: rgb(204, 204, 204); }
+.bc-grey-30 { border-color: rgb(173, 173, 173); }
+.bc-grey-40 { border-color: rgb(158, 158, 158); }
+.bc-grey-50 { border-color: rgb(128, 128, 128); }

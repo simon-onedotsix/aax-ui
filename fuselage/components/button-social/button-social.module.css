@@ -1,0 +1,23 @@
+.button {
+    flex-shrink: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 2.8rem;
+    padding: .6rem;
+    border: 1px solid var(--primary);
+
+    transition: all 250ms ease-in-out;
+}
+.button:hover {
+    transform: scale(1.1);
+}
+
+.icon {
+    display: block;
+    max-width: 2rem;
+    max-height: 2rem;
+    fill: white;
+}

@@ -1,0 +1,13 @@
+/* Webfont: AAX-Headline */@font-face {
+    font-family: 'AAXHeadlineBold';
+    src: url('AAX-Headline.eot'); /* IE9 Compat Modes */
+    src: url('AAX-Headline.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('AAX-Headline.woff2') format('woff2'), /* Modern Browsers */
+         url('AAX-Headline.woff') format('woff'), /* Modern Browsers */
+         url('AAX-Headline.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('AAX-Headline.svg#AAX-Headline') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

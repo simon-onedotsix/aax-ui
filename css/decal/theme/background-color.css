@@ -1,0 +1,38 @@
+.bg-global { background-color: var(--bg-global, white); }
+
+.bg-primary { background-color: var(--primary, rgb(44, 44, 44)); }
+.bg-secondary { background-color: var(--secondary, rgb(95, 95, 95)); }
+.bg-accent { background-color: var(--accent, rgb(168, 168, 168)); }
+
+.bg-wash { background-color: var(--wash, #F9F9FA);}
+.bg-light { background-color: var(--light, #E1E2EA);}
+.bg-medium { background-color: var(--medium, #726E77);}
+.bg-dark { background-color: var(--dark, #19171C);}
+
+.bg-black { background-color: black; }
+.bg-black-90 { background-color: rgba(0, 0, 0, 0.9); }
+.bg-black-80 { background-color: rgba(0, 0, 0, 0.8); }
+.bg-black-70 { background-color: rgba(0, 0, 0, 0.7); }
+.bg-black-60 { background-color: rgba(0, 0, 0, 0.6); }
+.bg-black-50 { background-color: rgba(0, 0, 0, 0.5); }
+.bg-black-40 { background-color: rgba(0, 0, 0, 0.4); }
+.bg-black-30 { background-color: rgba(0, 0, 0, 0.3); }
+.bg-black-20 { background-color: rgba(0, 0, 0, 0.2); }
+.bg-black-10 { background-color: rgba(0, 0, 0, 0.1); }
+
+.bg-white { background-color: white; }
+.bg-white-90 { background-color: rgba(255, 255, 255, 0.9); }
+.bg-white-80 { background-color: rgba(255, 255, 255, 0.8); }
+.bg-white-70 { background-color: rgba(255, 255, 255, 0.7); }
+.bg-white-60 { background-color: rgba(255, 255, 255, 0.6); }
+.bg-white-50 { background-color: rgba(255, 255, 255, 0.5); }
+.bg-white-40 { background-color: rgba(255, 255, 255, 0.4); }
+.bg-white-30 { background-color: rgba(255, 255, 255, 0.3); }
+.bg-white-20 { background-color: rgba(255, 255, 255, 0.2); }
+.bg-white-10 { background-color: rgba(255, 255, 255, 0.1); }
+
+.bg-error { background-color: var(--error, orangered); }
+.bg-success { background-color: var(--success, lime); }
+.bg-warning { background-color: var(--warning, orange); }
+
+

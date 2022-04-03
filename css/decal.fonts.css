@@ -1,0 +1,63 @@
+.sans {
+    font-family: sans-serif;
+}
+
+.serif {
+    font-family: 'AAXHeadline', serif;
+}
+
+.mono {
+    font-family: monospace;
+}
+
+
+/* mobile size adjuster */
+@media(max-width:600px) {
+    :root {
+        --default-font-size: .85rem;
+    }
+}
+
+/* tablet size adjuster */
+@media(min-width:600px) {
+    :root {
+        --default-font-size: 1rem;
+    }
+}
+
+/* medium screen size adjuster */
+@media(min-width:1200px) {
+    :root {
+        --default-font-size: 1rem;
+    }
+}
+
+/* big screen size adjuster */
+@media(min-width:1600px) {
+    :root {
+        --default-font-size: 1.125rem;
+    }
+}
+
+/* huge screen size adjuster */
+@media(min-width:2000px) {
+    :root {
+        --default-font-size: 1.25rem;
+    }
+}
+
+
+
+/* imports */
+
+@font-face {
+    font-family: 'AAXHeadline';
+    src: url('../public/assets/fonts/AAX-Headline.woff') format('woff'), /* Modern Browsers */
+         url('../public/assets/fonts/AAX-Headline.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+    font-display: swap;
+}
+
+

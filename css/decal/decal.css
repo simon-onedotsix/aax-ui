@@ -1,0 +1,45 @@
+@import '../decal.config.css';
+@import '../decal.fonts.css';
+
+@import './global/reset.css';
+@import './global/base.css';
+
+@import './theme/color.css';
+@import './theme/background-color.css';
+@import './theme/backdrop-filter.css';
+@import './theme/hover.css';
+@import './theme/editable.css';
+
+@import './typography/font-size.css';
+@import './typography/font-weight.css';
+@import './typography/text-align.css';
+@import './typography/headings.css';
+@import './typography/paragraphs.css';
+@import './typography/line-height.css'; 
+@import './typography/letter-spacing.css';
+@import './typography/text-transforms.css';
+
+@import './layout/spacing.css';
+@import './layout/padding.css';
+@import './layout/margin.css';
+@import './layout/block.css';
+@import './layout/container.css';
+@import './layout/columns.css';
+@import './layout/row.css';
+@import './layout/flex.css';
+@import './layout/grid.css';
+@import './layout/gap.css';
+@import './layout/border.css';
+@import './layout/border-radius.css';
+@import './layout/border-color.css';
+@import './layout/shadow.css';
+@import './layout/min-height.css';
+@import './layout/max-width.css';
+@import './layout/min-width.css';
+@import './layout/align-items.css';
+@import './layout/align-self.css';
+@import './layout/justify-content.css';
+
+
+
+

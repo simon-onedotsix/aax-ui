@@ -1,0 +1,162 @@
+/* 
+    --gap-divider-color
+*/
+
+
+.columns,
+.columns-1,
+.columns-2,
+.columns-3,
+.columns-4,
+.columns-5 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap-md);
+}
+
+@media (max-width: 599px) {
+    .columns-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .columns-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .columns-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .columns-4 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .columns-5 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+}
+
+@media (min-width: 600px) {
+    .columns-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .columns-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .columns-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .columns-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .columns-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 900px) {
+    .columns-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .columns-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .columns-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .columns-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .columns-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+
+/* .gap-xs { gap: var(--space-xs, .5rem); }
+.gap-sm { gap: var(--space-sm, 1rem); }
+.gap-md { gap: var(--space-md, 2rem); }
+.gap-lg { gap: var(--space-lg, 4rem); }
+.gap-xl { gap: var(--space-xl, 6rem); } */
+
+
+
+/* vertical keyline dividers */
+
+.gap-vd > * {
+    position: relative;
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .gap-vd > :nth-child(odd)::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: calc(var(--space-md) / -2);
+        height: 100%;
+        width: 1px;
+        background-color: var(--gap-divider-color, currentColor);
+    }
+    
+    .columns-3.gap-vd.gap-xs > :nth-child(odd)::after {
+        right: calc(var(--space-xs, .5rem) / -2);
+    }
+    .columns-3.gap-vd.gap-sm > :nth-child(odd)::after {
+        right: calc(var(--space-sm, 1rem) / -2);
+    }
+    .columns-3.gap-vd.gap-md > :nth-child(odd)::after {
+        right: calc(var(--space-md, 2rem) / -2);
+    }
+    .columns-3.gap-vd.gap-lg > :nth-child(odd)::after {
+        right: calc(var(--space-lg, 4rem) / -2);
+    }
+    .columns-3.gap-vd.gap-xl > :nth-child(odd)::after {
+        right: calc(var(--space-xl, 6rem) / -2);
+    }
+}
+
+@media (min-width: 900px) {
+
+    .columns-2.gap-vd > :nth-child(odd)::after,
+    .columns-3.gap-vd > :nth-child(3n+1)::after,
+    .columns-3.gap-vd > :nth-child(3n+2)::after,
+    .columns-4.gap-vd > :nth-child(4n+1)::after,
+    .columns-4.gap-vd > :nth-child(4n+2)::after,
+    .columns-4.gap-vd > :nth-child(4n+3)::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: calc(var(--space-md) / -2);
+        height: 100%;
+        width: 1px;
+        background-color: var(--gap-divider-color, currentColor);
+    }
+    
+
+    .columns-2.gap-vd.gap-xs > :nth-child(odd)::after {
+        right: calc(var(--space-xs) / -2);
+    }
+    .columns-2.gap-vd.gap-sm > :nth-child(odd)::after {
+        right: calc(var(--space-sm) / -2);
+    }
+    .columns-2.gap-vd.gap-md > :nth-child(odd)::after {
+        right: calc(var(--space-md) / -2);
+    }
+    .columns-2.gap-vd.gap-lg > :nth-child(odd)::after {
+        right: calc(var(--space-lg) / -2);
+    }
+    .columns-2.gap-vd.gap-xl > :nth-child(odd)::after {
+        right: calc(var(--space-xl, 6rem) / -2);
+    }
+    
+    .columns-3.gap-vd.gap-xs > :nth-child(3n+1)::after,
+    .columns-3.gap-vd.gap-xs > :nth-child(3n+2)::after {
+        right: calc(var(--space-xs) / -2);
+    }
+    .columns-3.gap-vd.gap-sm > :nth-child(3n+1)::after,
+    .columns-3.gap-vd.gap-sm > :nth-child(3n+2)::after {
+        right: calc(var(--space-sm) / -2);
+    }
+    .columns-3.gap-vd.gap-md > :nth-child(3n+1)::after,
+    .columns-3.gap-vd.gap-md > :nth-child(3n+2)::after {
+        right: calc(var(--space-md) / -2);
+    }
+    .columns-3.gap-vd.gap-lg > :nth-child(3n+1)::after,
+    .columns-3.gap-vd.gap-lg > :nth-child(3n+2)::after {
+        right: calc(var(--space-lg) / -2);
+    }
+    .columns-3.gap-vd.gap-xl > :nth-child(3n+1)::after,
+    .columns-3.gap-vd.gap-xl > :nth-child(3n+2)::after {
+        right: calc(var(--space-xl, 6rem) / -2);
+    }
+    
+    .columns-4.gap-vd.gap-xs > :nth-child(4n+1)::after,
+    .columns-4.gap-vd.gap-xs > :nth-child(4n+2)::after {
+        right: calc(var(--space-xs) / -2);
+    }
+    .columns-4.gap-vd.gap-sm > :nth-child(4n+1)::after,
+    .columns-4.gap-vd.gap-sm > :nth-child(4n+2)::after {
+        right: calc(var(--space-sm) / -2);
+    }
+    .columns-4.gap-vd.gap-md > :nth-child(4n+1)::after,
+    .columns-4.gap-vd.gap-md > :nth-child(4n+2)::after {
+        right: calc(var(--space-md) / -2);
+    }
+    .columns-4.gap-vd.gap-lg > :nth-child(4n+1)::after,
+    .columns-4.gap-vd.gap-lg > :nth-child(4n+2)::after {
+        right: calc(var(--space-lg) / -2);
+    }
+    .columns-4.gap-vd.gap-xl > :nth-child(4n+1)::after,
+    .columns-4.gap-vd.gap-xl > :nth-child(4n+2)::after {
+        right: calc(var(--space-xl, 6rem) / -2);
+    }
+
+}

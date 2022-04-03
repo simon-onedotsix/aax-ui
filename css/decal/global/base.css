@@ -1,0 +1,22 @@
+html {
+    background-color: var(--global-bg, white);
+    color: var(--default-text-color, rgb(40, 40, 40));
+}
+
+body {
+    font-family: var(--default-font-family, sans-serif);
+    font-weight: var(--default-font-weight, 400);
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+a {color: currentColor;}
+
+.inline { display: inline-block; }
+
+.overscroll {
+    overscroll-behavior: contain;
+}
