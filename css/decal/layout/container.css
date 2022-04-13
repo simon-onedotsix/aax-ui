@@ -4,7 +4,7 @@
 */
 
 .container {
-    max-width: var(--container-max-width, 90rem);
+    max-width: var(--container-max-width);
     margin: 0 auto;
 }
 

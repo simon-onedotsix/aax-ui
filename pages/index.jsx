@@ -1,14 +1,8 @@
-import { useState } from 'react'
 import Head from 'next/head'
 
-import Brand from '../fuselage/components/brand/brand'
 import { Button } from '../fuselage/components/button/button'
 
-import CSS from './index.module.css'
-
 export default function Home() {
-
-	const [ navActive, setNavActive ] = useState(false)
 
 	return (
 		<>
@@ -18,51 +12,66 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<div className={CSS.toggle} style={{ position: `fixed`, top: 10, right: 10, zIndex: 30 }}>
-				<button onClick={ () => setNavActive( !navActive ) }>X</button>
-			</div>
+		
+			{/* featured article */}
 
-			<div className={`${CSS.layout} container`}>
+			<section>
+				<p className="h fs-1 serif c-primary">Featured Article</p>
 
-				<aside className={`${CSS.sidebar} ${ navActive ? CSS.active : '' }`}>
-					<p>Trade with AAX</p>
-					<Brand/>
-					<ul className='fw-500'>
-						<li>News and Opinion</li>
-						<li>Crypto Technical Analysis</li>
-						<li>Explainers</li>
-						<li>Videos &amp; Webinars</li>
-						<li>Press Room</li>
-					</ul>
-					<div>
-						<p className='h3 serif'>High Yield Crypto Savings</p>
-						<p>Earn a steady interest in your favourite crypto. Accrue per minute, no lockup!</p>
-						<Button href='/' label='Register now' />
-					</div>
-				</aside>
+				<img className='w-100pc mb-xs' src="https://picsum.photos/1920/1080" alt="" />
+				<p>Author credit</p>
 
-				<main className={CSS.main}>
-					<div className={`${CSS.overlay} ${ navActive ? CSS.active : '' }`}></div>
-
-					<p className="h fs-0 serif c-primary">Main content</p>
-					<p className='h2'>Heading</p>
-					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
-					<div style={{ height: `200vh` }}></div>
-				</main>
-			</div>
+				<p className='h fs-0 serif lh-1 maxw-55'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
+				<p className='fs-5 fw-500 maxw-55'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
+				
+				<p className='mt-sm'><Button href='#' outline>Read more</Button></p>
+			</section>
 
 
-			<section className={`${CSS.footer} bg-light`}>
-				<div className={`${CSS.layout} container`}>
-					<aside className={CSS.sidebar}>
-						<Brand/>
-					</aside>
+			<section className="mt-lg">
+				<p className="h fs-1 serif c-primary">Editor's Choice</p>
 
-					<main className={CSS.main}>
-						<p className="h3 serif c-primary">Footer content</p>
-						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
-					</main>
+
+			</section>
+			
+			
+			<section className="mt-lg">
+				<p className="h fs-1 serif c-primary">News and Opinion</p>
+
+				<div className="columns-3 gap-md">
+					<article className='formatted'>
+						<img className='w-100pc mb-xs' src="https://picsum.photos/1920/1080" alt="" />
+						<p className='fw-500'>Category crumbs</p>
+
+						<p className='h fs-4 fw-600'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius.</p>
+						<p className='fw-400'>Author credit</p>
+					</article>
+
+
 				</div>
+
+				<p className='fw-500 mt-sm'>See all in News and Opinion</p>
+
+			</section>
+			
+			
+			<section className="mt-lg">
+				<p className="h fs-1 serif c-primary">Crypto Technical Analysis</p>
+
+
+			</section>
+
+
+			<section className="mt-lg bg-dark p-md c-white">
+				<p>[ callout ]</p>
+			</section>
+
+
+			<section className="mt-lg">
+				<p className="h fs-1 serif c-primary">Explainers</p>
+
+
 			</section>
 
 		</>

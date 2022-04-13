@@ -1,0 +1,83 @@
+/* purgecss start ignore */
+
+.formatted p:not(:last-child),
+.paras p:not(:last-child) { 
+    margin-bottom: calc(var(--default-line-height, 1.2) * 0.5rem); 
+}
+
+.formatted p + h1, .formatted p + h2, .formatted p + h3, .formatted p + h4, .formatted p + h5, .formatted p + h6 {
+    margin-top: calc(var(--default-line-height, 1.5) * 1rem);
+}
+
+.formatted h1, 
+.formatted h2, 
+.formatted h3, 
+.formatted h4, 
+.formatted h5, 
+.formatted h6 { 
+    color: var(--primary, black);
+    margin-bottom: calc(var(--default-line-height, 1.2) * 0.75rem);
+}
+
+.formatted h6 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.125);
+}
+.formatted h5 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.25);
+}
+.formatted h4 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.5);
+}
+.formatted h3 {
+    font-size: calc(var(--default-font-size, 1rem) * 1.75);
+}
+.formatted h2 {
+    font-size: calc(var(--default-font-size, 1rem) * 2.25);
+}
+.formatted h1 {
+    font-size: calc(var(--default-font-size, 1rem) * 3);
+}
+
+
+.formatted figure img {
+    display: block;
+}
+.formatted figure figcaption {
+    margin-top: 1rem;
+}
+.formatted figure + p,
+.formatted figure + h1,
+.formatted figure + h2,
+.formatted figure + h3,
+.formatted figure + h4,
+.formatted figure + h5,
+.formatted figure + h6,
+.formatted p + figure {
+    margin-top: var(--space-sm, 2rem);
+}
+
+.formatted ul + h1, .formatted ol + h1,
+.formatted ul + h2, .formatted ol + h2,
+.formatted ul + h3, .formatted ol + h3,
+.formatted ul + h4, .formatted ol + h4,
+.formatted ul + h5, .formatted ol + h5,
+.formatted ul + h6, .formatted ol + h6 {
+    padding-top: .5rem;
+}
+.formatted ul,
+.formatted ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+.formatted ul li, 
+.formatted ol li { line-height: var(--default-line-height, 1.2); }
+
+.formatted ul li:not(:last-child),
+.formatted ol li:not(:last-child) { margin-bottom: calc(var(--default-line-height, 1.2) * 0.25rem); }
+
+.formatted p > a.button { margin-top: var(--space-xs);}
+.formatted p:not(:last-child) > a.button { margin-bottom: var(--space-xs);}
+
+
+/* purgecss end ignore */
+

@@ -1,3 +1,18 @@
+/* large font adjusters */
+
+.fs-1  {
+    line-height: calc(var(--default-line-height, 1rem) * 0.9);
+}
+.fs-0 {
+    line-height: calc(var(--default-line-height, 1rem) * 0.85);
+}
+.fs-lg {
+    line-height: calc(var(--default-line-height, 1rem) * 0.85);
+}
+.fs-xl {
+    line-height: calc(var(--default-line-height, 1rem) * 0.85);
+}
+
 .lh-0 { line-height: 1; }
 .lh-1 { line-height: 1.1; }
 .lh-2 { line-height: 1.2; }
@@ -9,3 +24,5 @@
 .lh-8 { line-height: 1.8; }
 .lh-9 { line-height: 1.9; }
 .lh-10 { line-height: 2; }
+
+

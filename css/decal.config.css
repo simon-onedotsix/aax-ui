@@ -4,7 +4,7 @@
 
     --primary: hsl(211, 100%, 50%);
     --secondary: hsl(0, 0%, 13%);
-    --accent: hsl(197, 100%, 11%);
+    --accent: hsl(211, 100%, 50%);
 
     --bg-global: rgb(255, 255, 255);
 
@@ -23,7 +23,7 @@
 
     /* spacing */
 
-    --container-max-width: 100rem;
+    /* --container-max-width: 100rem; */
     --container-adjacent-spacing-factor: 0.5;
 
     --unit-xxs: .5rem;
@@ -43,7 +43,6 @@
 
     --default-heading-font-family: 'Roboto', serif;
     --default-heading-weight: 500;
-    --default-heading-line-height: 1.1;
 
 
     /* global UI styling */

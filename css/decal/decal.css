@@ -8,7 +8,7 @@
 @import './theme/background-color.css';
 @import './theme/backdrop-filter.css';
 @import './theme/hover.css';
-@import './theme/editable.css';
+@import './theme/formatted.css';
 
 @import './typography/font-size.css';
 @import './typography/font-weight.css';
@@ -34,6 +34,7 @@
 @import './layout/border-color.css';
 @import './layout/shadow.css';
 @import './layout/min-height.css';
+@import './layout/width.css';
 @import './layout/max-width.css';
 @import './layout/min-width.css';
 @import './layout/align-items.css';
