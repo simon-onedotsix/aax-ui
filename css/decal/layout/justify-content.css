@@ -1,3 +1,4 @@
 .jc-center { justify-content: center; }
 .jc-end { justify-content: flex-end; }
 .jc-start { justify-content: flex-start; }
+.jc-between { justify-content: space-between; }

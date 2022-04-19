@@ -1,3 +1,7 @@
+/* * { border: 1px solid rgba(17, 0, 255, 0.181); } */
+/* * { background-color:  rgba(0, 255, 255, 0.181); } */
+
+
 html {
     background-color: var(--global-bg, white);
     color: var(--default-text-color, rgb(40, 40, 40));
@@ -19,4 +23,8 @@ a {color: currentColor;}
 
 .overscroll {
     overscroll-behavior: contain;
+}
+
+.image {
+    display: block;
 }

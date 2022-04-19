@@ -13,6 +13,9 @@
 	background-color: transparent;
 	color: var(--default-text-color);
 }
+.inverse.outline {
+	color: var(--primary);
+}
 
 @media(hover:hover){
 	.button:hover {
@@ -23,6 +26,14 @@
 	.outline:hover {
 		background-color: var(--primary);
 		border-color: var(--primary);
+		color: white;
+	}
+	.inverse:hover {
+		background-color: white;
+		color: var(--primary);
+	}
+	.inverse.outline:hover {
+		background-color: var(--primary);
 		color: white;
 	}
 }

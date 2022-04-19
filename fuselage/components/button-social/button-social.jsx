@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import CSS from './button-social.module.css'
 
 
-export const ButtonSocial = ({ icon, url, alt, decal }) => {
+export const ButtonSocial = ({ icon, href, alt, decal }) => {
 
     const handleIcon = () => {
         switch ( icon ) {
@@ -28,7 +28,7 @@ export const ButtonSocial = ({ icon, url, alt, decal }) => {
     }
 
     return (
-        <a href={url} className={CSS.button} target="_blank">
+        <a href={href} className={CSS.button} target="_blank">
             <img src={handleIcon()} className={CSS.icon} alt={alt} rel={"noopener noreferrer"}/>
         </a>
     )
@@ -36,13 +36,13 @@ export const ButtonSocial = ({ icon, url, alt, decal }) => {
 }
 
 ButtonSocial.propTypes = {
-    url: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     alt: PropTypes.string
 }
   
 ButtonSocial.defaultProps = {
-    url: '#',
+    href: '#',
     icon: 'email',
     alt: 'social button'
 }

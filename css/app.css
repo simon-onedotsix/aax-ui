@@ -8,4 +8,15 @@
     .onlyMobile {
         display: none;
     }
-}   
+}
+
+
+
+.tableOfContents a {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 500;
+}
+.tableOfContents li {
+    margin-top: .5rem;
+}

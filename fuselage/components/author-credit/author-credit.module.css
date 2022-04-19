@@ -1,0 +1,26 @@
+.layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+.avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+
+
+@media (min-width:600px) {
+    .layout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--space-md);
+    }
+}
+
+@media (min-width:1600px) {
+    .avatar {
+        width: 11rem;
+        height: 11rem;
+    }
+}

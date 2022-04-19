@@ -1,0 +1,11 @@
+.icon {
+    height: .9rem;
+    width: .9rem;
+    margin: 0 .35rem -.075rem 0;
+}
+
+@media(max-width:599px) {
+    .desktopOnly {
+        display: none;
+    }
+}

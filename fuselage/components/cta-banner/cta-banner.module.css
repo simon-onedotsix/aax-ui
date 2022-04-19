@@ -1,0 +1,12 @@
+.layout {
+    background-color: var(--dark);
+    padding: var(--space-sm) var(--space-md);
+    color: white;
+}
+
+@media (min-width:1200px) {
+    .layout {
+        display: flex;
+        justify-content: space-between;
+    }
+}

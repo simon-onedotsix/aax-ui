@@ -1,0 +1,17 @@
+.tagLink {
+    text-decoration: none;
+    color: var(--medium);
+    font-weight: 500;
+
+    transition: all 350ms ease-in-out;
+}
+
+.tagLink:not(:last-child) {
+    margin-right: .75rem;
+}
+
+@media (hover:hover){
+    .tagLink:hover {
+        color: var(--primary);
+    }
+}
