@@ -52,7 +52,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
@@ -66,7 +66,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 				</div>
@@ -85,7 +85,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
@@ -99,7 +99,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 				</div>
@@ -126,7 +126,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
@@ -140,7 +140,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 				</div>
@@ -159,7 +159,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
@@ -173,7 +173,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 				</div>
@@ -192,7 +192,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
@@ -206,7 +206,7 @@ export default function Home() {
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 				</div>
