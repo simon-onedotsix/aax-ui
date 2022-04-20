@@ -2,11 +2,15 @@ import { useState } from 'react'
 
 import Brand from '../components/brand/brand'
 import { Button } from '../components/button/button'
+import { ArrowLink } from '../components/arrow-link/arrow-link'
+import { UnderlineLink } from '../components/u-link/u-link'
 import { SearchButton } from '../components/search-button/search-button'
 import { LocalesButton } from '../components/locales-button/locales-button'
 import { ButtonSocial } from '../components/button-social/button-social'
-import { UnderlineLink } from '../components/u-link/u-link'
+import { UnderlineBarLink } from '../components/u-bar-link/u-bar-link'
 import { SubscribeForm } from '../components/subscribe-form/subscribe-form'
+import { SearchForm } from '../components/search-form/search-form'
+import { CryptoChart } from '../components/crypto-chart/crypto-chart'
 
 import CSS from './layout.module.css'
 
@@ -33,6 +37,8 @@ export default function Layout ({ children }) {
 					<img src="/assets/ui/icon-close.svg" alt="" />
 				</button>
 				<p className="fs-4 fw-400 c-white">Search</p>
+
+				<SearchForm />
 			</div>
 			
 			
@@ -56,18 +62,18 @@ export default function Layout ({ children }) {
 						<img src="/assets/ui/icon-close.svg" alt="" />
 					</button>
 					
-                    <p>Trade with AAX</p>
+					<p><ArrowLink href="#" direction='left' decal='fs-sm fw-400'>Trade with AAX</ArrowLink></p>
                     
 					<div className="onlyDesktop mt-md">
 						<Brand className/>
 					</div>
 					
 					<ul className='fw-500 mt-md lh-9'>
-						<li>News and Opinion</li>
-						<li>Crypto Technical Analysis</li>
-						<li>Explainers</li>
-						<li>Videos &amp; Webinars</li>
-						<li>Press Room</li>
+						<li><UnderlineLink href='/category'>News and Opinion</UnderlineLink></li>
+						<li><UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink></li>
+						<li><UnderlineLink href='/category'>Explainers</UnderlineLink></li>
+						<li><UnderlineLink href='/category'>Videos &amp; Webinars</UnderlineLink></li>
+						<li><UnderlineLink href='/category'>Press Room</UnderlineLink></li>
 					</ul>
 					
 					<div className='mt-md'>
@@ -101,7 +107,10 @@ export default function Layout ({ children }) {
 					</div>
 
                     <div className={CSS.cryptoTicker}>
-						<p>[ crypto ticker ]</p>
+						<p className='maxw-20'>
+							<CryptoChart currency='Bitcoin'/>
+						</p>
+
 						<p><Button href='#' outline>View all</Button></p>
 					</div>
 
@@ -128,34 +137,34 @@ export default function Layout ({ children }) {
 							<section className={`${CSS.footerColumns4} gap-md`}>
 								<div className='fw-400 formatted'>
 									<p className='fw-bold c-primary'>Maecenas rhoncus</p>
-									<p>Duis mattis nisi nec sapien</p>
-									<p>Nullam eu ante</p>
-									<p>Nonenim tincidunt fringilla</p>
-									<p>Integer leo</p>
-									<p>Duis eget enim</p>
+									<p><UnderlineLink href='#'>Duis mattis nisi nec sapien</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Nullam eu ante</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Nonenim tincidunt fringilla</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Integer leo</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Duis eget enim</UnderlineLink></p>
 								</div>
 								<div className='fw-400 formatted'>
 									<p className='fw-bold c-primary'>Class aptent</p>
-									<p>Placerat et</p>
-									<p>Pellentesque</p>
-									<p>Sedessed diam</p>
-									<p>Nam nunc</p>
+									<p><UnderlineLink href='#'>Placerat et</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Pellentesque</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Sedessed diam</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Nam nunc</UnderlineLink></p>
 								</div>
 								<div className='fw-400 formatted'>
 									<p className='fw-bold c-primary'>Maecenas rhoncus</p>
-									<p>Duis mattis nisi</p>
-									<p>Nullam eu ante</p>
-									<p>Nonenim tincidunt </p>
-									<p>Integer leo</p>
-									<p>Duis eget enim</p>
-									<p>Curabitur</p>
+									<p><UnderlineLink href='#'>Duis mattis nisi</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Nullam eu ante</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Nonenim tincidunt </UnderlineLink></p>
+									<p><UnderlineLink href='#'>Integer leo</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Duis eget enim</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Curabitur</UnderlineLink></p>
 								</div>
 								<div className='fw-400 formatted'>
 									<p className='fw-bold c-primary'>Class aptent</p>
-									<p>Placerat et</p>
-									<p>Pellentesque</p>
-									<p>Sedessed diam</p>
-									<p>Nam nunc</p>
+									<p><UnderlineLink href='#'>Placerat et</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Pellentesque</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Sedessed diam</UnderlineLink></p>
+									<p><UnderlineLink href='#'>Nam nunc</UnderlineLink></p>
 								</div>
 							</section>
 
@@ -170,7 +179,7 @@ export default function Layout ({ children }) {
 								<div>
 									<p className="h6">Disclaimer</p>
 									<p className='fs-sm'>This blog provides general information only. It is not a substitute for obtaining any legal, financial or any other form of professional advice from a suitably qualified and licensed advisor. The information may be changed without notice and is not guaranteed to be complete, accurate, correct or up-to-date.</p>
-									<p className='fw-500 mt-sm'><UnderlineLink href="/">aax.com</UnderlineLink></p>
+									<p className='fw-500 mt-sm'><UnderlineBarLink href="/">aax.com</UnderlineBarLink></p>
 								</div>
 							</section>
 

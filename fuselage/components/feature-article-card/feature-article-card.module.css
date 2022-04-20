@@ -1,0 +1,15 @@
+.title {
+    display: block;
+    text-decoration: none;
+}
+
+@media(hover:hover) {
+    .title {
+        transition: all 400ms ease-in-out;
+    }
+    .title:hover {
+        cursor: pointer;
+        color: var(--primary);
+        transition: all 200ms ease-in-out;
+    }
+}

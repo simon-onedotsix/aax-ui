@@ -2,9 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { Button } from '../fuselage/components/button/button'
-import { UnderlineLink } from '../fuselage/components/u-link/u-link'
-
-import { ArticleCardLandscape } from '../fuselage/components/article-card-landscape/article-card-landscape'
+import { FeatureArticle } from '../fuselage/components/feature-article-card/feature-article-card'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 import { ArticleCategories } from '../fuselage/components/article-categories/article-categories'
 import { ArticleMeta } from '../fuselage/components/article-meta/article-meta'
@@ -70,24 +68,20 @@ export default function Home() {
 
 
 
-
-
 			{/* next article */}
 
 			<section className='mt-lg pt-md bt-1 bc-primary'>
-				<p className="h fs-1 serif c-primary">Next Article</p>
-
-				<img className='w-100pc mb-xs' src="https://picsum.photos/1920/1080" alt="" />
-
-				<div className="flex jc-between">
-					<ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
-					<ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
-				</div>
-
-				<p className='h fs-0 serif lh-1 maxw-55 mt-xs'>Phasellus cursus Class aptent taciti sociosqu ad litora</p>
-				<p className='fs-5 fw-500 maxw-55'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
-				
-				<p className='mt-sm'><Button href='#' outline>Read</Button></p>
+				<FeatureArticle
+					href='/post'
+					eyebrow='Next Article'
+					heroUrl='https://picsum.photos/1920/1080'
+					title='Another Article'
+					excerpt='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!'
+					ctaLabel='Read'
+					categories={[{title: 'Features'}, {title: 'Markets'}]}
+					author='Forename Surname'
+					date='Feb 12, 2022'
+				/>
 			</section>
 
 

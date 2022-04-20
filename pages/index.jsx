@@ -1,8 +1,9 @@
 import Head from 'next/head'
 
 import { Button } from '../fuselage/components/button/button'
-import { UnderlineLink } from '../fuselage/components/u-link/u-link'
+import { UnderlineBarLink } from '../fuselage/components/u-bar-link/u-bar-link'
 
+import { FeatureArticle } from '../fuselage/components/feature-article-card/feature-article-card'
 import { ArticleCardLandscape } from '../fuselage/components/article-card-landscape/article-card-landscape'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 import { ArticleCategories } from '../fuselage/components/article-categories/article-categories'
@@ -22,29 +23,25 @@ export default function Home() {
 		
 			{/* featured article */}
 
-			<section>
-				<p className="h fs-1 serif c-primary">Featured Article</p>
-
-				<img className='w-100pc mb-xs' src="https://picsum.photos/1920/1080" alt="" />
-
-				<div className="flex jc-between">
-					<ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
-					<ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
-				</div>
-
-				<p className='h fs-0 serif lh-1 maxw-60 mt-xs'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
-				<p className='fs-5 fw-500 maxw-60'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
-				
-				<p className='mt-sm'><Button href='/post' outline>Read more</Button></p>
-			</section>
+			<FeatureArticle
+				href='/post'
+				eyebrow='Feature Article'
+				heroUrl='https://picsum.photos/1920/1080'
+				title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+				excerpt='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!'
+				ctaLabel='Read more'
+				categories={[{title: 'Features'}, {title: 'Markets'}]}
+				author='Forename Surname'
+				date='Feb 12, 2022'
+			/>
 
 
 			<section className="mt-lg">
 				<p className="h fs-1 serif c-primary">Editor's Choice</p>
 
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
 			</section>
 			
 			
@@ -53,13 +50,13 @@ export default function Home() {
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -67,7 +64,7 @@ export default function Home() {
 						date='Oct 18, 2021'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -75,7 +72,7 @@ export default function Home() {
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineLink href="/category">See all in News and Opinion</UnderlineLink>
+					<UnderlineBarLink href="/category">See all in News and Opinion</UnderlineBarLink>
 				</p>
 
 			</section>
@@ -86,13 +83,13 @@ export default function Home() {
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -100,7 +97,7 @@ export default function Home() {
 						date='Oct 18, 2021'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -108,7 +105,7 @@ export default function Home() {
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineLink href="/category">See all in Crypto Technical Analysis</UnderlineLink>
+					<UnderlineBarLink href="/category">See all in Crypto Technical Analysis</UnderlineBarLink>
 				</p>
 			</section>
 
@@ -127,13 +124,13 @@ export default function Home() {
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -141,7 +138,7 @@ export default function Home() {
 						date='Oct 18, 2021'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -149,7 +146,7 @@ export default function Home() {
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineLink href="/category">See all in Explainers</UnderlineLink>
+					<UnderlineBarLink href="/category">See all in Explainers</UnderlineBarLink>
 				</p>
 			</section>
 			
@@ -160,13 +157,13 @@ export default function Home() {
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -174,7 +171,7 @@ export default function Home() {
 						date='Oct 18, 2021'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -182,7 +179,7 @@ export default function Home() {
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineLink href="/category">See all in Videos and Webinars</UnderlineLink>
+					<UnderlineBarLink href="/category">See all in Videos and Webinars</UnderlineBarLink>
 				</p>
 			</section>
 			
@@ -193,13 +190,13 @@ export default function Home() {
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -207,7 +204,7 @@ export default function Home() {
 						date='Oct 18, 2021'
 					/>
 					<ArticleCard
-						href='/'
+						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
@@ -215,7 +212,7 @@ export default function Home() {
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineLink href="/category">See all in Press Room</UnderlineLink>
+					<UnderlineBarLink href="/category">See all in Press Room</UnderlineBarLink>
 				</p>
 			</section>
 

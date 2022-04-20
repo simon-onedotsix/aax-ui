@@ -1,27 +1,18 @@
 .uLink {
-    cursor: pointer;
-    position: relative;
     text-decoration: none;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
     margin-bottom: -2px;
+    
+    background-image: linear-gradient(var(--primary), var(--primary));
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
 }
-
-
-.uLink::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary);
-
-    transition: all 350ms ease-in-out;
+.uLink:hover {
+    background-size: 100% 2px;
 }
-
-@media(hover:hover){
-    .uLink:hover::after {
-        transition: all 150ms ease-in-out;
-        bottom: -4px;
-    }
+.uLink.here {
+    cursor: default;
+    background-size: 100% 2px;
 }

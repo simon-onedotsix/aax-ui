@@ -1,0 +1,40 @@
+.arrowLink {
+    display: block;
+    text-decoration: none;
+}
+
+.arrowLink.left::before {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1rem;
+    background-image: url('/assets/ui/chevron-left.svg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    margin-left: .1rem;
+    margin-bottom: -.15rem;
+    transition: all 300ms ease-in-out;
+}
+
+.arrowLink.left:hover::before {
+    transform: translateX(-5px);
+    transition: all 200ms ease-in-out;
+}
+
+.arrowLink.right::after {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1rem;
+    background-image: url('/assets/ui/chevron-right.svg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    margin-left: .1rem;
+    margin-bottom: -.15rem;
+    transition: all 300ms ease-in-out;
+}
+
+.arrowLink.right:hover::after {
+    transform: translateX(5px);
+    transition: all 200ms ease-in-out;
+}

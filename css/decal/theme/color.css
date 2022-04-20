@@ -2,6 +2,13 @@
 .c-secondary { color: var(--secondary, rgb(140, 0, 196)); }
 .c-accent { color: var(--accent, rgb(204, 77, 255)); }
 
+.c-light { color: var(--light); }
+.c-medium { color: var(--medium); }
+.c-dark { color: var(--dark); }
+
+.c-positive { color: var(--positive); }
+.c-negative { color: var(--negative); }
+
 .c-p { color: var(--default-text-color, rgb(94, 94, 94)); }
 .c-h { color: var(--default-heading-color, rgb(0, 0, 0)); }
 

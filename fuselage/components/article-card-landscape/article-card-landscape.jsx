@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { ArticleCategories } from '../article-categories/article-categories'
 import { ArticleMeta } from '../article-meta/article-meta'
+import { UnderlineLink } from '../u-link/u-link'
 
 import CSS from './article-card-landscape.module.css'
 
@@ -16,7 +17,9 @@ export const ArticleCardLandscape = ({ href, image, title, excerpt, author, date
             <div className={CSS.content}>
 
                 <div className='formatted'>
-                    <p className='h fs-3 fw-600'>{ title }</p>
+                    <p className='h fs-3 fw-600'>
+                        <Link href={href}><a className={CSS.link}>{ title }</a></Link>
+                    </p>
                     <p>{ excerpt }</p>
                 </div>
                 

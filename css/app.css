@@ -12,6 +12,8 @@
 
 
 
+/* global form styles */
+
 .tableOfContents a {
     display: inline-block;
     text-decoration: none;
@@ -19,4 +21,42 @@
 }
 .tableOfContents li {
     margin-top: .5rem;
+}
+
+
+.formRow {
+    margin-bottom: var(--space-xs);
+}
+.formError {
+    display: block;
+    font-weight: 500;
+    margin-top: .5rem;
+    color: tomato;
+}
+
+.form input {
+    padding: .75rem 1rem;
+    border: 1px solid var(--primary);
+    font-size: var(--default-font-size);
+    font-family: var(--default-font-family);
+    outline: none;
+}
+.form input[type="text"] {
+    width: 100%;
+}
+.form input[type="submit"] {
+    cursor: pointer;
+    padding: .75rem 2rem;
+    background-color: var(--primary);
+    color: white;
+    transition: all 400ms ease-in-out;
+}
+.form input[type="submit"]:hover {
+    background-color: var(--dark);
+    border-color: var(--dark);
+    transition: all 200ms ease-in-out;
+}
+
+.form input[type="text"]:focus {
+    border-color: tomato;
 }

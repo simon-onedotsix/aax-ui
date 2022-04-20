@@ -15,7 +15,9 @@ export const ArticleCard = ({ href, image, title, excerpt, author, date, categor
 
             <ArticleCategories categories={ categories } />
 
-            <p className='h fs-4 fw-600'>{ title }</p>
+            <p className='h fs-4 fw-600'>
+                <Link href={href}><a className={CSS.link}>{ title }</a></Link>
+            </p>
             
             <p>{ excerpt }</p>
             

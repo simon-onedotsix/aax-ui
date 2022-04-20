@@ -20,14 +20,14 @@ export default function Home() {
 			{/* featured article */}
 
 			<section>
-				<p className="h fs-1 serif c-primary">Category Heading</p>
+				<p className="h fs-1 serif c-primary pb-sm">Category Heading</p>
 
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
-				<ArticleCardLandscape />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape href='/post' />
 			</section>
 			
 
