@@ -37,7 +37,7 @@ export default function Home() {
 
 
 			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Editor's Choice</p>
+				<p className="h fs-1 serif c-primary">Editor&apos;s Choice</p>
 
 				<ArticleCardLandscape href='/post' />
 				<ArticleCardLandscape href='/post' />
