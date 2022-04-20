@@ -69,11 +69,21 @@ export default function Layout ({ children }) {
 					</div>
 					
 					<ul className='fw-500 mt-md lh-9'>
-						<li><UnderlineLink href='/category'>News and Opinion</UnderlineLink></li>
-						<li><UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink></li>
-						<li><UnderlineLink href='/category'>Explainers</UnderlineLink></li>
-						<li><UnderlineLink href='/category'>Videos &amp; Webinars</UnderlineLink></li>
-						<li><UnderlineLink href='/category'>Press Room</UnderlineLink></li>
+						<li onClick={ () => setNavActive( false ) }>
+							<UnderlineLink href='/category'>News and Opinion</UnderlineLink>
+						</li>
+						<li onClick={ () => setNavActive( false ) }>
+							<UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink>
+						</li>
+						<li onClick={ () => setNavActive( false ) }>
+							<UnderlineLink href='/category'>Explainers</UnderlineLink>
+						</li>
+						<li onClick={ () => setNavActive( false ) }>
+							<UnderlineLink href='/category'>Videos &amp; Webinars</UnderlineLink>
+						</li>
+						<li onClick={ () => setNavActive( false ) }>
+							<UnderlineLink href='/category'>Press Room</UnderlineLink>
+						</li>
 					</ul>
 					
 					<div className='mt-md'>
@@ -111,7 +121,7 @@ export default function Layout ({ children }) {
 							<CryptoChart currency='Bitcoin'/>
 						</p>
 
-						<p><Button href='#' outline>View all</Button></p>
+						<p className='onlyDesktop'><Button href='#' outline>View all</Button></p>
 					</div>
 
                     <div className={CSS.mainContent}>

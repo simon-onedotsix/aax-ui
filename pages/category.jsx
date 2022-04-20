@@ -46,7 +46,7 @@ export default function Home() {
 
 				<p className='fw-600 mt-md'>Tags</p>
 
-				<p className='mt-xs'>
+				<p className='mt-xs maxw-100pc' style={{ width: `100%`, overflow: `hidden`}}>
 					<TagLink href='#'>Bitcoin</TagLink>
 					<TagLink href='#'>SATS</TagLink>
 					<TagLink href='#'>Global</TagLink>

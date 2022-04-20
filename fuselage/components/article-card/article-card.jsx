@@ -26,7 +26,7 @@ export const ArticleCard = ({ href, image, title, excerpt, author, date, categor
     )
 }
 
-ArticleCard.PropTypes = {
+ArticleCard.propTypes = {
     href: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string,

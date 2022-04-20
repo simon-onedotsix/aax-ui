@@ -40,6 +40,9 @@
     font-size: var(--default-font-size);
     font-family: var(--default-font-family);
     outline: none;
+
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
 }
 .form input[type="text"] {
     width: 100%;

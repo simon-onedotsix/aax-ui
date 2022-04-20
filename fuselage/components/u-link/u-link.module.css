@@ -9,8 +9,11 @@
     background-size: 0% 2px;
     transition: background-size .3s;
 }
-.uLink:hover {
-    background-size: 100% 2px;
+
+@media (min-width:600px) {
+    .uLink:hover {
+        background-size: 100% 2px;
+    }
 }
 .uLink.here {
     cursor: default;

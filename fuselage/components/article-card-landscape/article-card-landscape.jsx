@@ -32,7 +32,7 @@ export const ArticleCardLandscape = ({ href, image, title, excerpt, author, date
     )
 }
 
-ArticleCardLandscape.PropTypes = {
+ArticleCardLandscape.propTypes = {
     href: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string,

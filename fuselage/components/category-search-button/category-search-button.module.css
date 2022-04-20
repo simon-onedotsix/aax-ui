@@ -17,6 +17,7 @@
 
 .button:not(:last-child) {
 	margin-right: .75rem;
+	margin-bottom: .75rem;
 }
 
 @media(hover:hover){

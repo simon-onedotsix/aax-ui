@@ -20,6 +20,8 @@
     color: white;
     background-color: transparent;
     padding: 1rem .75rem;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
 }
 
 .textInput,
