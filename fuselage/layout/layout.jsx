@@ -62,9 +62,9 @@ export default function Layout ({ children }) {
 						<img src="/assets/ui/icon-close.svg" alt="" />
 					</button>
 					
-					<p><ArrowLink href="#" direction='left' decal='fs-sm fw-400'>Trade with AAX</ArrowLink></p>
+					{/* <p><ArrowLink href="#" direction='left' decal='fs-sm fw-400'>Trade with AAX</ArrowLink></p> */}
                     
-					<div className="onlyDesktop mt-md">
+					<div className="onlyDesktop mt-sm">
 						<Brand className/>
 					</div>
 					
@@ -101,9 +101,9 @@ export default function Layout ({ children }) {
 					</div>
 					
 					<div className='mt-md'>
-						<ButtonSocial href='#' icon='facebook' />&ensp;
-						<ButtonSocial href='#' icon='twitter' />&ensp;
-						<ButtonSocial href='#' icon='linkedin' />&ensp;
+						<ButtonSocial href='#' icon='facebook' />
+						<ButtonSocial href='#' icon='twitter' />
+						<ButtonSocial href='#' icon='linkedin' />
 						<ButtonSocial href='#' icon='weibo' />
 					</div>
                 </aside>
@@ -117,11 +117,12 @@ export default function Layout ({ children }) {
 					</div>
 
                     <div className={CSS.cryptoTicker}>
-						<p className='maxw-20'>
+						<div>
 							<CryptoChart currency='Bitcoin'/>
-						</p>
-
-						<p className='onlyDesktop'><Button href='#' outline>View all</Button></p>
+							<CryptoChart currency='Etherium'/>
+							<CryptoChart currency='AAB'/>
+						</div>
+						<p><Button href='https://www.aax.com' target='_blank' outline>Trade</Button></p>
 					</div>
 
                     <div className={CSS.mainContent}>

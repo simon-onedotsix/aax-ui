@@ -23,15 +23,16 @@ export default function Home() {
 			{/* main article */}
 
 			<section>
+				<p className='h fs-0 serif lh-1 maxw-55 pb-xs'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
+
 				<FeatureArticleHero heroUrl='https://picsum.photos/1920/1080' />
 
 				<div className="flex jc-between">
 					<ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
 					<ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
 				</div>
-
-				<p className='h fs-0 serif lh-1 maxw-55 mt-sm'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
-				<p className='fs-5 fw-500 maxw-55'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
+				
+				<p className='fs-5 fw-500 maxw-55 mt-sm'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
 			</section>
 
 
@@ -65,6 +66,25 @@ export default function Home() {
 
 
 			<AuthorCredit></AuthorCredit>
+
+
+
+			{/* next article */}
+
+			<section className='mt-lg pt-md bt-1 bc-primary'>
+				<FeatureArticle
+					href='/post'
+					eyebrow='Next Article'
+					heroUrl='https://picsum.photos/1920/1080'
+					title='Another Article'
+					excerpt='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!'
+					ctaLabel='Read'
+					categories={[{title: 'Features'}, {title: 'Markets'}]}
+					author='Forename Surname'
+					date='Feb 12, 2022'
+				/>
+			</section>
+
 
 
 

@@ -25,7 +25,7 @@ export default function Home() {
 
 			<FeatureArticle
 				href='/post'
-				eyebrow='Feature Article'
+				eyebrow=''
 				heroUrl='https://picsum.photos/1920/1080'
 				title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 				excerpt='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!'

@@ -10,9 +10,9 @@ import CSS from './feature-article-card.module.css'
 export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categories, author, date, ctaLabel }) => {
     return (
         <section>
-            <p className="h fs-1 serif c-primary">{ eyebrow }</p>
+            { eyebrow ? <p className="h fs-1 serif c-primary">{ eyebrow }</p> : null }
 
-            <img className='w-100pc mb-xs' src={ heroUrl } alt="" />
+            <FeatureArticleHero heroUrl={heroUrl} />
 
             <div className="flex jc-between">
                 <ArticleCategories categories={ categories } />
@@ -20,9 +20,9 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
             </div>
 
             <Link href={ href }>
-                <a className={`${CSS.title} h fs-0 serif lh-1 maxw-60 mt-sm`}>{ title }</a>
+                <a className={`${CSS.title} h fs-0 serif lh-1 maxw-55 mt-sm`}>{ title }</a>
             </Link>
-            <p className='fs-5 fw-500 maxw-60'>{ excerpt }</p>
+            <p className='fs-5 fw-500 maxw-55'>{ excerpt }</p>
             
             <p className='mt-sm'><Button href={ href } outline>{ ctaLabel }</Button></p>
         </section>
@@ -51,4 +51,13 @@ FeatureArticle.defaultProps = {
     categories: [{title: 'Features'}, {title: 'Markets'}],
     author: 'Forename Surname',
     date: 'Feb 12, 2022'
+}
+
+
+export const FeatureArticleHero = ({ heroUrl }) => {
+    return (
+        <div className={CSS.hero}>
+            <img className='w-100pc' src={ heroUrl } alt="" />
+        </div>
+    )
 }

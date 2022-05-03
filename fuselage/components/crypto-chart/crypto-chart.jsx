@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { LineChart, Line } from 'recharts'
+import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 import CSS from './crypto-chart.module.css'
 
@@ -13,9 +13,13 @@ export const CryptoChart = ({ data, currency, handle, value, shift }) => {
                 <p className='fw-400 fs-xs c-medium'>{ handle }</p>
             </div>
 
-            <LineChart width={120} height={40} data={data}>
-                <Line type="linear" dot={false} strokeWidth={2} dataKey="uv" stroke="var(--primary)" />
-            </LineChart>
+            <div className={CSS.chart}>
+                <ResponsiveContainer width='100%' height='100%'>
+                    <LineChart data={data}>
+                        <Line type="linear" dot={false} strokeWidth={2} dataKey="uv" stroke="var(--primary)" />
+                    </LineChart>
+                </ResponsiveContainer>
+            </div>
 
             <div className={CSS.values}>
                 <p className='fw-600 fs-sm'>{ value }</p>

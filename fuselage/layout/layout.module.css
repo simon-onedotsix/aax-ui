@@ -28,11 +28,13 @@
 }
 
 .cryptoTicker {
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-xs) var(--space-md);
     border-bottom: 1px solid var(--light);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-xs);
+    overflow: hidden;
 }
 
 
@@ -182,7 +184,7 @@
         opacity: 1;
     }
     .cryptoTicker {
-        padding-top: 4.25rem;
+        padding-top: 3.75rem;
     }
 }
 
