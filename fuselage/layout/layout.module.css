@@ -200,7 +200,7 @@
     .sidebar {
         align-self: flex-start;
         overflow: auto;
-        position: sticky;
+        /* position: sticky; */
         top: 0;
         min-width: 18rem;
     }

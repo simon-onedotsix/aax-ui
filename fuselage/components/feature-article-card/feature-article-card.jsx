@@ -19,9 +19,12 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
                 <ArticleMeta author={ author } date={ date }/>
             </div>
 
-            <Link href={ href }>
-                <a className={`${CSS.title} h fs-0 serif lh-1 maxw-55 mt-sm`}>{ title }</a>
-            </Link>
+            <h3>
+                <Link href={ href }>
+                    <a className={`${CSS.title} h fs-0 serif lh-1 maxw-55 mt-sm`}>{ title }</a>
+                </Link>
+            </h3>
+            
             <p className='fs-5 fw-500 maxw-55'>{ excerpt }</p>
             
             <p className='mt-sm'><Button href={ href } outline>{ ctaLabel }</Button></p>

@@ -70,7 +70,7 @@ export default function Home() {
 
 			{/* related */}
 			
-			<section className="mt-lg">
+			<section className="mt-lg mb-md">
 				<p className="h fs-1 serif c-primary">Related Articles</p>
 
 				<div className="columns-3 gap-sm mt-sm">
@@ -98,14 +98,6 @@ export default function Home() {
 
 			</section>
 		
-
-
-
-
-			<section className="mt-lg bg-dark px-md py-sm c-white formatted flex gap-sm jc-between">
-				<p className='h fs-2 serif'>Are you a journalist or an editor?</p>
-				<p><Button href='#' inverse>Call to action!</Button></p>
-			</section>
 
 		</>
 	)

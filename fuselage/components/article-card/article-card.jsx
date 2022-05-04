@@ -8,18 +8,18 @@ import CSS from './article-card.module.css'
 
 export const ArticleCard = ({ href, image, title, excerpt, author, date, categories }) => {
     return (
-        <article className='formatted'>
+        <article>
             <Link href={href}>
                 <a><img className='w-100pc mb-xs' src={image} alt="" /></a>
             </Link>
 
             <ArticleCategories categories={ categories } />
 
-            <p className='h fs-4 fw-600'>
+            <h3 className='h fs-4 fw-600'>
                 <Link href={href}><a className={CSS.link}>{ title }</a></Link>
-            </p>
+            </h3>
             
-            <p>{ excerpt }</p>
+            <p className='formatted'>{ excerpt }</p>
             
             <ArticleMeta author={author} date={date}/>
         </article>
@@ -33,7 +33,7 @@ ArticleCard.propTypes = {
     excerpt: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
-    date: PropTypes.object,
+    categories: PropTypes.array,
 }
 
 ArticleCard.defaultProps = {

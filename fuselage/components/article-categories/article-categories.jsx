@@ -8,7 +8,7 @@ import Chevron from './img/chevron-right.svg'
 export const ArticleCategories = ({ categories }) => {
     return (
         <p className='fw-500 fs-sm'>
-            <UnderlineLink href='#'><a>{ categories[0].title }</a></UnderlineLink> <Chevron className={CSS.icon}/> <UnderlineLink href='#'><a>{ categories[1].title }</a></UnderlineLink>
+            <UnderlineLink href='#'>{ categories[0].title }</UnderlineLink> <Chevron className={CSS.icon}/> <UnderlineLink href='#'>{ categories[1].title }</UnderlineLink>
         </p>
     )
 }

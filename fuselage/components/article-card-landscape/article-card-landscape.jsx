@@ -16,11 +16,11 @@ export const ArticleCardLandscape = ({ href, image, title, excerpt, author, date
 
             <div className={CSS.content}>
 
-                <div className='formatted'>
-                    <p className='h fs-3 fw-600'>
+                <div>
+                    <h3 className='h fs-3 fw-600'>
                         <Link href={href}><a className={CSS.link}>{ title }</a></Link>
-                    </p>
-                    <p>{ excerpt }</p>
+                    </h3>
+                    <p className='formatted'>{ excerpt }</p>
                 </div>
                 
                 <div className="flex jc-between mt-xs">
@@ -39,7 +39,7 @@ ArticleCardLandscape.propTypes = {
     excerpt: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
-    date: PropTypes.object,
+    categories: PropTypes.array,
 }
 
 ArticleCardLandscape.defaultProps = {

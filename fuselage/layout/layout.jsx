@@ -62,9 +62,9 @@ export default function Layout ({ children }) {
 						<img src="/assets/ui/icon-close.svg" alt="" />
 					</button>
 					
-					{/* <p><ArrowLink href="#" direction='left' decal='fs-sm fw-400'>Trade with AAX</ArrowLink></p> */}
+					<p><ArrowLink href="#" direction='left' decal='fs-sm fw-400'>Go to aax.com</ArrowLink></p>
                     
-					<div className="onlyDesktop mt-sm">
+					<div className="onlyDesktop mt-md">
 						<Brand className/>
 					</div>
 					
@@ -86,15 +86,15 @@ export default function Layout ({ children }) {
 						</li>
 					</ul>
 					
-					<div className='mt-md'>
+					<div>
 						<p className='mt-sm' onClick={ () => setSearchActive( !searchActive ) }><SearchButton>Search</SearchButton></p>
 					</div>
 					
-					<div className='mt-xs'>
-						<p className='mt-sm' onClick={ () => setLocalesActive( !localesActive ) }><LocalesButton>English</LocalesButton></p>
+					<div>
+						<p className='mt-xs' onClick={ () => setLocalesActive( !localesActive ) }><LocalesButton>English</LocalesButton></p>
 					</div>
 
-					<div className='formatted mt-md'>
+					<div className='formatted mt-sm'>
 						<p className='h3 serif lh-1'>High Yield Crypto Savings</p>
 						<p className='pb-xs'>Earn a steady interest in your favourite crypto. Accrue per minute, no lockup!</p>
 						<Button href='/'>Register now</Button>

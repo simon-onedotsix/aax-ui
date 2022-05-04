@@ -6,9 +6,7 @@ import { UnderlineBarLink } from '../fuselage/components/u-bar-link/u-bar-link'
 import { FeatureArticle } from '../fuselage/components/feature-article-card/feature-article-card'
 import { ArticleCardLandscape } from '../fuselage/components/article-card-landscape/article-card-landscape'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
-import { ArticleCategories } from '../fuselage/components/article-categories/article-categories'
-import { ArticleMeta } from '../fuselage/components/article-meta/article-meta'
-import { CtaBanner } from '../fuselage/components/cta-banner/cta-banner'
+
 
 export default function Home() {
 
@@ -37,7 +35,7 @@ export default function Home() {
 
 
 			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Editor&apos; s Choice</p>
+				<h2 className="h fs-1 serif c-primary">Editor&apos; s Choice</h2>
 
 				<ArticleCardLandscape href='/post' />
 				<ArticleCardLandscape href='/post' />
@@ -46,7 +44,7 @@ export default function Home() {
 			
 			
 			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">News and Opinion</p>
+				<h2 className="h fs-1 serif c-primary">News and Opinion</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -79,7 +77,7 @@ export default function Home() {
 			
 			
 			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Crypto Technical Analysis</p>
+				<h2 className="h fs-1 serif c-primary">Crypto Technical Analysis</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -120,7 +118,7 @@ export default function Home() {
 
 
 			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Explainers</p>
+				<h2 className="h fs-1 serif c-primary">Explainers</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -153,7 +151,7 @@ export default function Home() {
 			
 			
 			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Videos and Webinars</p>
+				<h2 className="h fs-1 serif c-primary">Videos and Webinars</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -185,8 +183,8 @@ export default function Home() {
 			
 			
 			
-			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Press Room</p>
+			<section className="mt-lg mb-md">
+				<h2 className="h fs-1 serif c-primary">Press Room</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -215,11 +213,6 @@ export default function Home() {
 					<UnderlineBarLink href="/category">See all in Press Room</UnderlineBarLink>
 				</p>
 			</section>
-
-			<div className="mt-lg">
-				<CtaBanner />
-			</div>
-
 
 		</>
 	)
