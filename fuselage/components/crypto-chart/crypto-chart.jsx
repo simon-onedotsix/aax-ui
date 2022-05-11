@@ -10,7 +10,7 @@ export const CryptoChart = ({ data, currency, handle, value, shift }) => {
         <div className={CSS.layout}>
             <div className={CSS.currency}>
                 <p className='fw-600 fs-sm'>{ currency }</p>
-                <p className='fw-400 fs-xs c-medium'>{ handle }</p>
+                <p className={`${CSS.handle} fw-400 fs-xs c-medium`}>{ handle }</p>
             </div>
 
             <div className={CSS.chart}>

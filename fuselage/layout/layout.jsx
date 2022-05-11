@@ -52,9 +52,11 @@ export default function Layout ({ children }) {
 			</div>
 
 
-			{/* main menu */}
+			{/* main */}
 
             <div className={`${CSS.layout} container`}>
+
+				{/* main menu */}
 
                 <aside className={`${CSS.sidebar} ${ navActive ? CSS.active : '' }`}>
 
@@ -70,7 +72,7 @@ export default function Layout ({ children }) {
 					
 					<ul className='fw-500 mt-md lh-9'>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>News and Opinion</UnderlineLink>
+							<UnderlineLink href='/category'>News and Insights</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
 							<UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink>
@@ -108,6 +110,8 @@ export default function Layout ({ children }) {
 					</div>
                 </aside>
 
+				{/* main content */}
+
                 <main className={CSS.main}>
 
                     <div className={`${CSS.overlay} ${ navActive ? CSS.active : '' }`}></div>
@@ -119,7 +123,7 @@ export default function Layout ({ children }) {
                     <div className={CSS.cryptoTicker}>
 						<div>
 							<CryptoChart currency='Bitcoin'/>
-							<CryptoChart currency='Etherium'/>
+							<CryptoChart currency='Ethereum'/>
 							<CryptoChart currency='AAB'/>
 						</div>
 						<p><Button href='https://www.aax.com' target='_blank' outline>Trade</Button></p>

@@ -12,6 +12,12 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
         <section>
             { eyebrow ? <p className="h fs-1 serif c-primary">{ eyebrow }</p> : null }
 
+            <h3>
+                <Link href={ href }>
+                    <a className={`${CSS.title} h fs-0 serif lh-1 maxw-55 pb-xs`}>{ title }</a>
+                </Link>
+            </h3>
+            
             <FeatureArticleHero heroUrl={heroUrl} />
 
             <div className="flex jc-between">
@@ -19,13 +25,7 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
                 <ArticleMeta author={ author } date={ date }/>
             </div>
 
-            <h3>
-                <Link href={ href }>
-                    <a className={`${CSS.title} h fs-0 serif lh-1 maxw-55 mt-sm`}>{ title }</a>
-                </Link>
-            </h3>
-            
-            <p className='fs-5 fw-500 maxw-55'>{ excerpt }</p>
+            <p className='fs-5 fw-500 maxw-55 mt-sm'>{ excerpt }</p>
             
             <p className='mt-sm'><Button href={ href } outline>{ ctaLabel }</Button></p>
         </section>

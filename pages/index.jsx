@@ -44,7 +44,7 @@ export default function Home() {
 			
 			
 			<section className="mt-lg">
-				<h2 className="h fs-1 serif c-primary">News and Opinion</h2>
+				<h2 className="h fs-1 serif c-primary">News and Insights</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -70,7 +70,7 @@ export default function Home() {
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineBarLink href="/category">See all in News and Opinion</UnderlineBarLink>
+					<UnderlineBarLink href="/category">See all in News and Insights</UnderlineBarLink>
 				</p>
 
 			</section>

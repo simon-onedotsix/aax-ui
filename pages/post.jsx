@@ -6,7 +6,7 @@ import { FeatureArticle, FeatureArticleHero } from '../fuselage/components/featu
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 import { ArticleCategories } from '../fuselage/components/article-categories/article-categories'
 import { ArticleMeta } from '../fuselage/components/article-meta/article-meta'
-
+import { ButtonSocial } from '../fuselage/components/button-social/button-social'
 import { AuthorCredit } from '../fuselage/components/author-credit/author-credit'
 
 export default function Home() {
@@ -23,15 +23,16 @@ export default function Home() {
 			{/* main article */}
 
 			<section>
+				<p className='h fs-0 serif lh-1 maxw-55 pb-xs'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
+
 				<FeatureArticleHero heroUrl='https://picsum.photos/1920/1080' />
 
 				<div className="flex jc-between">
 					<ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
 					<ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
 				</div>
-
-				<p className='h fs-0 serif lh-1 maxw-55 mt-sm'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
-				<p className='fs-5 fw-500 maxw-55'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
+				
+				<p className='fs-5 fw-500 maxw-55 mt-sm'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!</p>
 			</section>
 
 
@@ -63,7 +64,15 @@ export default function Home() {
 			</section>
 
 
+			<section className='mt-md'>
+				<p className='fw-500 mb-xs'>Share this article</p>
+			
+				<ButtonSocial icon='instagram'/>
+				<ButtonSocial icon='twitter'/>
+				<ButtonSocial icon='linkedin'/>
+			</section>
 
+			
 			<AuthorCredit></AuthorCredit>
 
 
