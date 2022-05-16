@@ -19,7 +19,7 @@ export const SearchForm = () => {
                 <div className={CSS.row}>
                     <input type="checkbox" id="vehicle2" name="vehicle2" value="2"/>
                     <span className={CSS.checkmark}></span>
-                    <label htmlFor="vehicle2"> News and Opinion</label><br/>
+                    <label htmlFor="vehicle2"> News and Insights</label><br/>
                 </div>
                 
                 <div className={CSS.row}>

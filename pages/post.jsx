@@ -67,7 +67,7 @@ export default function Home() {
 			<section className='mt-md'>
 				<p className='fw-500 mb-xs'>Share this article</p>
 			
-				<ButtonSocial icon='instagram'/>
+				<ButtonSocial icon='facebook'/>
 				<ButtonSocial icon='twitter'/>
 				<ButtonSocial icon='linkedin'/>
 			</section>

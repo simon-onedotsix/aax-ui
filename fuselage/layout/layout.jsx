@@ -106,7 +106,7 @@ export default function Layout ({ children }) {
 						<ButtonSocial href='#' icon='facebook' />
 						<ButtonSocial href='#' icon='twitter' />
 						<ButtonSocial href='#' icon='linkedin' />
-						<ButtonSocial href='#' icon='weibo' />
+						<ButtonSocial href='#' icon='discord' />
 					</div>
                 </aside>
 

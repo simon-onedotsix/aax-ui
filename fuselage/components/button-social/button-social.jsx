@@ -23,6 +23,9 @@ export const ButtonSocial = ({ icon, href, alt, decal }) => {
             case 'weibo' : return '/assets/ui/social-weibo.svg'
             break
             
+            case 'discord' : return '/assets/ui/social-discord.svg'
+            break
+            
             case 'email' : return '/assets/ui/social-email.svg'
             break
 
