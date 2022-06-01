@@ -1,11 +1,11 @@
 .brand {
-    width: 4.625rem;
-    height: 1.29375rem;
+    width: 8rem;
+    height: 0.75rem;
 }
 
 @media(min-width: 600px) {
     .brand {
-        width: 8.75rem;
-        height: 2.45rem;
+        width: 14.75rem;
+        height: 1.3125rem;
     }
 }

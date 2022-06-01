@@ -17,7 +17,7 @@ export const ArticleCardLandscape = ({ href, image, title, excerpt, author, date
             <div className={CSS.content}>
 
                 <div>
-                    <h3 className='h fs-3 fw-600'>
+                    <h3 className='h fs-3 lh-4 fw-600'>
                         <Link href={href}><a className={CSS.link}>{ title }</a></Link>
                     </h3>
                     <p className='formatted'>{ excerpt }</p>

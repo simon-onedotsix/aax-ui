@@ -14,7 +14,7 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
 
             <h3>
                 <Link href={ href }>
-                    <a className={`${CSS.title} h fs-0 serif lh-1 maxw-55 pb-xs`}>{ title }</a>
+                    <a className={`${CSS.title} h fs-0 serif lh-2 maxw-55 pb-xs`}>{ title }</a>
                 </Link>
             </h3>
             

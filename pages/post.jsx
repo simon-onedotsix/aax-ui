@@ -23,7 +23,7 @@ export default function Home() {
 			{/* main article */}
 
 			<section>
-				<p className='h fs-0 serif lh-1 maxw-55 pb-xs'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
+				<p className='h fs-0 serif lh-2 maxw-55 pb-xs'>AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA</p>
 
 				<FeatureArticleHero heroUrl='https://picsum.photos/1920/1080' />
 

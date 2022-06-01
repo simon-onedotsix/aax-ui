@@ -110,8 +110,8 @@ export default function Home() {
 
 			<section className="mt-lg bg-dark p-md c-white formatted">
 				<p className='h fs-1 serif c-primary'>Callout</p>
-				<p className='h fs-0 serif lh-1'>Praesent congue lorem non dolor nonsma?</p>
-				<p className="fw-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
+				<p className='h fs-0 serif lh-2'>Praesent congue lorem non dolor nonsma?</p>
+				<p className="fw-600 mt-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde deserunt quod, amet tempore consequatur perferendis iusto nam illum voluptatibus velit alias, officiis iure eum reprehenderit voluptates non quos, fuga inventore?</p>
 				<p className='mt-md'><Button href='#' inverse>Call to action!</Button></p>
 			</section>

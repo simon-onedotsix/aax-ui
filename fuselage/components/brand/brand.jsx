@@ -7,7 +7,7 @@ import CSS from './brand.module.css'
 export default function Brand () {
     return (
         <Link href='/'>
-            <a><img src='/assets/ui/AAX-logo.svg' className={CSS.brand} alt="AAX" /></a>
+            <a><img src='/assets/ui/AAX-trends-logo.svg' className={CSS.brand} alt="AAX Trends" /></a>
         </Link>
     )
 }

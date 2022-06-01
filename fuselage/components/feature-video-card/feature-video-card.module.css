@@ -1,0 +1,43 @@
+.layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+
+.title {
+    display: block;
+    text-decoration: none;
+}
+
+@media(hover:hover) {
+    .title {
+        transition: all 400ms ease-in-out;
+    }
+    .title:hover {
+        cursor: pointer;
+        color: var(--primary);
+        transition: all 200ms ease-in-out;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .meta {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width:1200px) {
+    .layout {
+        grid-template-columns: 5fr 2fr;
+    }
+}

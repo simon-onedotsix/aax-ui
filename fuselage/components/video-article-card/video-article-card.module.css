@@ -1,0 +1,16 @@
+.meta {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--space-xs) 0;
+}
+
+.link {
+    text-decoration: none;
+    transition: all 400ms ease-in-out;
+}
+@media(hover:hover) {
+    .link:hover {
+        color: var(--primary);
+        transition: all 200ms ease-in-out;
+    }
+}

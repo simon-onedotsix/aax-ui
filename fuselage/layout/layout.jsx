@@ -72,16 +72,16 @@ export default function Layout ({ children }) {
 					
 					<ul className='fw-500 mt-md lh-9'>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>News and Insights</UnderlineLink>
+							<UnderlineLink href='/category'>Videos &amp; Webinars</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink>
+							<UnderlineLink href='/category'>News and Insights</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
 							<UnderlineLink href='/category'>Explainers</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>Videos &amp; Webinars</UnderlineLink>
+							<UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
 							<UnderlineLink href='/category'>Press Room</UnderlineLink>
@@ -97,7 +97,7 @@ export default function Layout ({ children }) {
 					</div>
 
 					<div className='formatted mt-sm'>
-						<p className='h3 serif lh-1'>High Yield Crypto Savings</p>
+						<p className='h3 serif lh-2'>High Yield Crypto Savings</p>
 						<p className='pb-xs'>Earn a steady interest in your favourite crypto. Accrue per minute, no lockup!</p>
 						<Button href='/'>Register now</Button>
 					</div>
@@ -185,7 +185,7 @@ export default function Layout ({ children }) {
 
 							<section className={`${CSS.footerColumns2} mt-md gap-md`}>
 								<div className='formatted'>
-									<p className='fs-2 lh-1 serif c-primary'>Be part of the conversation</p>
+									<p className='fs-2 lh-2 serif c-primary'>Be part of the conversation</p>
 									<p>Stay up to date on the latest news, industry trends and developments.</p>
 									
 									<SubscribeForm />
@@ -202,6 +202,16 @@ export default function Layout ({ children }) {
 					</main>
 				</div>
 			</section>
+
+			{/* legals */}
+
+			<div className={`${CSS.layout} container`}>
+
+				<aside className={CSS.sidebar}></aside>
+				<main className={`${CSS.main} px-md py-sm`}>
+					<p className='fs-sm'>© {new Date().getFullYear()} AAX Trends. All rights reserved.</p>
+				</main>
+			</div>
 
         </>
     )
