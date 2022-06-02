@@ -8,10 +8,15 @@ import { ArticleMeta } from '../article-meta/article-meta'
 
 import CSS from './video-article-card.module.css'
 
-export const VideoArticleCard = ({ href, videoUrl, title, excerpt, author, date, categories }) => {
+export const VideoArticleCard = ({ href, videoUrl, autoplay, muted, controls, title, excerpt, author, date, categories }) => {
     return (
         <article>
-            <VideoPlayer videoUrl={videoUrl} />
+            <VideoPlayer 
+                videoUrl={videoUrl}
+                autoplay={autoplay}
+                muted={muted}
+                controls={controls}
+            />
 
             <div className={CSS.meta}>
                 <ArticleCategories categories={ categories } />

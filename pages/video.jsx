@@ -10,8 +10,12 @@ export default function Video ({ data }) {
     return (
         <>
             <FeatureVideo 
-                href='https://www.youtube.com/watch?v=e6aogh5OFJ8'
+                href='#'
                 title='Libero hic sint aliquam sunt fuga cum rerum'
+                videoUrl='https://www.youtube.com/watch?v=e6aogh5OFJ8'
+                autoplay={true}
+                muted={true}
+                controls={true}
             />
 
 
@@ -34,11 +38,12 @@ export default function Video ({ data }) {
 }
 
 
-const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
+const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems'
+const YOUTUBE_PLAYLIST_ID = 'PLQIsOByLi532mHCLf1MJU5S23KvGOnVoj'
 
 export async function getServerSideProps() {
 
-    const playlistRes = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&part=contentDetails&maxResults=50&playlistId=PLIqMw1vG1TWYUO1j3wcby17eKoyPFl3gs&key=${process.env.YOUTUBE_API_KEY}`)
+    const playlistRes = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&part=contentDetails&maxResults=50&playlistId=${YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`)
     const data = await playlistRes.json()
 
     return {

@@ -8,7 +8,7 @@ import { ArticleMeta } from '../article-meta/article-meta'
 
 import CSS from './feature-video-card.module.css'
 
-export const FeatureVideo = ({ href, eyebrow, title, excerpt, categories, author, date }) => {
+export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebrow, title, excerpt, categories, author, date }) => {
     return (
         <section>
 
@@ -22,7 +22,12 @@ export const FeatureVideo = ({ href, eyebrow, title, excerpt, categories, author
 
             <div className={CSS.layout}>
                 
-                <VideoPlayer videoUrl='https://www.youtube.com/watch?v=e6aogh5OFJ8' />
+                <VideoPlayer 
+                    videoUrl={videoUrl} 
+                    autoplay={autoplay}
+                    muted={muted}
+                    controls={controls}
+                />
                 
                 <div className={CSS.content}>
                     <div>

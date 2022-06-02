@@ -3,10 +3,13 @@ import Head from 'next/head'
 import { Button } from '../fuselage/components/button/button'
 import { UnderlineBarLink } from '../fuselage/components/u-bar-link/u-bar-link'
 
+import { FeatureVideo } from '../fuselage/components/feature-video-card/feature-video-card'
+import { VideoArticleCard } from '../fuselage/components/video-article-card/video-article-card'
 import { FeatureArticle } from '../fuselage/components/feature-article-card/feature-article-card'
 import { ArticleCardLandscape } from '../fuselage/components/article-card-landscape/article-card-landscape'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
+import { CtaCallout } from '../fuselage/components/cta-callout/cta-callout'
 
 export default function Home() {
 
@@ -18,29 +21,60 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
+
+			<FeatureVideo 
+                href='#'
+                title='Libero hic sint aliquam sunt fuga cum rerum'
+                videoUrl='https://www.youtube.com/watch?v=aPK1VQtsteQ'
+            />
+
+
+			<section className="mt-md">
+
+				<div className="columns-3 gap-sm mt-sm">
+					<VideoArticleCard
+						videoUrl='https://www.youtube.com/watch?v=0NrnwW8Vz2I'
+					/>
+					<VideoArticleCard
+						videoUrl='https://www.youtube.com/watch?v=Zz72RG9hUYA'
+					/>
+					<VideoArticleCard
+						videoUrl='https://www.youtube.com/watch?v=Njyo-ovCB-g'
+					/>
+				</div>
+
+				<p className='fs-6 fw-500 mt-sm'>
+					<UnderlineBarLink href="/category">See all in Videos &amp; Webinars</UnderlineBarLink>
+				</p>
+
+			</section>
+
+
+
 		
 			{/* featured article */}
 
-			<FeatureArticle
-				href='/post'
-				eyebrow=''
-				heroUrl='https://picsum.photos/1920/1080'
-				title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
-				excerpt='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!'
-				ctaLabel='Read more'
-				categories={[{title: 'Features'}, {title: 'Markets'}]}
-				author='Forename Surname'
-				date='Feb 12, 2022'
-			/>
+			{/* <section className="mt-lg">
+				<FeatureArticle
+					href='/post'
+					eyebrow=''
+					heroUrl='https://picsum.photos/1920/1080'
+					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+					excerpt='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius adipisci quam reprehenderit. Nemo, vero eos!'
+					ctaLabel='Read more'
+					categories={[{title: 'Features'}, {title: 'Markets'}]}
+					author='Forename Surname'
+					date='Feb 12, 2022'
+				/>
+			</section>
 
 
 			<section className="mt-lg">
 				<h2 className="h fs-1 serif c-primary">Editor&apos; s Choice</h2>
-
 				<ArticleCardLandscape href='/post' />
 				<ArticleCardLandscape href='/post' />
 				<ArticleCardLandscape href='/post' />
-			</section>
+			</section> */}
 			
 			
 			<section className="mt-lg">
@@ -108,13 +142,7 @@ export default function Home() {
 			</section>
 
 
-			<section className="mt-lg bg-dark p-md c-white formatted">
-				<p className='h fs-1 serif c-primary'>Callout</p>
-				<p className='h fs-0 serif lh-2'>Praesent congue lorem non dolor nonsma?</p>
-				<p className="fw-600 mt-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde deserunt quod, amet tempore consequatur perferendis iusto nam illum voluptatibus velit alias, officiis iure eum reprehenderit voluptates non quos, fuga inventore?</p>
-				<p className='mt-md'><Button href='#' inverse>Call to action!</Button></p>
-			</section>
+			<CtaCallout/>
 
 
 			<section className="mt-lg">
@@ -150,7 +178,7 @@ export default function Home() {
 			
 			
 			
-			<section className="mt-lg">
+			{/* <section className="mt-lg">
 				<h2 className="h fs-1 serif c-primary">Videos and Webinars</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
@@ -179,7 +207,7 @@ export default function Home() {
 				<p className='fs-6 fw-500 mt-sm'>
 					<UnderlineBarLink href="/category">See all in Videos and Webinars</UnderlineBarLink>
 				</p>
-			</section>
+			</section> */}
 			
 			
 			
