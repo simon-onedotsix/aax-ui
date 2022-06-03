@@ -1,26 +1,37 @@
-import { Button } from "../button/button"
+import Image from "next/image"
 
 import CSS from "./cta-callout.module.css"
 
-export const CtaCallout = () => {
+export const CtaCallout = ({ heroSrc, backgroundSrc, backgroundOpacity, children }) => {
+
+    console.log('children', children)
+
     return (
-        <section className={`${CSS.container} mt-lg bg-dark p-md c-white formatted`}>
+        <section className={`${CSS.container} mt-lg bg-dark p-md c-white`}>
 
-            <div className={CSS.backgroundContainer}>
-                <img className={CSS.backgroundImage} src="https://picsum.photos/1000/600" alt="" />
-            </div>
+            {
+                backgroundSrc ? 
+                <div className={CSS.backgroundContainer} style={{ opacity: backgroundOpacity }}>
+                    <Image className={CSS.backgroundImage} src={backgroundSrc} layout='fill' alt="" />
+                </div> :
+                null
+            }
 
-            <div className={CSS.layout}>
-                <div className={CSS.content}>
-                    <p className='h fs-1 serif c-primary'>Callout</p>
-                    <p className='h fs-0 serif lh-1'>Praesent congue lorem non dolor?</p>
-                    <p className="fw-600 mt-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
-                    <p className='mt-md'><Button href='#' inverse>Call to action!</Button></p>
-                </div>
+            <div className={ heroSrc ? CSS.layout : ''}>
+                <section className={CSS.content}>
+                    { children.length > 1 ? children[0] : children }
+                </section>
 
-                <div className={CSS.hero}>
-                    <img src="https://picsum.photos/800/1200" alt="" />
-                </div>
+                <section className={CSS.hero}>
+                    <Image src={heroSrc} width={257} height={532} alt="" />
+                    {
+                        children.length > 1 ?
+                        <div className={`${CSS.secondaryActions} center`}>
+                            { children[1] }
+                        </div> :
+                        null
+                    }
+                </section>
             </div>
 
         </section>

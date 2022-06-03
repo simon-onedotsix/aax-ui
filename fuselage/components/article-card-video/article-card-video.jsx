@@ -6,9 +6,9 @@ import { ArticleCategories } from '../article-categories/article-categories'
 import { VideoMeta } from '../video-meta/video-meta'
 import { ArticleMeta } from '../article-meta/article-meta'
 
-import CSS from './video-article-card.module.css'
+import CSS from './article-card-video.module.css'
 
-export const VideoArticleCard = ({ href, videoUrl, autoplay, muted, controls, title, excerpt, author, date, categories }) => {
+export const ArticleCardVideo = ({ href, videoUrl, autoplay, muted, controls, title, excerpt, author, date, categories }) => {
     return (
         <article>
             <VideoPlayer 
@@ -34,7 +34,7 @@ export const VideoArticleCard = ({ href, videoUrl, autoplay, muted, controls, ti
     )
 }
 
-VideoArticleCard.propTypes = {
+ArticleCardVideo.propTypes = {
     href: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,
     title: PropTypes.string,
@@ -44,7 +44,7 @@ VideoArticleCard.propTypes = {
     categories: PropTypes.array,
 }
 
-VideoArticleCard.defaultProps = {
+ArticleCardVideo.defaultProps = {
     href: "#",
     videoUrl: "https://picsum.photos/1920/1080",
     title: "AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA",

@@ -16,7 +16,18 @@
 }
 .inverse.outline {
 	color: var(--primary);
+	color: white;
 }
+
+
+.icon {
+	padding-right: .5rem;
+}
+.icon svg {
+	height: 1rem;
+	margin-bottom: -.15rem;
+}
+
 
 @media(hover:hover){
 	.button:hover {
@@ -37,4 +48,9 @@
 		background-color: var(--primary);
 		color: white;
 	}
+
+	.button:hover .icon svg {
+		fill: red;
+	}
 }
+

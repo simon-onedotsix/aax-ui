@@ -1,15 +1,15 @@
 import Head from 'next/head'
 
-import { Button } from '../fuselage/components/button/button'
+import { Button, AppStoreIcon, PlayStoreIcon } from '../fuselage/components/button/button'
 import { UnderlineBarLink } from '../fuselage/components/u-bar-link/u-bar-link'
 
 import { FeatureVideo } from '../fuselage/components/feature-video-card/feature-video-card'
-import { VideoArticleCard } from '../fuselage/components/video-article-card/video-article-card'
+import { ArticleCardVideo } from '../fuselage/components/article-card-video/article-card-video'
 import { FeatureArticle } from '../fuselage/components/feature-article-card/feature-article-card'
 import { ArticleCardLandscape } from '../fuselage/components/article-card-landscape/article-card-landscape'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
-import { CtaCallout } from '../fuselage/components/cta-callout/cta-callout'
+import { CtaCallout, SecondayActions } from '../fuselage/components/cta-callout/cta-callout'
 
 export default function Home() {
 
@@ -32,13 +32,13 @@ export default function Home() {
 			<section className="mt-md">
 
 				<div className="columns-3 gap-sm mt-sm">
-					<VideoArticleCard
+					<ArticleCardVideo
 						videoUrl='https://www.youtube.com/watch?v=0NrnwW8Vz2I'
 					/>
-					<VideoArticleCard
+					<ArticleCardVideo
 						videoUrl='https://www.youtube.com/watch?v=Zz72RG9hUYA'
 					/>
-					<VideoArticleCard
+					<ArticleCardVideo
 						videoUrl='https://www.youtube.com/watch?v=Njyo-ovCB-g'
 					/>
 				</div>
@@ -142,7 +142,22 @@ export default function Home() {
 			</section>
 
 
-			<CtaCallout/>
+			<CtaCallout 
+				heroSrc={'/assets/img/iphone.png' }
+				backgroundSrc={''}
+			>
+				<div className='formatted'>
+					<p className='h fs-0 serif lh-1'>Praesent congue lorem non dolor?</p>
+					<p className="fw-600 mt-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
+
+					<p className='mt-md'><Button href='#' inverse>Call to action!</Button></p>
+				</div>
+
+				<div>
+					<Button href='#' outline inverse><AppStoreIcon />App Store</Button> 
+					<Button href='#' outline inverse><PlayStoreIcon />Google Play</Button>
+				</div>
+			</CtaCallout>
 
 
 			<section className="mt-lg">

@@ -35,14 +35,14 @@
 /* big screen size adjuster */
 @media(min-width:1600px) {
     :root {
-        --default-font-size: 1.125rem;
+        --default-font-size: 1.1rem;
     }
 }
 
 /* huge screen size adjuster */
 @media(min-width:2000px) {
     :root {
-        --default-font-size: 1.25rem;
+        --default-font-size: 1.2rem;
     }
 }
 

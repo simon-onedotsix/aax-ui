@@ -1,5 +1,7 @@
 import ReactPlayer from "react-player/youtube"
+
 import { FeatureVideo } from "../fuselage/components/feature-video-card/feature-video-card"
+import { ArticleCardVideo } from "../fuselage/components/article-card-video/article-card-video"
 
 export default function Video ({ data }) {
 
@@ -27,24 +29,16 @@ export default function Video ({ data }) {
             </div>
 
             <p className="h3 pb-sm mt-md">Videos</p>
-            <section className="columns-2 gap-md">
+            <section className="mt-md columns-3 gap-sm">
                 {
                     data.items.map(({ id, snippet = {} }) => {
                         const { title, thumbnails = {}, resourceId = {} } = snippet;
                         const { medium } = thumbnails;
                         return (
-                            <div className="react-player-wrapper" key={id} style={{ position: `relative`, paddingTop: `56.25%` }}>
-                                <ReactPlayer
-                                    className='react-player'
-                                    url={`https://www.youtube.com/watch?v=${resourceId.videoId}`}
-                                    width='100%'
-                                    height='100%'
-                                    controls={true}
-                                    style={{ position: `absolute`, top: 0, left: 0 }}
-                                    onDuration={(duration) => console.log(duration)}
-                                />
-                                <h3>{ title }</h3>
-                            </div>
+                            <ArticleCardVideo
+                                key={resourceId.videoId}
+                                videoUrl={`https://www.youtube.com/watch?v=${resourceId.videoId}`}
+                            />
                         )
                     })
                 }
@@ -54,11 +48,12 @@ export default function Video ({ data }) {
 }
 
 
-const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
+const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems'
+const YOUTUBE_PLAYLIST_ID = 'PLQIsOByLi532mHCLf1MJU5S23KvGOnVoj'
 
 export async function getServerSideProps() {
 
-    const playlistRes = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&part=contentDetails&maxResults=50&playlistId=PLIqMw1vG1TWYUO1j3wcby17eKoyPFl3gs&key=${process.env.YOUTUBE_API_KEY}`)
+    const playlistRes = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&part=contentDetails&maxResults=50&playlistId=${YOUTUBE_PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`)
     const data = await playlistRes.json()
 
     return {
