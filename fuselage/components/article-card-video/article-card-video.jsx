@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
@@ -9,6 +11,13 @@ import { ArticleMeta } from '../article-meta/article-meta'
 import CSS from './article-card-video.module.css'
 
 export const ArticleCardVideo = ({ href, videoUrl, autoplay, muted, controls, title, excerpt, author, date, categories }) => {
+
+    const [ videoDuration, setVideoDuration ] = useState('00:00')
+
+    function handleChange(newValue) {
+        setVideoDuration(newValue);
+    }
+
     return (
         <article>
             <VideoPlayer 
@@ -16,11 +25,12 @@ export const ArticleCardVideo = ({ href, videoUrl, autoplay, muted, controls, ti
                 autoplay={autoplay}
                 muted={muted}
                 controls={controls}
+                handleChange={handleChange}
             />
 
             <div className={CSS.meta}>
                 <ArticleCategories categories={ categories } />
-                <VideoMeta duration='1 min' />     
+                { videoDuration != '00:00' && <VideoMeta duration={`${videoDuration} min`} /> }    
             </div>
 
             <h3 className='h fs-4 fw-600 lh-4'>

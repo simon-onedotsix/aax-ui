@@ -1,5 +1,7 @@
 import { VideoPlayer } from "../video-player/video-player"
 
+import CSS from './cta-video.module.css'
+
 export const CtaVideo = () => {
     return (
         <section className={`${CSS.container} mt-lg bg-dark p-md c-white`}>

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { useState } from 'react'
 import Link from 'next/link'
 
 import { VideoPlayer } from '../video-player/video-player'
@@ -9,6 +9,13 @@ import { ArticleMeta } from '../article-meta/article-meta'
 import CSS from './feature-video-card.module.css'
 
 export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebrow, title, excerpt, categories, author, date }) => {
+
+    const [ videoDuration, setVideoDuration ] = useState('00:00')
+
+    function handleChange(newValue) {
+        setVideoDuration(newValue);
+    }
+
     return (
         <section>
 
@@ -27,13 +34,15 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
                     autoplay={autoplay}
                     muted={muted}
                     controls={controls}
+                    handleChange={handleChange}
                 />
                 
                 <div className={CSS.content}>
                     <div>
                         <div className={CSS.meta}>
                             <ArticleCategories categories={ categories } />
-                            <VideoMeta duration='1 min' />     
+                            { videoDuration != '00:00' && <VideoMeta duration={`${videoDuration} min`} /> }
+                                
                         </div>
                         <p className='my-sm'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quod nihil ad, quisquam expedita commodi a enim? Libero hic sint aliquam sunt fuga cum rerum, voluptatem amet temporibus. Vitae, dolores?</p>
                     </div>
@@ -45,12 +54,4 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
 
         </section>
     )
-}
-
-FeatureVideo.propTypes = {
-
-}
-
-FeatureVideo.defaultProps = {
-
 }
