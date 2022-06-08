@@ -2,7 +2,7 @@ import { VideoPlayer } from "../video-player/video-player"
 
 import CSS from './cta-video.module.css'
 
-export const CtaVideo = () => {
+export const CtaVideo = ({ videoUrl, autoplay, muted, controls }) => {
     return (
         <section className={`${CSS.container} mt-lg bg-dark p-md c-white`}>
             <div className="mb-sm flex jc-between fw-600 c-medium">
@@ -14,10 +14,10 @@ export const CtaVideo = () => {
 
             <div className="my-sm">
                 <VideoPlayer 
-                    videoUrl={'https://www.youtube.com/watch?v=e6aogh5OFJ8'} 
-                    autoplay={true}
-                    muted={false}
-                    controls={true}
+                    videoUrl={videoUrl} 
+                    autoplay={autoplay}
+                    muted={muted}
+                    controls={controls}
                 />
             </div>
            

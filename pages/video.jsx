@@ -14,8 +14,8 @@ export default function Video ({ data }) {
             <FeatureVideo 
                 href='#'
                 title='Libero hic sint aliquam sunt fuga cum rerum'
-                videoUrl='https://www.youtube.com/watch?v=e6aogh5OFJ8'
-                autoplay={true}
+                videoUrl='https://www.youtube.com/watch?v=0NrnwW8Vz2I'
+                autoplay={false}
                 muted={true}
                 controls={true}
             />
@@ -40,7 +40,12 @@ export default function Video ({ data }) {
             </section>
 
 
-            <CtaVideo />           
+            <CtaVideo
+                videoUrl={'https://www.youtube.com/watch?v=XPShVfS1RWw'} 
+                autoplay={true}
+                muted={false}
+                controls={true}
+            />           
             
             
             <section className="mt-lg">

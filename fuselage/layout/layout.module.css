@@ -17,6 +17,7 @@
 
 .footer .sidebar {
     padding: var(--space-md);
+    overflow: hidden;
 }
 
 .mainContent {
