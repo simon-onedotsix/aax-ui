@@ -13,7 +13,7 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
     const [ videoDuration, setVideoDuration ] = useState('00:00')
 
     function handleChange(newValue) {
-        setVideoDuration(newValue);
+        setVideoDuration(newValue)
     }
 
     return (

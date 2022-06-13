@@ -1,7 +1,7 @@
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ['cms.thebench.com', 'res.cloudinary.com'],
+		domains: ['aax.onedotsix.com', 'aax.cogney.com', 'picsum.photos'],
 	},
 	webpack(config) {
 		config.module.rules.push({

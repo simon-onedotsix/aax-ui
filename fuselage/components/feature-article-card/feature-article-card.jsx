@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { ArticleCategories } from '../article-categories/article-categories'
 import { ArticleMeta } from '../article-meta/article-meta'
@@ -17,17 +18,26 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
                     <a className={`${CSS.title} h fs-0 serif lh-2 maxw-55 pb-xs`}>{ title }</a>
                 </Link>
             </h3>
-            
-            <FeatureArticleHero heroUrl={heroUrl} />
 
-            <div className="flex jc-between">
-                <ArticleCategories categories={ categories } />
-                <ArticleMeta author={ author } date={ date }/>
+            <div className={CSS.layout}>
+             
+                    <FeatureArticleHero heroUrl={heroUrl} />
+               
+
+                <div className={CSS.content}>
+                    <div className="flex jc-between">
+                        <ArticleCategories categories={ categories } />
+                        
+                    </div>
+
+                    <p className='my-sm'>{ excerpt }</p>
+
+                    <ArticleMeta author={ author } date={ date }/>
+                    
+                    {/* <p className='mt-sm'><Button href={ href } outline>{ ctaLabel }</Button></p> */}
+                </div>
             </div>
-
-            <p className='fs-5 fw-500 maxw-55 mt-sm'>{ excerpt }</p>
             
-            <p className='mt-sm'><Button href={ href } outline>{ ctaLabel }</Button></p>
         </section>
     )
 }
@@ -60,7 +70,7 @@ FeatureArticle.defaultProps = {
 export const FeatureArticleHero = ({ heroUrl }) => {
     return (
         <div className={CSS.hero}>
-            <img className='w-100pc' src={ heroUrl } alt="" />
+            <Image className='w-100pc' width={1920} height={1080} src={ heroUrl } alt="" />
         </div>
     )
 }

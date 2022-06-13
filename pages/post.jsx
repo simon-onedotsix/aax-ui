@@ -27,7 +27,7 @@ export default function Home() {
 
 				<FeatureArticleHero heroUrl='https://picsum.photos/1920/1080' />
 
-				<div className="flex jc-between">
+				<div className="flex jc-between mt-xs">
 					<ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
 					<ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
 				</div>
@@ -73,8 +73,7 @@ export default function Home() {
 			</section>
 
 			
-			<AuthorCredit></AuthorCredit>
-
+			<AuthorCredit />
 
 
 			{/* related */}

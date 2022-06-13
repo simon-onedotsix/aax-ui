@@ -96,9 +96,11 @@ export default function Layout ({ children }) {
 						<p className='mt-xs' onClick={ () => setLocalesActive( !localesActive ) }><LocalesButton>English</LocalesButton></p>
 					</div>
 
-					<div className='formatted mt-sm'>
-						<p className='h3 serif lh-2'>High Yield Crypto Savings</p>
-						<p className='pb-xs'>Earn a steady interest in your favourite crypto. Accrue per minute, no lockup!</p>
+					<div className='mt-sm'>
+						<div className="formatted">
+							<p className='h3 serif lh-2'>High Yield Crypto Savings</p>
+							<p className='pb-xs'>Earn a steady interest in your favourite crypto. Accrue per minute, no lockup!</p>
+						</div>
 						<Button href='/'>Register now</Button>
 					</div>
 					

@@ -26,18 +26,22 @@
     font-size: calc(var(--default-font-size, 1rem) * 1.25);
 }
 .formatted h4 {
-    font-size: calc(var(--default-font-size, 1rem) * 1.5);
+    font-size: calc(var(--default-font-size, 1rem) * 1.35);
 }
 .formatted h3 {
-    font-size: calc(var(--default-font-size, 1rem) * 1.75);
+    font-size: calc(var(--default-font-size, 1rem) * 1.475);
 }
 .formatted h2 {
-    font-size: calc(var(--default-font-size, 1rem) * 2.25);
+    font-size: calc(var(--default-font-size, 1rem) * 1.6);
 }
 .formatted h1 {
-    font-size: calc(var(--default-font-size, 1rem) * 3);
+    font-size: calc(var(--default-font-size, 1rem) * 23);
 }
 
+.formatted a {
+    color: var(--primary);
+    font-weight: 400;
+}
 
 .formatted figure img {
     display: block;
