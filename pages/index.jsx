@@ -26,6 +26,7 @@ export default function Home() {
                 href='#'
                 title='Libero hic sint aliquam sunt fuga cum rerum'
                 videoUrl='https://www.youtube.com/watch?v=aPK1VQtsteQ'
+				date='2022-06-02T06:20:00-07:00'
             />
 
 
@@ -193,7 +194,7 @@ export default function Home() {
 			
 			
 			
-			{/* <section className="mt-lg">
+			<section className="mt-lg">
 				<h2 className="h fs-1 serif c-primary">Videos and Webinars</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
@@ -222,7 +223,7 @@ export default function Home() {
 				<p className='fs-6 fw-500 mt-sm'>
 					<UnderlineBarLink href="/category">See all in Videos and Webinars</UnderlineBarLink>
 				</p>
-			</section> */}
+			</section>
 			
 			
 			

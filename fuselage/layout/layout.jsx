@@ -78,7 +78,7 @@ export default function Layout ({ children }) {
 							<UnderlineLink href='/category'>News and Insights</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>Explainers</UnderlineLink>
+							<UnderlineLink href='/category/explainers'>Explainers</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
 							<UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink>

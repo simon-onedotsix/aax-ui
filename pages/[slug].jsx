@@ -46,9 +46,9 @@ export default function Post ({ page }) {
                         handleChange={handleChange}
                     />
                     <div className="flex jc-between mt-xs">
-                        <ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
+                        <ArticleCategories categories={entry.categories} />
                         <div className='flex flex-wrap gap-xs'>
-                            <ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
+                            <ArticleMeta author={entry.postAuthor} date={entry.postDate}/>
                             { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }
                         </div>
                     </div>
@@ -63,8 +63,8 @@ export default function Post ({ page }) {
                     height={entry.hero[0].image[0].height}
                 />
                 <div className="flex jc-between mt-xs">
-                    <ArticleCategories categories={[{title: 'Features'}, {title: 'Markets'}]} />
-                    <ArticleMeta author='Forename Surname' date='Nov 12, 2021'/>
+                    <ArticleCategories categories={entry.categories} />
+                    <ArticleMeta author={entry.postAuthor[0]} date={entry.postDate}/>
                 </div>
             </>
         )
@@ -222,9 +222,12 @@ export async function getStaticProps({ params, preview, previewData }) {
                         }
                     }
                     categories {
-                        id
-                        title
-                        slug
+                        ... on categories_Category {
+                            id
+                            title
+                            slug
+                            level
+                        }
                     }
                     tags {
                         id

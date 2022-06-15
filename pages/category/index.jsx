@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
-import { TagLink } from '../fuselage/components/tag-link/tag-link'
-import { Button } from '../fuselage/components/button/button'
-import { CategorySearchButton } from '../fuselage/components/category-search-button/category-search-button'
+import { TagLink } from '../../fuselage/components/tag-link/tag-link'
+import { Button } from '../../fuselage/components/button/button'
+import { CategorySearchButton } from '../../fuselage/components/category-search-button/category-search-button'
 
-import { ArticleCardLandscape } from '../fuselage/components/article-card-landscape/article-card-landscape'
+import { ArticleCardLandscape } from '../../fuselage/components/article-card-landscape/article-card-landscape'
 
 export default function Home() {
 
@@ -72,8 +72,8 @@ export default function Home() {
 
 
 
-			<section className="mt-lg bg-dark px-md py-sm c-white formatted flex gap-sm jc-between">
-				<p className='h fs-2 serif'>Are you a journalist or an editor?</p>
+			<section className="mt-lg bg-dark px-md py-sm c-white flex gap-sm jc-between">
+				<p className='h fs-2 serif formatted'>Are you a journalist or an editor?</p>
 				<p><Button href='#' inverse>Call to action!</Button></p>
 			</section>
 

@@ -12,6 +12,7 @@ export default function Video ({ data }) {
             <FeatureVideo 
                 href='https://www.youtube.com/watch?v=e6aogh5OFJ8'
                 title='Video article hero card'
+                date='2022-06-02T06:20:00-07:00'
             />
 
             <p className="h3 pb-sm mt-md">Video CTA</p>

@@ -18,6 +18,7 @@ export default function Video ({ data }) {
                 autoplay={false}
                 muted={true}
                 controls={true}
+                date='2022-06-02T06:20:00-07:00'
             />
 
 
