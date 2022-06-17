@@ -16,16 +16,16 @@ import { AuthorCredit } from '../fuselage/components/author-credit/author-credit
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
 export default function Post ({ page }) {
-
+    
     const entry = page.data.entry
 
-    console.log('page:', entry)
+    // console.log('page:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
+    // console.log('schema:', entry.schemaCode)
 
     let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
     let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
-
 
 
     const [ videoDuration, setVideoDuration ] = useState('00:00')
@@ -61,6 +61,7 @@ export default function Post ({ page }) {
                     src={entry.hero[0].image[0].url}
                     width={entry.hero[0].image[0].width}
                     height={entry.hero[0].image[0].height}
+                    alt={entry.title}
                 />
                 <div className="flex jc-between mt-xs">
                     <ArticleCategories categories={entry.categories} />
@@ -85,12 +86,18 @@ export default function Post ({ page }) {
                 <meta content={metaTags['og:url'].content} property="og:url" />
                 <meta content={metaTags['og:title'].content} property="og:title" />
                 <meta content={metaTags['og:description'].content} property="og:description" />
-                <meta content={metaTags['og:image'].content} property="og:image"></meta>  
+                <meta content={metaTags['og:image'].content} property="og:image"></meta>
+                
+                <link rel='canonical' href={metaTags['og:url'].content} key='canonical' />
+
+                <script type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: `${entry.schemaCode}` }}
+                />
             </Head>
 
 
             <section>
-				<p className='h fs-0 serif lh-2 maxw-55 pb-xs'>{ entry.title }</p>
+				<h1 className='h fs-0 serif lh-2 maxw-55 pb-xs'>{ entry.title }</h1>
                 { handleHero() }
 				<p className='fs-5 fw-500 maxw-55 mt-sm'>{ entry.excerpt }</p>
 			</section>
@@ -142,7 +149,7 @@ export default function Post ({ page }) {
 			{/* related posts */}
 			
 			<section className="mt-lg mb-md">
-				<p className="h fs-1 serif c-primary">Related Articles</p>
+				<h2 className="h fs-1 serif c-primary">Related Articles</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -210,33 +217,33 @@ export async function getStaticProps({ params, preview, previewData }) {
                         postDate
                         excerpt
                         heroType
-                    hero {
-                        ... on hero_BlockType {
-                            id
-                            image {
-                                url
-                                width
-                                height
+                        hero {
+                            ... on hero_BlockType {
+                                id
+                                image {
+                                    url
+                                    width
+                                    height
+                                }
+                                video
                             }
-                            video
                         }
-                    }
-                    categories {
-                        ... on categories_Category {
+                        categories {
+                            ... on categories_Category {
+                                id
+                                title
+                                slug
+                                level
+                            }
+                        }
+                        tags {
                             id
                             title
                             slug
-                            level
                         }
-                    }
-                    tags {
-                        id
-                        title
-                        slug
-                    }
-                    body
-                    postAuthor {
-                        ... on profiles_profile_Entry {
+                        body
+                        postAuthor {
+                            ... on profiles_profile_Entry {
                                 id
                                 title
                                 jobTitle
@@ -254,6 +261,7 @@ export async function getStaticProps({ params, preview, previewData }) {
                                 }
                             }
                         }
+                        schemaCode
                     }
                     seomatic (asArray: true) {
                         metaTitleContainer

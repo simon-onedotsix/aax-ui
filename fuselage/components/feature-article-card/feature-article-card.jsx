@@ -8,7 +8,7 @@ import { Button } from '../button/button'
 
 import CSS from './feature-article-card.module.css'
 
-export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categories, author, date, ctaLabel }) => {
+export const FeatureArticle = ({ href, eyebrow, heroUrl, alt, title, excerpt, categories, author, date, ctaLabel }) => {
     return (
         <section>
             { eyebrow ? <p className="h fs-1 serif c-primary">{ eyebrow }</p> : null }
@@ -21,7 +21,7 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, title, excerpt, categor
 
             <div className={CSS.layout}>
              
-                    <FeatureArticleHero heroUrl={heroUrl} />
+                    <FeatureArticleHero heroUrl={heroUrl} alt={alt} />
                
 
                 <div className={CSS.content}>
@@ -67,10 +67,10 @@ FeatureArticle.defaultProps = {
 }
 
 
-export const FeatureArticleHero = ({ heroUrl }) => {
+export const FeatureArticleHero = ({ heroUrl, alt }) => {
     return (
         <div className={CSS.hero}>
-            <Image className='w-100pc' width={1920} height={1080} src={ heroUrl } alt="" />
+            <Image className='w-100pc' width={1920} height={1080} src={ heroUrl } alt={alt} />
         </div>
     )
 }
