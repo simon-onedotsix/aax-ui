@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import Link from 'next/link'
-import PropTypes from 'prop-types'
 
 import { VideoPlayer } from '../video-player/video-player'
 import { ArticleCategories } from '../article-categories/article-categories'
@@ -42,24 +41,4 @@ export const ArticleCardVideo = ({ href, videoUrl, autoplay, muted, controls, ti
             <ArticleMeta author={author} date={date}/>
         </article>
     )
-}
-
-ArticleCardVideo.propTypes = {
-    href: PropTypes.string.isRequired,
-    videoUrl: PropTypes.string.isRequired,
-    title: PropTypes.string,
-    excerpt: PropTypes.string,
-    author: PropTypes.string,
-    date: PropTypes.string,
-    categories: PropTypes.array,
-}
-
-ArticleCardVideo.defaultProps = {
-    href: "#",
-    videoUrl: "https://picsum.photos/1920/1080",
-    title: "AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA",
-    excerpt: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae in doloremque harum ipsa non, distinctio repudiandae libero fuga quis explicabo porro nesciunt soluta eius.",
-    author: "AAX",
-    date: "Mar 23, 2022",
-    categories: [{title: 'Features'}, {title: 'Markets'}]
 }

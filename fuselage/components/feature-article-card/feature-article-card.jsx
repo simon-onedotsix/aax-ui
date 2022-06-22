@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -42,29 +41,6 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, alt, title, excerpt, ca
     )
 }
 
-FeatureArticle.propTypes = {
-    href: PropTypes.string, 
-    eyebrow: PropTypes.string, 
-    heroUrl: PropTypes.string, 
-    title: PropTypes.string, 
-    excerpt: PropTypes.string, 
-    ctaLabel: PropTypes.string,
-    categories: PropTypes.array,
-    author: PropTypes.string,
-    date: PropTypes.string,
-}
-
-FeatureArticle.defaultProps = {
-    href: '#', 
-    eyebrow: 'Feature Article', 
-    heroUrl: 'https://picsum.photos/1920/1080', 
-    title: 'Title', 
-    excerpt: 'Excerpt', 
-    ctaLabel: 'Read more',
-    categories: [{title: 'Features'}, {title: 'Markets'}],
-    author: 'Forename Surname',
-    date: 'Feb 12, 2022'
-}
 
 
 export const FeatureArticleHero = ({ heroUrl, alt }) => {

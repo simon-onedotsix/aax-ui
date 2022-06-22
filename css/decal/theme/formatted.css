@@ -35,7 +35,7 @@
     font-size: calc(var(--default-font-size, 1rem) * 1.6);
 }
 .formatted h1 {
-    font-size: calc(var(--default-font-size, 1rem) * 23);
+    font-size: calc(var(--default-font-size, 1rem) * 2.3);
 }
 
 .formatted a {
@@ -45,6 +45,7 @@
 
 .formatted figure img {
     display: block;
+    max-width: 100%;
 }
 .formatted figure figcaption {
     margin-top: 1rem;

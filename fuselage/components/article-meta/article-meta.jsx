@@ -7,6 +7,13 @@ import CalendarIcon from './img/icon-calendar.svg'
 
 export const ArticleMeta = ({ author, date }) => {
 
+    const handleDate = () => {
+        if ( date )
+        return (
+            <><CalendarIcon className={CSS.icon}/>{ format(new Date(date), 'dd MMM yyyy') }</>
+        )
+    }
+
     return (
         <p className='fw-400 fs-sm'>
             {
@@ -14,7 +21,9 @@ export const ArticleMeta = ({ author, date }) => {
                 <span className={CSS.desktopOnly}><AuthorIcon className={CSS.icon}/>{ author.title } &ensp;</span>
                 : null
             }
-            <CalendarIcon className={CSS.icon}/>{format(new Date(date), 'dd MMM yyyy')}
+            
+
+            { handleDate() }
         </p>
     )
 }

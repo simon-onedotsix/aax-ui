@@ -79,7 +79,7 @@ export default function Home() {
 			{/* related */}
 			
 			<section className="mt-lg mb-md">
-				<p className="h fs-1 serif c-primary">Related Articles</p>
+				<h2 className="h fs-1 serif c-primary">Related Articles</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCard
@@ -87,6 +87,7 @@ export default function Home() {
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                        date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/'
@@ -94,13 +95,14 @@ export default function Home() {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                        date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 

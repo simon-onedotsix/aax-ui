@@ -1,53 +1,106 @@
 import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
-import { useRouter } from 'next/router'
+import { ArticleCardLandscape } from "../../fuselage/components/article-card-landscape/article-card-landscape"
+import { ArticleCardVideoLandscape } from "../../fuselage/components/article-card-video-landscape/article-card-video-landscape"
 
-export default function CategoryPage ({ page }) {
+export default function CategoryPage ({ category, entries }) {
 
-    console.log('category pageData:', page)
+    // console.log('category:', category)
+    // console.log('category page entries:', entries)
 
-    const router = useRouter()
-    const { category } = router.query
+    if ( entries.length ) {
+        return (
+            <>
+                <h1 className="h fs-1 serif c-primary pb-sm">{ category.title }</h1>
+                {
+                    entries.map( entry => {
+                        
+                        if ( entry.heroType ) {
+                            return (
+                                <ArticleCardVideoLandscape
+                                    key={entry.id}
+                                    href={`/${entry.slug}`}
+                                    videoUrl={'https://www.youtube.com/watch?v=e6aogh5OFJ8'}
+                                    title={entry.title}
+                                    excerpt={entry.excerpt}
+                                    date={entry.postDate}
+                                    categories={entry.categories}
+                                />
+                            )
+    
+                        } else {
+                            let heroImage
+                            if ( entry.hero[0].image.length ) { 
+                                heroImage = entry.hero[0].image[0].url
+                            } else {
+                                heroImage = '/assets/ui/fallback.png'
+                            }
+                            return (
+                                <ArticleCardLandscape 
+                                    key={entry.id}
+                                    href={`/${entry.slug}`}
+                                    title={entry.title}
+                                    excerpt={entry.excerpt}
+                                    image={heroImage}
+                                    date={entry.postDate}
+                                    categories={entry.categories}
+                                />
+                            )
+                        }
+                        
+                    })
+                }
+            </>
+        )
 
-    console.log( 'slug:', category)
+    } else {
+        return (
+            <>
+                <h1 className="h fs-1 serif c-primary pb-sm">{ category.title }</h1>
+                <p className="fs-6"><span className="fw-600">Sorry!</span> Currently, there are no posts in this category.</p>
+            </>
+        )
+    }
 
-    return (
-        <>
-            <p>Category page</p>
-        </>
-    )
+    
 }
 
 
-export async function getStaticPaths(category) {
+
+
+export async function getStaticPaths() {
     
-    const entriesData = await craftApolloClient().query({
+    const categoryData = await craftApolloClient().query({
         query: gql`
-            query Posts {
-                entries(section: "posts", relatedToCategories: {slug: "${category}"}) {
+            query Category {
+                categories {
+                    id
                     slug
                 }
             }
         `
     })
 
-    const entries = await entriesData.data.entries
+    const categories = await categoryData.data.categories
 
     return {
-        paths: entries.map( entry => ({ params: { slug: entry.slug } })),
+        paths: categories.map( category => ({ params: { category: category.slug } })),
         fallback: false
     }
 
 }
 
-
 export async function getStaticProps({ params, preview, previewData }) {
 
     const entryData = await craftApolloClient( preview, previewData ).query({
         query: gql`
-            query Post {
-                entry(section: "posts", slug: "text-video-post") {
+            query CategoryPage {
+                category(slug: "${params.category}") {
+                    slug
+                    title
+                  }
+                entries(section: "posts", relatedToCategories: {slug: "${params.category}"}) {
                     ... on posts_Post_Entry {
                         id
                         slug
@@ -55,15 +108,24 @@ export async function getStaticProps({ params, preview, previewData }) {
                         postDate
                         excerpt
                         heroType
-                    hero {
-                        ... on hero_BlockType {
-                            id
-                            image {
-                                url
-                                width
-                                height
+                        hero {
+                            ... on hero_BlockType {
+                                id
+                                image {
+                                    url
+                                    width
+                                    height
+                                }
+                                video
                             }
-                            video
+                        }
+                        categories {
+                            ... on categories_Category {
+                                id
+                                title
+                                slug
+                                level
+                            }
                         }
                     }
                 }
@@ -71,7 +133,8 @@ export async function getStaticProps({ params, preview, previewData }) {
         `
     })
 
-    const page = entryData
+    const entries = entryData.data.entries
+    const category = entryData.data.category
 
-    return { props: { page }}
+    return { props: { category, entries }}
 }

@@ -19,7 +19,7 @@ export default function Post ({ page }) {
     
     const entry = page.data.entry
 
-    // console.log('page:', entry)
+    console.log('page:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('schema:', entry.schemaCode)
@@ -35,7 +35,7 @@ export default function Post ({ page }) {
     }
 
     const handleHero = () => {
-        if ( entry.heroType ) {
+        if ( entry.heroType && entry.hero[0].video ) {
             return (
                 <>
                     <VideoPlayer 
@@ -54,21 +54,37 @@ export default function Post ({ page }) {
                     </div>
                 </>
             )
+
+        } else {
+            let heroImage
+            let heroImageWidth
+            let heroImageHeight
+
+            if ( entry.hero.length && !entry.hero[0].image === undefined ) { 
+                heroImage = entry.hero[0].image[0].url
+                heroImageWidth = entry.hero[0].image[0].width
+                heroImageHeight = entry.hero[0].image[0].height
+            } else {
+                heroImage = '/assets/ui/fallback.png'
+                heroImageWidth = 1920
+                heroImageHeight = 1080
+            }
+            
+            return (
+                <>
+                    <Image 
+                        src={heroImage}
+                        width={heroImageWidth}
+                        height={heroImageHeight}
+                        alt={entry.title}
+                    />
+                    <div className="flex jc-between mt-xs">
+                        <ArticleCategories categories={entry.categories} />
+                        <ArticleMeta author={entry.postAuthor[0]} date={entry.postDate}/>
+                    </div>
+                </>
+            )
         }
-        return (
-            <>
-                <Image 
-                    src={entry.hero[0].image[0].url}
-                    width={entry.hero[0].image[0].width}
-                    height={entry.hero[0].image[0].height}
-                    alt={entry.title}
-                />
-                <div className="flex jc-between mt-xs">
-                    <ArticleCategories categories={entry.categories} />
-                    <ArticleMeta author={entry.postAuthor[0]} date={entry.postDate}/>
-                </div>
-            </>
-        )
     }
 
 
@@ -103,7 +119,7 @@ export default function Post ({ page }) {
 			</section>
 
 
-            <section className="mt-lg">
+            {/* <section className="mt-lg">
 				<p className="fw-500 caps ls-2 c-primary pb-xs">Table of contents</p>
 				<ul className='tableOfContents'>
 					<li><Link href='#'><a>Mauris purus. Donec est nunc</a></Link></li>
@@ -111,7 +127,7 @@ export default function Post ({ page }) {
 					<li><Link href='#'><a>Integer sapien nibh</a></Link></li>
 					<li><Link href='#'><a>Egestas ut cursus sit amet</a></Link></li>
 				</ul>
-			</section>
+			</section> */}
 
 
             <section className="mt-lg maxw-55 formatted">
@@ -157,6 +173,7 @@ export default function Post ({ page }) {
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                        date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/'
@@ -164,13 +181,14 @@ export default function Post ({ page }) {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/'
 						image='https://picsum.photos/1920/1080'
 						title='Damn! Doze shares just got expensive, doh'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                        date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 

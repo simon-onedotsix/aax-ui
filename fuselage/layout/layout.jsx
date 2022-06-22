@@ -72,19 +72,19 @@ export default function Layout ({ children }) {
 					
 					<ul className='fw-500 mt-md lh-9'>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>Videos &amp; Webinars</UnderlineLink>
+							<UnderlineLink href='/category/videos-and-webinars'>Videos &amp; Webinars</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>News and Insights</UnderlineLink>
+							<UnderlineLink href='/category/news-and-insights'>News and Insights</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
 							<UnderlineLink href='/category/explainers'>Explainers</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>Crypto Technical Analysis</UnderlineLink>
+							<UnderlineLink href='/category/crypto-technical-analysis'>Crypto Technical Analysis</UnderlineLink>
 						</li>
 						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category'>Press Room</UnderlineLink>
+							<UnderlineLink href='/category/press-room'>Press Room</UnderlineLink>
 						</li>
 					</ul>
 					

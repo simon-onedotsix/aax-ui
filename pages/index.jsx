@@ -35,12 +35,24 @@ export default function Home() {
 				<div className="columns-3 gap-sm mt-sm">
 					<ArticleCardVideo
 						videoUrl='https://www.youtube.com/watch?v=0NrnwW8Vz2I'
+						href='#'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
+						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-06-02T06:20:00-07:00'
 					/>
 					<ArticleCardVideo
 						videoUrl='https://www.youtube.com/watch?v=Zz72RG9hUYA'
+						href='#'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
+						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-06-02T06:20:00-07:00'
 					/>
 					<ArticleCardVideo
 						videoUrl='https://www.youtube.com/watch?v=Njyo-ovCB-g'
+						href='#'
+						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
+						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-06-02T06:20:00-07:00'
 					/>
 				</div>
 
@@ -87,6 +99,7 @@ export default function Home() {
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
@@ -94,13 +107,14 @@ export default function Home() {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 
@@ -120,6 +134,7 @@ export default function Home() {
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
@@ -127,13 +142,14 @@ export default function Home() {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 
@@ -147,9 +163,11 @@ export default function Home() {
 				heroSrc={'/assets/img/iphone.png' }
 				backgroundSrc={''}
 			>
-				<div className='formatted'>
-					<p className='h fs-0 serif lh-1'>Praesent congue lorem non dolor?</p>
-					<p className="fw-600 mt-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
+				<div>
+					<div className='formatted'>
+						<p className='h fs-0 serif lh-1'>Praesent congue lorem non dolor?</p>
+						<p className="fw-600 mt-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste distinctio quis vero qui veniam corrupti autem tenetur, esse repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?</p>
+					</div>
 
 					<p className='mt-md'><Button href='#' inverse>Call to action!</Button></p>
 				</div>
@@ -170,6 +188,7 @@ export default function Home() {
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
@@ -177,13 +196,14 @@ export default function Home() {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 
@@ -203,6 +223,7 @@ export default function Home() {
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
@@ -210,13 +231,14 @@ export default function Home() {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 
@@ -236,6 +258,7 @@ export default function Home() {
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
@@ -243,13 +266,14 @@ export default function Home() {
 						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
 						author='James Herbert'
-						date='Oct 18, 2021'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 					<ArticleCard
 						href='/post'
 						image='https://picsum.photos/1920/1080'
 						title='Lorem ipsum dolor sit amet consectetur adipisicing elit'
 						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+						date='2022-02-09T04:07:42-08:00'
 					/>
 				</div>
 

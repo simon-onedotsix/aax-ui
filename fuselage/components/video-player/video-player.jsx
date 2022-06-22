@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import PropTypes from 'prop-types'
 import ReactPlayer from "react-player/youtube"
 
 import CSS from './video-player.module.css'
@@ -17,9 +16,9 @@ export const VideoPlayer = ({ videoUrl, controls, muted, autoplay, handleChange 
         }
         const result = `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`
 
-        console.log(result)
+        // console.log(result)
         setVideoPlayerDuration(result)
-        console.log('updated')
+        // console.log('updated')
         handleChange(result)
     }
 
@@ -38,18 +37,4 @@ export const VideoPlayer = ({ videoUrl, controls, muted, autoplay, handleChange 
             </div>
         </>
     )
-}
-
-VideoPlayer.propTypes = {
-    videoUrl: PropTypes.string.isRequired,
-    controls: PropTypes.bool,
-    muted: PropTypes.bool,
-    autoplay: PropTypes.bool
-}
-
-VideoPlayer.defaultProps = {
-    videoUrl: 'https://www.youtube.com/watch?v=e6aogh5OFJ8',
-    controls: true,
-    muted: false,
-    autoplay: false
 }
