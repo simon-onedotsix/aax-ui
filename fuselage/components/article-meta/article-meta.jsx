@@ -21,7 +21,6 @@ export const ArticleMeta = ({ author, date }) => {
                 <span className={CSS.desktopOnly}><AuthorIcon className={CSS.icon}/>{ author.title } &ensp;</span>
                 : null
             }
-            
 
             { handleDate() }
         </p>

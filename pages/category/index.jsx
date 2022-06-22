@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { TagLink } from '../../fuselage/components/tag-link/tag-link'
 import { Button } from '../../fuselage/components/button/button'
 import { CategorySearchButton } from '../../fuselage/components/category-search-button/category-search-button'
-
 import { ArticleCardLandscape } from '../../fuselage/components/article-card-landscape/article-card-landscape'
 
 export default function Home() {
@@ -22,12 +21,39 @@ export default function Home() {
 			<section>
 				<p className="h fs-1 serif c-primary pb-sm">Category Heading</p>
 
-				<ArticleCardLandscape href='/post' />
-				<ArticleCardLandscape href='/post' />
-				<ArticleCardLandscape href='/post' />
-				<ArticleCardLandscape href='/post' />
-				<ArticleCardLandscape href='/post' />
-				<ArticleCardLandscape href='/post' />
+				<ArticleCardLandscape
+					href='/post'
+					image='https://picsum.photos/1920/1080'
+					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+					author='James Herbert'
+					date='2022-02-09T04:07:42-08:00'
+				 />
+				<ArticleCardLandscape
+					href='/post'
+					image='https://picsum.photos/1920/1080'
+					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+					author='James Herbert'
+					date='2022-02-09T04:07:42-08:00'
+				 />
+				<ArticleCardLandscape
+					href='/post'
+					image='https://picsum.photos/1920/1080'
+					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+					author='James Herbert'
+					date='2022-02-09T04:07:42-08:00'
+				 />
+				<ArticleCardLandscape
+					href='/post'
+					image='https://picsum.photos/1920/1080'
+					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+					author='James Herbert'
+					date='2022-02-09T04:07:42-08:00'
+				 />
+
 			</section>
 			
 

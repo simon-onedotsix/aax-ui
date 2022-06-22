@@ -1,67 +1,51 @@
 import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
-import { ArticleCardLandscape } from "../../fuselage/components/article-card-landscape/article-card-landscape"
-import { ArticleCardVideoLandscape } from "../../fuselage/components/article-card-video-landscape/article-card-video-landscape"
+import { handlePosts } from "../../lib/handle-posts"
+import { handleTags } from "../../lib/handle-tags"
 
-export default function CategoryPage ({ category, entries }) {
+import { CategorySearchButton } from '../../fuselage/components/category-search-button/category-search-button'
+
+export default function CategoryPage ({ category, entries, tags }) {
 
     // console.log('category:', category)
+    // console.log('childCategories:', category.children)
     // console.log('category page entries:', entries)
+    // console.log('tags:', tags)
 
-    if ( entries.length ) {
-        return (
-            <>
-                <h1 className="h fs-1 serif c-primary pb-sm">{ category.title }</h1>
-                {
-                    entries.map( entry => {
-                        
-                        if ( entry.heroType ) {
-                            return (
-                                <ArticleCardVideoLandscape
-                                    key={entry.id}
-                                    href={`/${entry.slug}`}
-                                    videoUrl={'https://www.youtube.com/watch?v=e6aogh5OFJ8'}
-                                    title={entry.title}
-                                    excerpt={entry.excerpt}
-                                    date={entry.postDate}
-                                    categories={entry.categories}
-                                />
-                            )
+
+    const handleRelatedCategories = () => {
+
+        if ( category.children.length ) {
+            // console.log('kids:', category.children)
+            return (
+                <section className="mt-lg">
+                    <p className="h fs-1 serif c-primary">Related searches</p>
     
-                        } else {
-                            let heroImage
-                            if ( entry.hero[0].image.length ) { 
-                                heroImage = entry.hero[0].image[0].url
-                            } else {
-                                heroImage = '/assets/ui/fallback.png'
-                            }
-                            return (
-                                <ArticleCardLandscape 
-                                    key={entry.id}
-                                    href={`/${entry.slug}`}
-                                    title={entry.title}
-                                    excerpt={entry.excerpt}
-                                    image={heroImage}
-                                    date={entry.postDate}
-                                    categories={entry.categories}
-                                />
-                            )
+                    <p>
+                        {
+                            category.children.map( childCategory => <CategorySearchButton key={childCategory.id} href={`/category/${childCategory.slug}`} outline>{childCategory.title}</CategorySearchButton>)
                         }
-                        
-                    })
-                }
-            </>
-        )
+                    </p>
+                </section>
+            )
+        }
 
-    } else {
-        return (
-            <>
-                <h1 className="h fs-1 serif c-primary pb-sm">{ category.title }</h1>
-                <p className="fs-6"><span className="fw-600">Sorry!</span> Currently, there are no posts in this category.</p>
-            </>
-        )
     }
+
+
+    return (
+        <>
+            <h1 className="h fs-1 serif c-primary pb-sm">{ category.title }</h1>
+
+            {handlePosts(entries)}
+
+            {handleRelatedCategories()}
+
+            {handleTags(tags)}
+            
+        </>
+    )
 
     
 }
@@ -99,7 +83,17 @@ export async function getStaticProps({ params, preview, previewData }) {
                 category(slug: "${params.category}") {
                     slug
                     title
-                  }
+                    children {
+                        id
+                        title
+                        slug
+                    }
+                }
+                tags {
+                    id
+                    slug
+                    title
+                }
                 entries(section: "posts", relatedToCategories: {slug: "${params.category}"}) {
                     ... on posts_Post_Entry {
                         id
@@ -135,6 +129,7 @@ export async function getStaticProps({ params, preview, previewData }) {
 
     const entries = entryData.data.entries
     const category = entryData.data.category
+    const tags = entryData.data.tags
 
-    return { props: { category, entries }}
+    return { props: { category, entries, tags }}
 }
