@@ -42,7 +42,7 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
                         <div className={CSS.meta}>
                             <ArticleCategories categories={ categories } />
                             { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }
-                                
+
                         </div>
                         <p className='my-sm'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quod nihil ad, quisquam expedita commodi a enim? Libero hic sint aliquam sunt fuga cum rerum, voluptatem amet temporibus. Vitae, dolores?</p>
                     </div>

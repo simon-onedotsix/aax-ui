@@ -4,8 +4,6 @@ import CSS from "./cta-callout.module.css"
 
 export const CtaCallout = ({ heroSrc, backgroundSrc, backgroundOpacity, children }) => {
 
-    console.log('children', children)
-
     return (
         <section className={`${CSS.container} mt-lg bg-dark p-md c-white`}>
 

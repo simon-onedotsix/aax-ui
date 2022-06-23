@@ -27,10 +27,10 @@ export const ArticleCardVideo = ({ href, videoUrl, autoplay, muted, controls, ti
                 handleChange={handleChange}
             />
 
-            <div className={CSS.meta}>
+            {/* <div className={CSS.meta}>
                 <ArticleCategories categories={ categories } />
                 { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }    
-            </div>
+            </div> */}
 
             <h3 className='h fs-4 fw-600 lh-4'>
                 <Link href={href}><a className={CSS.link}>{ title }</a></Link>

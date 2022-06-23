@@ -14,11 +14,32 @@ import { CryptoChart } from '../components/crypto-chart/crypto-chart'
 
 import CSS from './layout.module.css'
 
-export default function Layout ({ children }) {
-
-    const [ navActive, setNavActive ] = useState(false)
+export default function Layout ({ children, globals }) {
+	
+	const [ navActive, setNavActive ] = useState(false)
     const [ searchActive, setSearchActive ] = useState(false)
     const [ localesActive, setLocalesActive ] = useState(false)
+	
+
+		
+	const handleCta = () => {
+
+		const text = globals.ctaBody[0]
+		const button = globals.ctaButton[0]
+
+		if ( !globals || !text.heading || !text.body || !button.buttonLink || !button.buttonLabel ) return
+
+		return (
+			<div className='mt-sm'>
+				<div className="formatted">
+					<p className='h3 serif lh-2'>{text.heading}</p>
+					<p className='pb-xs'>{text.body}</p>
+				</div>
+				<Button href={button.buttonLink}>{button.buttonLabel}</Button>
+			</div>
+		)
+	}
+
 
     return (
         <>
@@ -64,7 +85,7 @@ export default function Layout ({ children }) {
 						<img src="/assets/ui/icon-close.svg" alt="" />
 					</button>
 					
-					<p><ArrowLink href="#" direction='left' decal='fs-sm fw-400'>Go to aax.com</ArrowLink></p>
+					<p><ArrowLink href="https://www.aax.com" direction='left' decal='fs-sm fw-400'>Go to aax.com</ArrowLink></p>
                     
 					<div className="onlyDesktop mt-md">
 						<Brand className/>
@@ -96,18 +117,12 @@ export default function Layout ({ children }) {
 						<p className='mt-xs' onClick={ () => setLocalesActive( !localesActive ) }><LocalesButton>English</LocalesButton></p>
 					</div>
 
-					<div className='mt-sm'>
-						<div className="formatted">
-							<p className='h3 serif lh-2'>High Yield Crypto Savings</p>
-							<p className='pb-xs'>Earn a steady interest in your favourite crypto. Accrue per minute, no lockup!</p>
-						</div>
-						<Button href='/'>Register now</Button>
-					</div>
+					{handleCta()}
 					
 					<div className='mt-md'>
-						<ButtonSocial href='#' icon='facebook' />
-						<ButtonSocial href='#' icon='twitter' />
-						<ButtonSocial href='#' icon='linkedin' />
+						<ButtonSocial href='https://www.facebook.com/AAXExchange' icon='facebook' />
+						<ButtonSocial href='https://twitter.com/AAXExchange/' icon='twitter' />
+						<ButtonSocial href='https://www.linkedin.com/company/aax-atom-asset-exchange/' icon='linkedin' />
 						<ButtonSocial href='#' icon='discord' />
 					</div>
                 </aside>
@@ -196,7 +211,7 @@ export default function Layout ({ children }) {
 								<div>
 									<p className="h6">Disclaimer</p>
 									<p className='fs-sm'>This blog provides general information only. It is not a substitute for obtaining any legal, financial or any other form of professional advice from a suitably qualified and licensed advisor. The information may be changed without notice and is not guaranteed to be complete, accurate, correct or up-to-date.</p>
-									<p className='fw-500 mt-sm'><UnderlineBarLink href="/">aax.com</UnderlineBarLink></p>
+									<p className='fw-500 mt-sm'><UnderlineBarLink href="https://www.aax.com">aax.com</UnderlineBarLink></p>
 								</div>
 							</section>
 
