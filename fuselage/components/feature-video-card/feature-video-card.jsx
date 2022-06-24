@@ -23,7 +23,7 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
 
             <h3>
                 <Link href={ href }>
-                    <a className={`${CSS.title} h fs-0 serif lh-2 maxw-55 pb-xs`}>{ title }</a>
+                    <a className={`${CSS.title} h fs-0 serif lh-2 maxw-55 pb-sm`}>{ title }</a>
                 </Link>
             </h3>
 
@@ -39,14 +39,15 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
                 
                 <div className={CSS.content}>
                     <div>
-                        <div className={CSS.meta}>
-                            <ArticleCategories categories={ categories } />
-                            { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }
-
-                        </div>
+                        <ArticleCategories categories={ categories } />
+                        
                         <p className='my-sm'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quod nihil ad, quisquam expedita commodi a enim? Libero hic sint aliquam sunt fuga cum rerum, voluptatem amet temporibus. Vitae, dolores?</p>
                     </div>
-                    <ArticleMeta author={ author } date={ date }/>
+
+                    <div className='flex flex-wrap gap-xs'>
+                        <ArticleMeta author={ author } date={ date }/> 
+                        { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }
+                    </div>
                 </div>
 
             </div>

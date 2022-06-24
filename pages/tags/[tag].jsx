@@ -28,7 +28,7 @@ export default function TagPage ({ entries, tags }) {
 }
 
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
     
     const tagData = await craftApolloClient().query({
         query: gql`
@@ -44,20 +44,37 @@ export async function getStaticPaths() {
 
     const tags = await tagData.data.tags
 
+    // return {
+    //     paths: tags.map( tag => ({ params: { tag: tag.slug } })),
+    //     fallback: false
+    // }
+
+    let localisedTags = []
+
+    tags.map( tag => {
+        return (
+            locales.forEach( locale => localisedTags.push({ params: { tag: tag.slug }, locale: locale }) )
+        )
+    })
+
     return {
-        paths: tags.map( tag => ({ params: { tag: tag.slug } })),
+        paths: localisedTags,
         fallback: false
     }
 
 }
 
 
-export async function getStaticProps({ params, preview, previewData }) {
+export async function getStaticProps({ params, preview, previewData, locale }) {
+
+    // fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
     const entryData = await craftApolloClient( preview, previewData ).query({
         query: gql`
             query Entries {
-                entries(section: "posts", relatedToTags: {slug: "${params.tag}"}) {
+                entries(section: "posts", relatedToTags: {slug: "${params.tag}"} site: "${siteHandle}") {
                     ... on posts_Post_Entry {
                         id
                         slug

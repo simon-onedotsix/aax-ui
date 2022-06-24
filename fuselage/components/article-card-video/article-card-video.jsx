@@ -19,26 +19,30 @@ export const ArticleCardVideo = ({ href, videoUrl, autoplay, muted, controls, ti
 
     return (
         <article>
-            <VideoPlayer 
-                videoUrl={videoUrl}
-                autoplay={autoplay}
-                muted={muted}
-                controls={controls}
-                handleChange={handleChange}
-            />
+            <div className={CSS.hero}>
+                <VideoPlayer 
+                    videoUrl={videoUrl}
+                    autoplay={autoplay}
+                    muted={muted}
+                    controls={controls}
+                    handleChange={handleChange}
+                />
+            </div>
 
             {/* <div className={CSS.meta}>
                 <ArticleCategories categories={ categories } />
-                { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }    
             </div> */}
 
             <h3 className='h fs-4 fw-600 lh-4'>
                 <Link href={href}><a className={CSS.link}>{ title }</a></Link>
             </h3>
             
-            <p className='formatted pb-xs'>{ excerpt }</p>
+            <p className='formatted py-xs'>{ excerpt }</p>
             
-            <ArticleMeta author={author} date={date}/>
+            <div className="flex gap-xs">
+                <ArticleMeta author={author} date={date}/> 
+                { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> } 
+            </div>
         </article>
     )
 }

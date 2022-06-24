@@ -1,3 +1,10 @@
+.hero {
+    position: relative; 
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin-bottom: var(--space-xs);
+}
+
 .meta {
     display: flex;
     justify-content: space-between;

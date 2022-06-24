@@ -14,25 +14,21 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, alt, title, excerpt, ca
 
             <h3>
                 <Link href={ href }>
-                    <a className={`${CSS.title} h fs-0 serif lh-2 maxw-55 pb-xs`}>{ title }</a>
+                    <a className={`${CSS.title} h fs-0 serif lh-2 maxw-55 pb-sm`}>{ title }</a>
                 </Link>
             </h3>
 
             <div className={CSS.layout}>
              
-                    <FeatureArticleHero heroUrl={heroUrl} alt={alt} />
-               
+                <FeatureArticleHero heroUrl={heroUrl} alt={alt} />
 
                 <div className={CSS.content}>
-                    <div className="flex jc-between">
+                    <div>
                         <ArticleCategories categories={ categories } />
-                        
+                        <p className='my-sm'>{ excerpt }</p>
                     </div>
 
-                    <p className='my-sm'>{ excerpt }</p>
-
                     <ArticleMeta author={ author } date={ date }/>
-                    
                     {/* <p className='mt-sm'><Button href={ href } outline>{ ctaLabel }</Button></p> */}
                 </div>
             </div>

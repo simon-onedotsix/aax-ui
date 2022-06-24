@@ -276,3 +276,15 @@
         width: 25vw;
     }
 }
+
+@media(hover:hover){
+    .localesButton {
+        cursor: pointer;
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+        transition: all 350ms ease-in-out;
+    }
+    .localesButton:hover {
+        border-bottom: 2px solid var(--primary);
+    }
+}

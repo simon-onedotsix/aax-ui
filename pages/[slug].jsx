@@ -19,7 +19,7 @@ export default function Post ({ page }) {
     
     const entry = page.data.entry
 
-    console.log('page:', entry)
+    // console.log('page:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('schema:', entry.schemaCode)
@@ -60,7 +60,7 @@ export default function Post ({ page }) {
             let heroImageWidth
             let heroImageHeight
 
-            if ( entry.hero.length && !entry.hero[0].image === undefined ) { 
+            if ( entry.hero.length && entry.hero[0].image.length ) { 
                 heroImage = entry.hero[0].image[0].url
                 heroImageWidth = entry.hero[0].image[0].width
                 heroImageHeight = entry.hero[0].image[0].height
@@ -113,9 +113,15 @@ export default function Post ({ page }) {
 
 
             <section>
-				<h1 className='h fs-0 serif lh-2 maxw-55 pb-xs'>{ entry.title }</h1>
+				<h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>{ entry.title }</h1>
+                
                 { handleHero() }
-				<p className='fs-5 fw-500 maxw-55 mt-sm'>{ entry.excerpt }</p>
+
+                {
+                    entry.excerpt ?
+                    <p className='fs-5 fw-500 maxw-55 mt-sm'>{ entry.excerpt }</p>
+                    : null
+                }
 			</section>
 
 
@@ -130,7 +136,7 @@ export default function Post ({ page }) {
 			</section> */}
 
 
-            <section className="mt-lg maxw-55 formatted">
+            <section className="mt-md maxw-55 formatted">
                 <div dangerouslySetInnerHTML={{__html: entry.body }} />
 			</section>
 
@@ -164,7 +170,7 @@ export default function Post ({ page }) {
 
 			{/* related posts */}
 			
-			<section className="mt-lg mb-md">
+			{/* <section className="mt-lg mb-md">
 				<h2 className="h fs-1 serif c-primary">Related Articles</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
@@ -192,7 +198,7 @@ export default function Post ({ page }) {
 					/>
 				</div>
 
-			</section>
+			</section> */}
         </>
     )
 }
@@ -201,7 +207,7 @@ export default function Post ({ page }) {
 
 
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
 
     const entriesData = await craftApolloClient().query({
         query: gql`
@@ -215,19 +221,32 @@ export async function getStaticPaths() {
 
     const entries = await entriesData.data.entries
 
+    let localisedEntries = []
+
+    entries.map( entry => {
+        return (
+            locales.forEach( locale => localisedEntries.push({ params: { slug: entry.slug }, locale: locale }) )
+        )
+    })
+
     return {
-        paths: entries.map( entry => ({ params: { slug: entry.slug } })),
+        paths: localisedEntries,
         fallback: false
     }
 
 }
 
-export async function getStaticProps({ params, preview, previewData }) {
+
+export async function getStaticProps({ params, preview, previewData, locale }) {
+
+    // fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
     const entryData = await craftApolloClient( preview, previewData ).query({
         query: gql`
             query Post {
-                entry(section: "posts", slug: "${params.slug}") {
+                entry(section: "posts", slug: "${params.slug}", site: "${siteHandle}") {
                     ... on posts_Post_Entry {
                         id
                         slug

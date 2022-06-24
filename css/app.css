@@ -49,14 +49,19 @@
 .form input[type="text"] {
     width: 100%;
 }
-.form input[type="submit"] {
+.form input[type="submit"],
+.form .button {
     cursor: pointer;
     padding: .75rem 2rem;
     background-color: var(--primary);
+    font-size: var(--default-font-size);
+    font-family: var(--default-font-family);
     color: white;
+    border: 1px solid var(--primary);
     transition: all 400ms ease-in-out;
 }
-.form input[type="submit"]:hover {
+.form input[type="submit"]:hover,
+.form .button:hover {
     background-color: var(--dark);
     border-color: var(--dark);
     transition: all 200ms ease-in-out;
@@ -64,4 +69,64 @@
 
 .form input[type="text"]:focus {
     border-color: tomato;
+}
+
+
+
+/* search form */
+
+.searchForm input,
+.searchForm .button {
+    padding: .75rem 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--primary);
+    font-size: var(--default-font-size);
+    font-family: var(--default-font-family);
+    outline: none;
+
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+.searchForm input[type="text"] {
+    width: 100%;
+}
+
+
+@media(hover:hover) {
+    .searchForm .button {
+        cursor: pointer;
+    }
+    .searchForm .button img {
+        transition: all 150ms ease-in-out;
+    }
+    .searchForm .button:hover img {
+        transform: scale(1.05);
+        transition: all 300ms ease-in-out;
+    }
+}
+
+
+.clearButton {
+    background-color: var(--primary);
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media(hover:hover) {
+    .clearButton {
+        cursor: pointer;
+        transition: all 150ms ease-in-out;
+    }
+    .clearButton:hover {
+        background-color: var(--secondary);
+        transition: all 300ms ease-in-out;
+    }
 }

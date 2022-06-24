@@ -19,7 +19,6 @@ export const ArticleCardVideoLandscape = ({ href, videoUrl, autoplay, muted, con
 
     return (
         <article className={CSS.layout}>
-
             <VideoPlayer 
                 videoUrl={videoUrl}
                 autoplay={autoplay}
@@ -29,20 +28,20 @@ export const ArticleCardVideoLandscape = ({ href, videoUrl, autoplay, muted, con
             />
 
             <div className={CSS.content}>
-
-                <h3 className='h fs-4 fw-600 lh-4'>
-                    <Link href={href}><a className={CSS.link}>{ title }</a></Link>
-                </h3>
-                
-                <p className='formatted pb-xs'>{ excerpt }</p>
-                
-                <div className="flex jc-between mt-xs">
+                <div>
                     <ArticleCategories categories={ categories } />
-                    <div className='flex jc-between gap-xs'>
-                        <ArticleMeta author={author} date={date}/>
-                        { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }    
-                    </div>
+                    <h3 className='h fs-4 fw-600 lh-4 my-xs'>
+                        <Link href={href}><a className={CSS.link}>{ title }</a></Link>
+                    </h3>
+                    
+                    <p className='formatted pb-xs'>{ excerpt }</p>
                 </div>
+                
+                <div className='flex gap-xs'>
+                    <ArticleMeta author={author} date={date}/>
+                    { videoDuration != '00:00' && <VideoMeta duration={videoDuration} /> }    
+                </div>
+                
             </div>
         </article>
     )

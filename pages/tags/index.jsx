@@ -18,7 +18,11 @@ export default function TagsPage ({ tags }) {
 
 
 
-export async function getStaticProps({ preview, previewData }) {
+export async function getStaticProps({ locale, preview, previewData }) {
+
+    // fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
     const tagData = await craftApolloClient().query({
         query: gql`

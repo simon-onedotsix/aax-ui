@@ -8,13 +8,15 @@ import { CategorySearchButton } from '../../fuselage/components/category-search-
 
 export default function CategoryPage ({ category, entries, tags }) {
 
-    // console.log('category:', category)
+    console.log('category:', category)
     // console.log('childCategories:', category.children)
     // console.log('category page entries:', entries)
     // console.log('tags:', tags)
 
 
     const handleRelatedCategories = () => {
+
+        if ( !category ) return
 
         if ( category.children.length ) {
             // console.log('kids:', category.children)
@@ -36,7 +38,7 @@ export default function CategoryPage ({ category, entries, tags }) {
 
     return (
         <>
-            <h1 className="h fs-1 serif c-primary pb-sm">{ category.title }</h1>
+            <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : 'fallback' }</h1>
 
             {handlePosts(entries)}
 
@@ -53,7 +55,7 @@ export default function CategoryPage ({ category, entries, tags }) {
 
 
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
     
     const categoryData = await craftApolloClient().query({
         query: gql`
@@ -68,19 +70,31 @@ export async function getStaticPaths() {
 
     const categories = await categoryData.data.categories
 
+    let localisedCategories = []
+
+    categories.map( category => {
+        return (
+            locales.forEach( locale => localisedCategories.push({ params: { category: category.slug }, locale: locale }) )
+        )
+    })
+
     return {
-        paths: categories.map( category => ({ params: { category: category.slug } })),
+        paths: localisedCategories,
         fallback: false
     }
 
 }
 
-export async function getStaticProps({ params, preview, previewData }) {
+export async function getStaticProps({ params, preview, previewData, locale }) {
+
+    // fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
     const entryData = await craftApolloClient( preview, previewData ).query({
         query: gql`
             query CategoryPage {
-                category(slug: "${params.category}") {
+                category(slug: "${params.category}" site: "${siteHandle}") {
                     slug
                     title
                     children {
@@ -94,7 +108,7 @@ export async function getStaticProps({ params, preview, previewData }) {
                     slug
                     title
                 }
-                entries(section: "posts", relatedToCategories: {slug: "${params.category}"}) {
+                entries(section: "posts", relatedToCategories: {slug: "${params.category}"} site: "${siteHandle}") {
                     ... on posts_Post_Entry {
                         id
                         slug

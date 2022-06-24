@@ -23,11 +23,17 @@ export const handlePosts = ( entries ) => {
     
                         } else {
                             let heroImage
-                            if ( entry.hero[0].image.length ) { 
+                            if ( entry.hero.length && entry.hero[0].image.length ) { 
                                 heroImage = entry.hero[0].image[0].url
                             } else {
                                 heroImage = '/assets/ui/fallback.png'
                             }
+                            if ( entry.hero.length ) {
+                                console.log('HERO FOUND')
+                            }
+
+
+                            heroImage = '/assets/ui/fallback.png'
                             return (
                                 <ArticleCardLandscape 
                                     key={entry.id}
@@ -37,6 +43,7 @@ export const handlePosts = ( entries ) => {
                                     image={heroImage}
                                     date={entry.postDate}
                                     categories={entry.categories}
+
                                 />
                             )
                         }

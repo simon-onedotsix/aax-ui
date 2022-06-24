@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import Brand from '../components/brand/brand'
 import { Button } from '../components/button/button'
@@ -19,8 +22,10 @@ export default function Layout ({ children, globals }) {
 	const [ navActive, setNavActive ] = useState(false)
     const [ searchActive, setSearchActive ] = useState(false)
     const [ localesActive, setLocalesActive ] = useState(false)
+	const [ activeLocale, setActiveLocale ] = useState('English')
 	
-
+	const router = useRouter()
+	const { pathname, asPath, query } = router
 		
 	const handleCta = () => {
 
@@ -40,6 +45,34 @@ export default function Layout ({ children, globals }) {
 		)
 	}
 
+	const handleLocales = () => {
+
+		const locales = [
+			{ code: 'en', label: 'English'},
+			{ code: 'zh', label: '中文 (台灣)'},
+			{ code: 'ru', label: 'Русский'},
+			{ code: 'ko', label: '한국어'},
+			{ code: 'fr', label: 'Française'},
+			{ code: 'es', label: 'Espagñol'},
+			{ code: 'pt', label: 'Português'},
+			{ code: 'id', label: 'Bahasa Indonesia'},
+		]
+		return (
+			locales.map( item => {
+				return (
+					<p key={item.code} onClick={() => { 
+						router.push({ pathname, query }, asPath, { locale: item.code }) 
+						setActiveLocale( item.label )
+						setLocalesActive( false )
+					}}>
+						<span className={CSS.localesButton}>
+							{ item.label }
+						</span>
+					</p>
+				)
+			})
+		)
+	}
 
     return (
         <>
@@ -69,7 +102,12 @@ export default function Layout ({ children, globals }) {
 				<button className={`${CSS.closeUtility} ${ localesActive ? CSS.active : '' }`} onClick={ () => setLocalesActive( !localesActive ) }>
 					<img src="/assets/ui/icon-close.svg" alt="" />
 				</button>
-				<p className="fs-4 fw-400 c-white">Locales</p>
+
+				<Image src={'/assets/ui/icon-locales.svg'} width={40} height={40} />
+
+				<div className="mt-sm c-white formatted">
+					{handleLocales()}
+				</div>
 			</div>
 
 
@@ -109,12 +147,21 @@ export default function Layout ({ children, globals }) {
 						</li>
 					</ul>
 					
-					<div>
+					{/* TEMP UI FOR SEARCH */}
+
+					{/* <div>
 						<p className='mt-sm' onClick={ () => setSearchActive( !searchActive ) }><SearchButton>Search</SearchButton></p>
+					</div> */}
+
+					<div>
+						<p className='mt-sm'><Link href='/search'><span style={{ textDecoration: `none`}}><SearchButton>Search</SearchButton></span></Link></p>
 					</div>
 					
+					{/* END TEMP UI FOR SEARCH */}
+
+
 					<div>
-						<p className='mt-xs' onClick={ () => setLocalesActive( !localesActive ) }><LocalesButton>English</LocalesButton></p>
+						<p className='mt-xs' onClick={ () => setLocalesActive( !localesActive ) }><LocalesButton>{activeLocale}</LocalesButton></p>
 					</div>
 
 					{handleCta()}
@@ -208,7 +255,7 @@ export default function Layout ({ children, globals }) {
 									<SubscribeForm />
 								</div>
 
-								<div>
+								<div className='formatted'>
 									<p className="h6">Disclaimer</p>
 									<p className='fs-sm'>This blog provides general information only. It is not a substitute for obtaining any legal, financial or any other form of professional advice from a suitably qualified and licensed advisor. The information may be changed without notice and is not guaranteed to be complete, accurate, correct or up-to-date.</p>
 									<p className='fw-500 mt-sm'><UnderlineBarLink href="https://www.aax.com">aax.com</UnderlineBarLink></p>

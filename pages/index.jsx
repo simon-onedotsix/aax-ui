@@ -28,6 +28,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 
 	const handleMainFeature = () => {
 
+		if ( !features ) return
 		if ( !features.mainFeatureArticle.length ) return
 		
 		const mainFeature = features.mainFeatureArticle[0]
@@ -53,11 +54,11 @@ export default function Home({ features, explainers, videos, news, press, analys
 
 			let heroImage
 
-            if ( mainFeature.hero.length && mainFeature.hero[0].image.length ) { 
-                heroImage = mainFeature.hero[0].image[0].url
-            } else {
-                heroImage = '/assets/ui/fallback.png'
-            }
+		    if ( mainFeature.hero.length && mainFeature.hero[0].image.length ) { 
+		        heroImage = mainFeature.hero[0].image[0].url
+		    } else {
+		        heroImage = '/assets/ui/fallback.png'
+		    }
 
 			return (
 				<FeatureArticle
@@ -77,6 +78,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 
 	const handleFeatures = () => {
 
+		if ( !features ) return
 		if ( !features.featureArticles.length ) return
 		
 		const featuredArticles = features.featureArticles
@@ -191,7 +193,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 
 	const handleCta = () => {
 
-		if ( !cta ) return
+		if ( !cta || !cta.ctaBody.length || !cta.ctaHero.length ) return
 
 		let hero = cta.ctaHero[0]
 		let background
@@ -274,13 +276,17 @@ export default function Home({ features, explainers, videos, news, press, analys
 
 
 
-export async function getStaticProps({ preview, previewData }) {
+export async function getStaticProps({ locale, preview, previewData }) {
 
-	//feature artilces
+	// fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
+
+	//feature articles
     const featuresData = await craftApolloClient().query({
         query: gql`
 			query FeatureArticles {
-				entry(id: "2") {
+				entry(id: "2", site: "${siteHandle}") {
 					id
 					... on homepage_homepage_Entry {
 						id
@@ -353,7 +359,7 @@ export async function getStaticProps({ preview, previewData }) {
 	const ctaData = await craftApolloClient().query({
         query: gql`
 			query FeatureArticles {
-				entry(id: "2") {
+				entry(id: "2", site: "${siteHandle}") {
 					... on homepage_homepage_Entry {
 						id
 						ctaHero {
@@ -399,10 +405,10 @@ export async function getStaticProps({ preview, previewData }) {
     const explainersData = await craftApolloClient().query({
         query: gql`
 			query ExplainerPosts {
-				entries(section: "posts", limit: 3, relatedToCategories: {slug: "explainers"}) {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "explainers"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "explainers") {
+				category (slug: "explainers", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -417,10 +423,10 @@ export async function getStaticProps({ preview, previewData }) {
     const videosData = await craftApolloClient().query({
         query: gql`
 			query VideoPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "videos-and-webinars"}) {
+                entries(section: "posts", limit: 3, relatedToCategories: {slug: "videos-and-webinars"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "videos-and-webinars") {
+				category (slug: "videos-and-webinars", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -435,10 +441,10 @@ export async function getStaticProps({ preview, previewData }) {
     const newsData = await craftApolloClient().query({
         query: gql`
             query NewsPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "news-and-insights"}) {
+                entries(section: "posts", limit: 3, relatedToCategories: {slug: "news-and-insights"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "news-and-insights") {
+				category (slug: "news-and-insights", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -453,10 +459,10 @@ export async function getStaticProps({ preview, previewData }) {
     const pressData = await craftApolloClient().query({
         query: gql`
 			query NewsPosts {
-				entries(section: "posts", limit: 3, relatedToCategories: {slug: "press-room"}) {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "press-room"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "press-room") {
+				category (slug: "press-room", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -471,10 +477,10 @@ export async function getStaticProps({ preview, previewData }) {
     const analysisData = await craftApolloClient().query({
         query: gql`
 			query AnalysisPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "crypto-technical-analysis"}) {
+                entries(section: "posts", limit: 3, relatedToCategories: {slug: "crypto-technical-analysis", site: "${siteHandle}"}) {
 					${QueryPostForCard}
 				}
-				category (slug: "crypto-technical-analysis") {
+				category (slug: "crypto-technical-analysis", site: "${siteHandle}") {
 					id
 					slug
 					title

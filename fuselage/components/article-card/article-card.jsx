@@ -9,7 +9,7 @@ import CSS from './article-card.module.css'
 export const ArticleCard = ({ href, image, title, excerpt, author, date, categories }) => {
     return (
         <article>
-            <div className={CSS.container}>
+            <div className={CSS.hero}>
                 <Link href={href}>
                     <a>
                         <Image 
@@ -20,18 +20,19 @@ export const ArticleCard = ({ href, image, title, excerpt, author, date, categor
                         />
                     </a>
                 </Link>
-
             </div>
 
-            <ArticleCategories categories={ categories } />
+            <div className={CSS.content}>
+                <ArticleCategories categories={ categories } />
 
-            <h3 className='h fs-4 fw-600 lh-4'>
-                <Link href={href}><a className={CSS.link}>{ title }</a></Link>
-            </h3>
-            
-            <p className='formatted pb-xs'>{ excerpt }</p>
-            
-            <ArticleMeta author={author} date={date}/>
+                <h3 className='h fs-4 fw-600 lh-4'>
+                    <Link href={href}><a className={CSS.link}>{ title }</a></Link>
+                </h3>
+                
+                <p className='formatted py-xs'>{ excerpt }</p>
+                
+                <ArticleMeta author={author} date={date}/>
+            </div>
         </article>
     )
 }
