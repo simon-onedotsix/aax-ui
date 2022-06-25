@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { gql } from "@apollo/client"
 import craftApolloClient from "./api/apollo"
 
+import {useTranslations} from 'next-intl'
+
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -16,6 +18,8 @@ import { AuthorCredit } from '../fuselage/components/author-credit/author-credit
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
 export default function Post ({ page }) {
+
+    const t = useTranslations('Global')
     
     const entry = page.data.entry
 
@@ -316,5 +320,10 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
 
     const page = entryData
 
-    return { props: { page }}
+    return { 
+        props: { 
+            page,
+            messages: (await import(`../translations/${locale}.json`)).default
+        }
+    }
 }

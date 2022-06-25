@@ -1,15 +1,19 @@
 import { gql } from "@apollo/client"
 import craftApolloClient from "./api/apollo"
 
+import {NextIntlProvider} from 'next-intl'
+
 import Layout from '../fuselage/layout/layout'
 
 import '../css/index.css'
 
 function App({ Component, pageProps, globals }) {
 	return (
-		<Layout globals={globals}>
-			<Component {...pageProps} />
-		</Layout>
+		<NextIntlProvider messages={pageProps.messages}>
+			<Layout globals={globals}>
+				<Component {...pageProps} />
+			</Layout>
+		</NextIntlProvider>
 	)
 }
 

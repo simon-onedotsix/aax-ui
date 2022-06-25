@@ -28,11 +28,6 @@ export const handlePosts = ( entries ) => {
                             } else {
                                 heroImage = '/assets/ui/fallback.png'
                             }
-                            if ( entry.hero.length ) {
-                                console.log('HERO FOUND')
-                            }
-
-
                             heroImage = '/assets/ui/fallback.png'
                             return (
                                 <ArticleCardLandscape 

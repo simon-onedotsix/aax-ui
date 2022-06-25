@@ -1,0 +1,23 @@
+{
+    "Global": {
+        "Tags": "Tags"
+    },
+
+    "Home": {
+        "message":  "Message"
+    },
+
+    "Category": {
+        "Categories": "Categories",
+        "Related searches": "Related searches",
+        "Videos & Webinars": "Videos & Webinars"
+    },
+
+    "Tags": {
+        "Tags": "Tags"
+    },
+
+    "Search": {
+        "Search": "Search"
+    }
+}

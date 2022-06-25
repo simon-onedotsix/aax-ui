@@ -4,6 +4,7 @@ import craftApolloClient from "./api/apollo"
 import { QueryPostForCard } from "../graphql/queries"
 
 import Head from 'next/head'
+import { useTranslations } from 'next-intl'
 
 import { Button, AppStoreIcon, PlayStoreIcon } from '../fuselage/components/button/button'
 import { UnderlineBarLink } from '../fuselage/components/u-bar-link/u-bar-link'
@@ -16,6 +17,8 @@ import { ArticleCard } from '../fuselage/components/article-card/article-card'
 import { CtaCallout } from '../fuselage/components/cta-callout/cta-callout'
 
 export default function Home({ features, explainers, videos, news, press, analysis, cta }) {
+
+	const t = useTranslations('Home')
 
 	// console.log('features:', features)
 	// console.log('explainers:', explainers)
@@ -499,7 +502,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 			news : news.data,
 			press : press.data,
 			analysis : analysis.data,
-			cta : cta.data.entry
+			cta : cta.data.entry,
+			messages: (await import(`../translations/${locale}.json`)).default
 		}
 	}
 }

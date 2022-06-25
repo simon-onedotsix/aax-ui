@@ -1,0 +1,23 @@
+{
+    "Global": {
+        "Tags": "Mots clés"
+    },
+
+    "Home": {
+        "message":  "Le Message"
+    },
+
+    "Category": {
+        "Categories": "Catégories",
+        "Related searches": "Recherches associées",
+        "Videos & Webinars": "Vidéos et webinaires"
+    },
+
+    "Tags": {
+        "Tags": "Mots clés"
+    },
+
+    "Search": {
+        "Search": "Trouver"
+    }
+}

@@ -1,11 +1,33 @@
+import { gql } from "@apollo/client"
+import craftApolloClient from "../api/apollo"
+
 import Head from 'next/head'
+
+import {useTranslations} from 'next-intl'
 
 import { TagLink } from '../../fuselage/components/tag-link/tag-link'
 import { Button } from '../../fuselage/components/button/button'
 import { CategorySearchButton } from '../../fuselage/components/category-search-button/category-search-button'
 import { ArticleCardLandscape } from '../../fuselage/components/article-card-landscape/article-card-landscape'
 
-export default function Home() {
+export default function Categories({ categories }) {
+
+	const t = useTranslations('Category')
+
+	console.log('categories:', categories)
+
+	const handleCategoryButtons = () => {
+
+		if ( !categories ) return
+
+		return (
+			<p>
+				{
+					categories.map( category => <CategorySearchButton key={category.id} href={`/category/${category.slug}`} outline>{category.title}</CategorySearchButton> )
+				}
+			</p>
+		)
+	}
 
 	return (
 		<>
@@ -19,90 +41,52 @@ export default function Home() {
 			{/* featured article */}
 
 			<section>
-				<p className="h fs-1 serif c-primary pb-sm">Category Heading</p>
-
-				<ArticleCardLandscape
-					href='/post'
-					image='https://picsum.photos/1920/1080'
-					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
-					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-					author='James Herbert'
-					date='2022-02-09T04:07:42-08:00'
-				 />
-				<ArticleCardLandscape
-					href='/post'
-					image='https://picsum.photos/1920/1080'
-					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
-					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-					author='James Herbert'
-					date='2022-02-09T04:07:42-08:00'
-				 />
-				<ArticleCardLandscape
-					href='/post'
-					image='https://picsum.photos/1920/1080'
-					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
-					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-					author='James Herbert'
-					date='2022-02-09T04:07:42-08:00'
-				 />
-				<ArticleCardLandscape
-					href='/post'
-					image='https://picsum.photos/1920/1080'
-					title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
-					excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-					author='James Herbert'
-					date='2022-02-09T04:07:42-08:00'
-				 />
-
+				<p className="h fs-1 serif c-primary pb-sm">{t('Categories')}</p>
 			</section>
 			
 
-
-
-			<section className="mt-lg">
-				<p className="h fs-1 serif c-primary">Related searches</p>
-
-				<p>
-					<CategorySearchButton href='#' outline>Bitcoin</CategorySearchButton>
-					<CategorySearchButton href='#' outline>SATS</CategorySearchButton>
-					<CategorySearchButton href='#' outline>Global Digital Finance</CategorySearchButton>
-					<CategorySearchButton href='#' outline>Crypto Currency</CategorySearchButton>
-				</p>
-
-
-				<p className='fw-600 mt-md'>Tags</p>
-
-				<p className='mt-xs maxw-100pc' style={{ width: `100%`, overflow: `hidden`}}>
-					<TagLink href='#'>Bitcoin</TagLink>
-					<TagLink href='#'>SATS</TagLink>
-					<TagLink href='#'>Global</TagLink>
-					<TagLink href='#'>Digital</TagLink>
-					<TagLink href='#'>Finance regulation</TagLink>
-					<TagLink href='#'>AAB</TagLink>
-					<TagLink href='#'>AAX</TagLink>
-					<TagLink href='#'>coin burns</TagLink>
-					<TagLink href='#'>cryptocurrency</TagLink>
-					<TagLink href='#'>michael wong</TagLink>
-					<TagLink href='#'>Thor Chan</TagLink>
-					<TagLink href='#'>gold</TagLink>
-					<TagLink href='#'>phigold</TagLink>
-					<TagLink href='#'>Invest</TagLink>
-					<TagLink href='#'>institutional</TagLink>
-					<TagLink href='#'>Singapore</TagLink>
-					<TagLink href='#'>The Capital</TagLink>
-				</p>
+			<section>
+				{handleCategoryButtons()}
 			</section>
 			
-		
 
+			{/* CTA */}
 
-
-
-			<section className="mt-lg bg-dark px-md py-sm c-white flex gap-sm jc-between">
+			{/* <section className="mt-lg bg-dark px-md py-sm c-white flex gap-sm jc-between">
 				<p className='h fs-2 serif formatted'>Are you a journalist or an editor?</p>
 				<p><Button href='#' inverse>Call to action!</Button></p>
-			</section>
+			</section> */}
 
 		</>
 	)
+}
+
+
+export async function getStaticProps({ locale, preview, previewData }) {
+
+    // fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
+
+	const categoryData = await craftApolloClient( preview, previewData ).query({
+        query: gql`
+            query Categories {
+                categories(site: "${siteHandle}") {
+                    id
+					title
+					slug
+                }
+            }
+        `
+    })
+
+    const categories = categoryData.data.categories
+
+
+    return {
+        props: {
+			categories,
+            messages: (await import(`../../translations/${locale}.json`)).default
+        }
+    }
 }

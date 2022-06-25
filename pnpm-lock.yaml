@@ -7,6 +7,7 @@ specifiers:
   eslint-config-next: 12.1.0
   graphql: ^16.5.0
   next: 12.1.0
+  next-intl: ^2.7.4
   prop-types: ^15.8.1
   react: 17.0.2
   react-dom: 17.0.2
@@ -20,6 +21,7 @@ dependencies:
   date-fns: 2.28.0
   graphql: 16.5.0
   next: 12.1.0_sfoxds7t5ydpegc3knd667wn6m
+  next-intl: 2.7.4_next@12.1.0+react@17.0.2
   prop-types: 15.8.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -95,6 +97,53 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@formatjs/ecma402-abstract/1.11.4:
+    resolution: {integrity: sha512-EBikYFp2JCdIfGEb5G9dyCkTGDmC57KSHhRQOC3aYxoPWVZvfWCDjZwkGYHN7Lis/fmuWl906bnNTJifDQ3sXw==}
+    dependencies:
+      '@formatjs/intl-localematcher': 0.2.25
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/ecma402-abstract/1.11.7:
+    resolution: {integrity: sha512-uNaok4XWMJBtPZk/veTDamFCm5HeWJUk2jwoVfH5/+wenQ60QHjH6T3UQ0GOOCz9jpKmed7vqOri7xSf//Dt7g==}
+    dependencies:
+      '@formatjs/intl-localematcher': 0.2.28
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/fast-memoize/1.2.1:
+    resolution: {integrity: sha512-Rg0e76nomkz3vF9IPlKeV+Qynok0r7YZjL6syLz4/urSg0IbjPZCB/iYUMNsYA643gh4mgrX3T7KEIFIxJBQeg==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/icu-messageformat-parser/2.1.0:
+    resolution: {integrity: sha512-Qxv/lmCN6hKpBSss2uQ8IROVnta2r9jd3ymUEIjm2UyIkUCHVcbUVRGL/KS/wv7876edvsPe+hjHVJ4z8YuVaw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.4
+      '@formatjs/icu-skeleton-parser': 1.3.6
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/icu-skeleton-parser/1.3.6:
+    resolution: {integrity: sha512-I96mOxvml/YLrwU2Txnd4klA7V8fRhb6JG/4hm3VMNmeJo1F03IpV2L3wWt7EweqNLES59SZ4d6hVOPCSf80Bg==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.4
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/intl-localematcher/0.2.25:
+    resolution: {integrity: sha512-YmLcX70BxoSopLFdLr1Ds99NdlTI2oWoLbaUW2M406lxOIPzE1KQhRz2fPUkq34xVZQaihCoU29h0KK7An3bhA==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/intl-localematcher/0.2.28:
+    resolution: {integrity: sha512-FLsc6Gifs1np/8HnCn/7Q+lHMmenrD5fuDhRT82yj0gi9O19kfaFwjQUw1gZsyILuRyT93GuzdifHj7TKRhBcw==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
 
   /@graphql-typed-document-node/core/3.1.1_graphql@16.5.0:
     resolution: {integrity: sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==}
@@ -1236,6 +1285,15 @@ packages:
     resolution: {integrity: sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==}
     dev: false
 
+  /intl-messageformat/9.13.0:
+    resolution: {integrity: sha512-7sGC7QnSQGa5LZP7bXLDhVDtQOeKGeBFGHF2Y8LVBwYZoQZCgWeKoPGTa5GMG8g/TzDgeXuYJQis7Ggiw2xTOw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.4
+      '@formatjs/fast-memoize': 1.2.1
+      '@formatjs/icu-messageformat-parser': 2.1.0
+      tslib: 2.4.0
+    dev: false
+
   /is-bigint/1.0.4:
     resolution: {integrity: sha512-zB9CruMamjym81i2JZ3UMn54PKGsQzsJeo6xvN3HJJ4CAsQNB6iRutp2To77OfCNuoxspsIhzaPoO1zyCEhFOg==}
     dependencies:
@@ -1466,6 +1524,18 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-intl/2.7.4_next@12.1.0+react@17.0.2:
+    resolution: {integrity: sha512-fspmOzhInd/m+cV3Qj6FzjfDIjEtNTS6Vi4Xv+/59ReZvcW9uGmn/py0NkltQnf5Oefl0RUZGdjbd+t6+G+PMw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      next: ^10.0.0 || ^11.0.0 || ^12.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      next: 12.1.0_sfoxds7t5ydpegc3knd667wn6m
+      react: 17.0.2
+      use-intl: 2.7.4_react@17.0.2
+    dev: false
 
   /next/12.1.0_sfoxds7t5ydpegc3knd667wn6m:
     resolution: {integrity: sha512-s885kWvnIlxsUFHq9UGyIyLiuD0G3BUC/xrH0CEnH5lHEWkwQcHOORgbDF0hbrW9vr/7am4ETfX4A7M6DjrE7Q==}
@@ -2082,6 +2152,17 @@ packages:
     dependencies:
       punycode: 2.1.1
     dev: true
+
+  /use-intl/2.7.4_react@17.0.2:
+    resolution: {integrity: sha512-Ivo2dIUFTyLCj6YJ+fA4jsDggDQhUQSLT1OoXP7qurCAueOWFX6QaN/pL3cDR6z9gM7nVQH83piRvuBJTHjQzg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.7
+      intl-messageformat: 9.13.0
+      react: 17.0.2
+    dev: false
 
   /use-subscription/1.5.1_react@17.0.2:
     resolution: {integrity: sha512-Xv2a1P/yReAjAbhylMfFplFKj9GssgTwN7RlcTxBujFQcloStWNDQdc4g4NRWH9xS4i/FDk04vQBptAXoF3VcA==}

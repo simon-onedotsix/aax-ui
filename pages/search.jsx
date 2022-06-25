@@ -1,22 +1,29 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useRouter } from "next/router"
 import Image from "next/image"
+
+import {useTranslations} from 'next-intl'
 
 import { QueryPostForCard } from '../graphql/queries'
 import { handlePosts } from '../lib/handle-posts'
 
 export default function SearchPage () {   
 
+    const t = useTranslations('Search')
+    
+    const router = useRouter()
+    
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
     const [query, setQuery] = useState('keyword/s')
     const [currentQuery, setCurrentQuery] = useState('')
-
+    
 
     const searchEntries = ( query ) => {
 
         setLoading(true)
 
-        fetch('https://aax.onedotsix.com/api', {
+        fetch(process.env.NEXT_PUBLIC_CMS_API_URL, {
           method: 'POST',
       
           headers: {
@@ -26,7 +33,7 @@ export default function SearchPage () {
           body: JSON.stringify({
             query: `
                 query Search {
-                    entries(section: "posts", search: "${query}") {
+                    entries(section: "posts", search: "${query}" site: "${router.locale}") {
                         ${QueryPostForCard}
                     }
                 }
@@ -37,7 +44,7 @@ export default function SearchPage () {
         .then((data) => {
             setData(data.data.entries)
             setLoading(false)
-            console.log(data.data.entries)
+            // console.log(data.data.entries)
         })
 
     }
@@ -69,12 +76,12 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">Results for &ldquo;{ currentQuery }&rdquo;</p>
-                            <p><button className="clearButton" onClick={ () => setData(null) }>&#215;</button></p>
+                            <p className="fs-5 fw-600">No results for &ldquo;{ currentQuery }&rdquo;</p>
+                            {/* <p><button className="clearButton" onClick={ () => setData(null) }>&#215;</button></p> */}
                         </section>
 
                         <section className="mt-sm bt-1 bc-grey-10 pt-sm">
-                            <p>No results, please try again.</p>
+                            <p>Please try again.</p>
                         </section>
                     </>
                 )
@@ -87,7 +94,7 @@ export default function SearchPage () {
 
     return (
         <>
-            <h1 className="fs-1 serif c-primary">Search</h1>
+            <h1 className="fs-1 serif c-primary">{t('Search')}</h1>
 
             <div className="searchForm maxw-25 flex mt-sm">
                 <input 
@@ -105,8 +112,22 @@ export default function SearchPage () {
             </div>
 
             
-            { isLoading ? <p className="mt-md">Loading...</p> : handleEntries()}
+            { isLoading ? <p className="fs-5 fw-600 mt-md">Loading...</p> : handleEntries()}
         </>
     )
 
+}
+
+
+export async function getStaticProps({locale}) {
+
+    // fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
+
+    return {
+        props: {
+            messages: (await import(`../translations/${locale}.json`)).default
+        }
+    }
 }

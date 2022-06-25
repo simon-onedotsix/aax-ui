@@ -17,15 +17,27 @@ import { CryptoChart } from '../components/crypto-chart/crypto-chart'
 
 import CSS from './layout.module.css'
 
+const locales = [
+	{ code: 'en', label: 'English'},
+	{ code: 'zh', label: '中文 (台灣)'},
+	{ code: 'ru', label: 'Русский'},
+	{ code: 'ko', label: '한국어'},
+	{ code: 'fr', label: 'Française'},
+	{ code: 'es', label: 'Espagñol'},
+	{ code: 'pt', label: 'Português'},
+	{ code: 'id', label: 'Bahasa Indonesia'},
+]
+
 export default function Layout ({ children, globals }) {
-	
+
+	const router = useRouter()
+	const { locale, pathname, asPath, query } = router
+	let initialLocale = locales.find( obj => locale === obj.code )
+
 	const [ navActive, setNavActive ] = useState(false)
     const [ searchActive, setSearchActive ] = useState(false)
     const [ localesActive, setLocalesActive ] = useState(false)
-	const [ activeLocale, setActiveLocale ] = useState('English')
-	
-	const router = useRouter()
-	const { pathname, asPath, query } = router
+	const [ activeLocale, setActiveLocale ] = useState(initialLocale.label)
 		
 	const handleCta = () => {
 
@@ -45,18 +57,11 @@ export default function Layout ({ children, globals }) {
 		)
 	}
 
+	// **** set initial activeLocale via useEffect on page load ****
+
 	const handleLocales = () => {
 
-		const locales = [
-			{ code: 'en', label: 'English'},
-			{ code: 'zh', label: '中文 (台灣)'},
-			{ code: 'ru', label: 'Русский'},
-			{ code: 'ko', label: '한국어'},
-			{ code: 'fr', label: 'Française'},
-			{ code: 'es', label: 'Espagñol'},
-			{ code: 'pt', label: 'Português'},
-			{ code: 'id', label: 'Bahasa Indonesia'},
-		]
+		
 		return (
 			locales.map( item => {
 				return (

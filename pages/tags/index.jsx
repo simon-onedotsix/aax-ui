@@ -1,15 +1,20 @@
 import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
+import {useTranslations} from 'next-intl'
+
 import { handleTags } from "../../lib/handle-tags"
 
 export default function TagsPage ({ tags }) {
+
+    const g = useTranslations('Global')
+    const t = useTranslations('Tags')
 
     // console.log('tags:', tags)
 
     return (
         <>
-            <h1 className="h fs-1 serif c-primary pb-sm">Tags</h1>
+            <h1 className="h fs-1 serif c-primary pb-sm">{g('Tags')}</h1>
 
             {handleTags(tags)}
         </>
@@ -27,7 +32,7 @@ export async function getStaticProps({ locale, preview, previewData }) {
     const tagData = await craftApolloClient().query({
         query: gql`
             query Tags {
-                tags {
+                tags (site: "${siteHandle}") {
                     id
                     slug
                     title
@@ -39,6 +44,9 @@ export async function getStaticProps({ locale, preview, previewData }) {
     const tags = await tagData
 
     return { 
-		props: { tags: tags.data.tags }
+		props: { 
+            tags: tags.data.tags,
+            messages: (await import(`../../translations/${locale}.json`)).default
+        }
 	}
 }
