@@ -17,12 +17,18 @@ function App({ Component, pageProps, globals }) {
 	)
 }
 
-App.getInitialProps = async () => {
+App.getInitialProps = async (ctx) => {
+
+	let locale = ctx.router.locale
+
+	// fix for not being able to query cms for language (convert indonesian)
+    let siteHandle
+    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
 	const { data } = await craftApolloClient().query({
 		query: gql`
 			query Globals {
-				globalSet(id: 814) {
+				globalSets(site: "${siteHandle}") {
 					id
 					name
 					... on sidebar_GlobalSet {
@@ -43,13 +49,34 @@ App.getInitialProps = async () => {
 							}
 						}
 					}
+					... on footer_GlobalSet {
+						id
+						name
+						footerLinks {
+							... on footerLinks_BlockType {
+								id
+								column {
+									... on column_heading_BlockType {
+										id
+										heading
+									}
+									... on column_link_BlockType {
+										id
+										label
+										linkUrl
+										openInNewWindow
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		
 		`
 	})
 
-	return { globals: data.globalSet }
+	return { globals: data.globalSets }
 
 }
 

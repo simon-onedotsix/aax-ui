@@ -1,7 +1,7 @@
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ['aax.onedotsix.com', 'aax.cogney.com', 'youtube.com', 'picsum.photos'],
+		domains: ['aax.onedotsix.com', 'aaxtrends.cogney.com', 'youtube.com'],
 	},
 
 	i18n: {

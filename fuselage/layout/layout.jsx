@@ -30,6 +30,12 @@ const locales = [
 
 export default function Layout ({ children, globals }) {
 
+	const sidebar = globals[0]
+	const footer = globals[1]
+
+	console.log('sidebar:', sidebar)
+	console.log('footer:', footer)
+
 	const router = useRouter()
 	const { locale, pathname, asPath, query } = router
 	let initialLocale = locales.find( obj => locale === obj.code )
@@ -41,10 +47,10 @@ export default function Layout ({ children, globals }) {
 		
 	const handleCta = () => {
 
-		const text = globals.ctaBody[0]
-		const button = globals.ctaButton[0]
+		const text = sidebar.ctaBody[0]
+		const button = sidebar.ctaButton[0]
 
-		if ( !globals || !text.heading || !text.body || !button.buttonLink || !button.buttonLabel ) return
+		if ( !sidebar || !text || !button ) return
 
 		return (
 			<div className='mt-sm'>
@@ -57,11 +63,8 @@ export default function Layout ({ children, globals }) {
 		)
 	}
 
-	// **** set initial activeLocale via useEffect on page load ****
-
 	const handleLocales = () => {
 
-		
 		return (
 			locales.map( item => {
 				return (
@@ -78,6 +81,43 @@ export default function Layout ({ children, globals }) {
 			})
 		)
 	}
+
+	const handleFooterLinks = () => {
+
+		if ( !footer.footerLinks.length ) return 
+
+		return (
+			<section className={`${CSS.footerColumns4} gap-md`}>
+				{
+					footer.footerLinks.map( section => {
+						return (
+							<div key={section.id} className='fw-400 lh-1'>
+								{
+									section.column.map( item => {
+										if ( item.__typename === 'column_heading_BlockType') {
+											return (
+												<p key={item.id} className='fw-bold c-primary mb-xxs'>{item.heading}</p>
+											)
+										}
+										if ( item.__typename === 'column_link_BlockType') {
+											return (
+												<p key={item.id} className='mb-xxs c-primary'>
+													<UnderlineLink href={item.linkUrl} target={item.openInNewWindow}>
+														{item.label}
+													</UnderlineLink>
+												</p>
+											)
+										}
+									})
+								}
+							</div>
+						)
+					})
+				}
+			</section>
+		)
+	}
+
 
     return (
         <>
@@ -218,39 +258,7 @@ export default function Layout ({ children, globals }) {
 					<main className={CSS.main}>
 						<div className={CSS.footerContent}>
 
-							<section className={`${CSS.footerColumns4} gap-md`}>
-								<div className='fw-400 formatted'>
-									<p className='fw-bold c-primary'>Maecenas rhoncus</p>
-									<p><UnderlineLink href='#'>Duis mattis nisi nec sapien</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Nullam eu ante</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Nonenim tincidunt fringilla</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Integer leo</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Duis eget enim</UnderlineLink></p>
-								</div>
-								<div className='fw-400 formatted'>
-									<p className='fw-bold c-primary'>Class aptent</p>
-									<p><UnderlineLink href='#'>Placerat et</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Pellentesque</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Sedessed diam</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Nam nunc</UnderlineLink></p>
-								</div>
-								<div className='fw-400 formatted'>
-									<p className='fw-bold c-primary'>Maecenas rhoncus</p>
-									<p><UnderlineLink href='#'>Duis mattis nisi</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Nullam eu ante</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Nonenim tincidunt </UnderlineLink></p>
-									<p><UnderlineLink href='#'>Integer leo</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Duis eget enim</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Curabitur</UnderlineLink></p>
-								</div>
-								<div className='fw-400 formatted'>
-									<p className='fw-bold c-primary'>Class aptent</p>
-									<p><UnderlineLink href='#'>Placerat et</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Pellentesque</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Sedessed diam</UnderlineLink></p>
-									<p><UnderlineLink href='#'>Nam nunc</UnderlineLink></p>
-								</div>
-							</section>
+							{handleFooterLinks()}
 
 							<section className={`${CSS.footerColumns2} mt-md gap-md`}>
 								<div className='formatted'>
