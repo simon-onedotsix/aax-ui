@@ -26,7 +26,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 	// console.log('news:', news)
 	// console.log('analysis:', analysis)
 	// console.log('press:', press)
-	// console.log('cta:', cta)
+	console.log('cta:', cta)
 
 
 	const handleMainFeature = () => {
@@ -196,7 +196,9 @@ export default function Home({ features, explainers, videos, news, press, analys
 
 	const handleCta = () => {
 
-		if ( !cta || !cta.ctaBody.length || !cta.ctaHero.length ) return
+		// return
+
+		if ( !cta || !cta.showCta ) return
 
 		let hero = cta.ctaHero[0]
 		let background
@@ -218,7 +220,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 					</div>
 
 					{
-						cta.ctaButton.length ?
+						cta.ctaButton.buttonLink ?
 						<p className='mt-md'><Button href={cta.ctaButton[0].buttonLink} inverse>{cta.ctaButton[0].buttonLabel}</Button></p>
 						: null
 					}
@@ -365,6 +367,7 @@ export async function getStaticProps({ locale, preview, previewData }) {
 				entry(id: "2", site: "${siteHandle}") {
 					... on homepage_homepage_Entry {
 						id
+						showCta
 						ctaHero {
 							id
 							url

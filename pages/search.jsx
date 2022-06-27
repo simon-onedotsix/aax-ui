@@ -15,7 +15,7 @@ export default function SearchPage () {
     
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
-    const [query, setQuery] = useState('keyword/s')
+    const [query, setQuery] = useState('')
     const [currentQuery, setCurrentQuery] = useState('')
     
 
@@ -56,12 +56,13 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">Results for &ldquo;{ currentQuery }&rdquo;</p>
+                            <p className="fs-5 fw-600">{data.length} Results for &ldquo;{ currentQuery }&rdquo;</p>
                             <p>
                                 <button 
                                     className="clearButton" 
                                     onClick={ () => {
                                         setData(null)
+                                        setQuery('')
                                     }}
                                 >&#215;</button>
                             </p>

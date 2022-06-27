@@ -8,7 +8,7 @@ export const handlePosts = ( entries ) => {
                 {
                     entries.map( entry => {
                         
-                        if ( entry.heroType ) {
+                        if ( entry.heroType && entry.hero[0].video ) {
                             return (
                                 <ArticleCardVideoLandscape
                                     key={entry.id}
@@ -28,7 +28,6 @@ export const handlePosts = ( entries ) => {
                             } else {
                                 heroImage = '/assets/ui/fallback.png'
                             }
-                            heroImage = '/assets/ui/fallback.png'
                             return (
                                 <ArticleCardLandscape 
                                     key={entry.id}

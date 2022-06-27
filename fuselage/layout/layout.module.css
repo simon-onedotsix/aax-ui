@@ -283,6 +283,7 @@
         display: inline-block;
         border-bottom: 2px solid transparent;
         transition: all 350ms ease-in-out;
+        color: white;
     }
     .localesButton:hover {
         border-bottom: 2px solid var(--primary);

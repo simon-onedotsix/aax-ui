@@ -10,6 +10,7 @@ import { CategorySearchButton } from '../../fuselage/components/category-search-
 
 export default function CategoryPage ({ category, entries, tags }) {
 
+    const g = useTranslations('Global')
     const t = useTranslations('Category')
 
     // console.log('category:', category)
@@ -49,7 +50,7 @@ export default function CategoryPage ({ category, entries, tags }) {
             {handleRelatedCategories()}
 
             <section>
-                <p className='fw-600 mt-md'>Tags</p>
+                <p className='fw-600 mt-md'>{g('Tags')}</p>
                 {handleTags(tags)}
             </section>
             

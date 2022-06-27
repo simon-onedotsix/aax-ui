@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { gql } from "@apollo/client"
 import craftApolloClient from "./api/apollo"
@@ -9,6 +10,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { format } from 'date-fns'
+
 import { VideoPlayer } from '../fuselage/components/video-player/video-player'
 import { ArticleCategories } from '../fuselage/components/article-categories/article-categories'
 import { ArticleMeta } from '../fuselage/components/article-meta/article-meta'
@@ -17,13 +20,15 @@ import { ButtonSocial } from '../fuselage/components/button-social/button-social
 import { AuthorCredit } from '../fuselage/components/author-credit/author-credit'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
-export default function Post ({ page }) {
+export default function Post ({ entry }) {
+
+    // const router = useRouter()
+
+    // console.log('ROUTER:', router.query.slug)
 
     const t = useTranslations('Global')
-    
-    const entry = page.data.entry
 
-    // console.log('page:', entry)
+    console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('schema:', entry.schemaCode)
@@ -91,6 +96,138 @@ export default function Post ({ page }) {
         }
     }
 
+    const handleSchema = () => {
+        if ( entry.heroType && entry.hero[0].video ) {
+            // video hero schema
+            return (
+                `
+                    {
+                        "@context": "http://schema.org/",
+                        "@type": "Article",
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": "${metaTags['og:url'].content}"
+                        },
+                        "author": {
+                            "@type": "Organization",
+                            "name": "AAX Trends",
+                            "url": "${process.env.NEXT_PUBLIC_SITE_URL}"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "AAX Trends",
+                            "url": "${process.env.NEXT_PUBLIC_SITE_URL}",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "${process.env.NEXT_PUBLIC_SITE_URL}/assets/ui/AAX-trends-logo.svg"
+                            }
+                        },
+                        "headline": "${entry.title}",
+                        "image": "[URL of image under h1]",
+                        "datePublished": "${format(new Date(entry.postDate), 'dd MM yyyy')}"
+                    },
+                    {
+                        "@context": "http://schema.org/",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "AAX Trends",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "${entry.categories[0].title}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[0].slug}"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 3,
+                                "name": "${entry.categories[1].title}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[1].slug}"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 4,
+                                "name": "${entry.title}",
+                                "item": "${metaTags['og:url'].content}"
+                            }
+                        ]
+                    }
+                
+                `
+            )
+
+        } else {
+            // image hero schema
+            return (
+                `
+                    {
+                        "@context": "http://schema.org/",
+                        "@type": "Article",
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": "${metaTags['og:url'].content}"
+                        },
+                        "author": {
+                            "@type": "Person",
+                            "name": "${entry.postAuthor.length ? entry.postAuthor[0].title : ''}",
+                            "url":[
+                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
+                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
+                            ]
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "AAX Trends",
+                            "url": "${process.env.NEXT_PUBLIC_SITE_URL}",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "${process.env.NEXT_PUBLIC_SITE_URL}/assets/ui/AAX-trends-logo.svg"
+                            }
+                        },
+                        "headline": "${entry.title}",
+                        "image": "${entry.hero[0].image[0].url}",
+                        "datePublished": "${format(new Date(entry.postDate), 'dd MM yyyy')}"
+                    },
+                    {
+                        "@context": "http://schema.org/",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "AAX Trends",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "${entry.categories[0].title}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[0].slug}"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 3,
+                                "name": "${entry.categories[1].title}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[1].slug}"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 4,
+                                "name": "${entry.title}",
+                                "item": "${metaTags['og:url'].content}"
+                            }
+                        ]
+                    }
+                    
+                `
+            )
+        }
+
+    } 
 
     return (
         <>
@@ -110,9 +247,7 @@ export default function Post ({ page }) {
                 
                 <link rel='canonical' href={metaTags['og:url'].content} key='canonical' />
 
-                <script type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: `${entry.schemaCode}` }}
-                />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${handleSchema()}` }} />
             </Head>
 
 
@@ -146,7 +281,7 @@ export default function Post ({ page }) {
 
 
 			<section className='mt-md'>
-				<p className='fw-500 mb-xs'>Share this article</p>
+				<p className='fw-500 mb-xs'>{t('Share this article')}</p>
 			
 				<ButtonSocial icon='facebook'/>
 				<ButtonSocial icon='twitter'/>
@@ -208,33 +343,97 @@ export default function Post ({ page }) {
 }
 
 
+// export async function getStaticPaths({ locales }) {
+
+//     const entriesData = await craftApolloClient().query({
+//         query: gql`
+//             query Posts {
+//                 entries(section: "posts", site: "ru") {
+//                     slug
+//                 }
+//             }
+//         `
+//     })
+//     const entries = await entriesData.data.entries
+
+//     console.log('entries found:', entries.length)
+//     console.log('entries:', entries)
+
+//     let localisedEntries = []
+
+//     entries.map( entry => {
+//         return (
+//             locales.forEach( locale => localisedEntries.push({ params: { slug: entry.slug }, locale: locale }) )
+//         )
+//     })
+
+//     console.log('localisedEntries:', localisedEntries)
+
+//     return {
+//         paths: localisedEntries,
+//         fallback: false
+//     }
+
+// }
 
 
+export async function getStaticPaths() {
 
-export async function getStaticPaths({ locales }) {
-
-    const entriesData = await craftApolloClient().query({
+    const entriesDataEn = await craftApolloClient().query({
         query: gql`
             query Posts {
-                entries(section: "posts") {
+                entries(section: "posts" site: "en") {
+                    id
+                    title
                     slug
+                    siteId
                 }
+
             }
         `
     })
+    const entriesEn = await entriesDataEn.data.entries
+    const entriesEnLocalised = entriesEn.map( entry => ({ params: { slug: entry.slug }, locale: 'en' }) )
 
-    const entries = await entriesData.data.entries
+    // console.log('entries found:', entriesEn.length)
+    // console.log('entries:', entriesEn)
+    // console.log('entries localised:', entriesEnLocalised)
 
-    let localisedEntries = []
 
-    entries.map( entry => {
-        return (
-            locales.forEach( locale => localisedEntries.push({ params: { slug: entry.slug }, locale: locale }) )
-        )
+
+    const entriesDataRu = await craftApolloClient().query({
+        query: gql`
+            query Posts {
+                entries(section: "posts" site: "ru") {
+                    id
+                    title
+                    slug
+                    siteId
+                }
+
+            }
+        `
     })
+    const entriesRu = await entriesDataRu.data.entries
+
+    const entriesRuLocalised = entriesRu.map( entry => ({ params: { slug: entry.slug }, locale: 'ru' }) )
+    
+    // console.log('entries found [ru]:', entriesRu.length)
+    // console.log('entries [ru]:', entriesRu)
+    // console.log('entries [ru] localised:', entriesRuLocalised)
+
+
+
+
+
+
+    const entries = [ ...entriesEnLocalised, ...entriesRuLocalised ]
+
+    console.log('ENTRIES FOUND:', entries.length)
+    console.log('ENTRIES:', entries)
 
     return {
-        paths: localisedEntries,
+        paths: entries,
         fallback: false
     }
 
@@ -322,7 +521,7 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
 
     return { 
         props: { 
-            page,
+            entry: page.data.entry,
             messages: (await import(`../translations/${locale}.json`)).default
         }
     }

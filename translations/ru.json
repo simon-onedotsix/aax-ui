@@ -1,23 +1,25 @@
 {
     "Global": {
-        "Tags": "Tags"
+        "Tags": "[ru] Tags",
+        "All rights reserved": "[ru] All rights reserved.",
+        "Share this article": "[ru] Share this article"
     },
-
+    
     "Home": {
-        "message":  "Message"
+        "message":  "[ru] Message"
     },
-
+    
     "Category": {
-        "Categories": "Categories",
-        "Related searches": "Related searches",
-        "Videos & Webinars": "Videos & Webinars"
+        "Categories": "[ru] Categories",
+        "Related searches": "[ru] Related searches",
+        "Videos & Webinars": "[ru] Videos & Webinars"
     },
 
     "Tags": {
-        "Tags": "Tags"
+        "Tags": "[ru] Tags"
     },
 
     "Search": {
-        "Search": "Search"
+        "Search": "[ru] Search"
     }
 }

@@ -7,10 +7,10 @@ import Layout from '../fuselage/layout/layout'
 
 import '../css/index.css'
 
-function App({ Component, pageProps, globals }) {
+function App({ Component, pageProps, globals, categories }) {
 	return (
 		<NextIntlProvider messages={pageProps.messages}>
-			<Layout globals={globals}>
+			<Layout globals={globals} categories={categories}>
 				<Component {...pageProps} />
 			</Layout>
 		</NextIntlProvider>
@@ -71,12 +71,19 @@ App.getInitialProps = async (ctx) => {
 						}
 					}
 				}
+				categories(site: "${siteHandle}", level: 1) {
+                    id
+					title
+					slug
+                }
 			}
 		
 		`
 	})
 
-	return { globals: data.globalSets }
+	console.log(data)
+
+	return { globals: data.globalSets, categories: data.categories }
 
 }
 

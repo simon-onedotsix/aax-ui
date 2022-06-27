@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import {useTranslations} from 'next-intl'
+
 import Brand from '../components/brand/brand'
 import { Button } from '../components/button/button'
 import { ArrowLink } from '../components/arrow-link/arrow-link'
@@ -28,13 +30,16 @@ const locales = [
 	{ code: 'id', label: 'Bahasa Indonesia'},
 ]
 
-export default function Layout ({ children, globals }) {
+export default function Layout ({ children, globals, categories }) {
+
+	const g = useTranslations('Global')
 
 	const sidebar = globals[0]
 	const footer = globals[1]
 
-	console.log('sidebar:', sidebar)
-	console.log('footer:', footer)
+	// console.log('categories:', categories)
+	// console.log('sidebar:', sidebar)
+	// console.log('footer:', footer)
 
 	const router = useRouter()
 	const { locale, pathname, asPath, query } = router
@@ -44,6 +49,25 @@ export default function Layout ({ children, globals }) {
     const [ searchActive, setSearchActive ] = useState(false)
     const [ localesActive, setLocalesActive ] = useState(false)
 	const [ activeLocale, setActiveLocale ] = useState(initialLocale.label)
+
+
+	const handleMainMenu = () => {
+		if ( !categories.length ) return
+
+		return (
+			<ul className='fw-500 mt-md lh-9'>				
+				{
+					categories.map( category => {
+						return (
+							<li key={category.id} onClick={ () => setNavActive( false ) }>
+								<UnderlineLink href={`/category/${category.slug}`}>{category.title}</UnderlineLink>
+							</li>
+						)
+					})
+				}
+			</ul>
+		)
+	}
 		
 	const handleCta = () => {
 
@@ -65,17 +89,30 @@ export default function Layout ({ children, globals }) {
 
 	const handleLocales = () => {
 
+
+		// <p key={item.code} onClick={() => { 
+		// 	router.push({ pathname, query }, asPath, { locale: item.code }) 
+		// 	setActiveLocale( item.label )
+		// 	setLocalesActive( false )
+		// }}>
+		// 	<span className={CSS.localesButton}>
+		// 		{ item.label }
+		// 	</span>
+		// </p>
+
+
 		return (
 			locales.map( item => {
 				return (
-					<p key={item.code} onClick={() => { 
-						router.push({ pathname, query }, asPath, { locale: item.code }) 
-						setActiveLocale( item.label )
-						setLocalesActive( false )
-					}}>
-						<span className={CSS.localesButton}>
-							{ item.label }
-						</span>
+					<p key={item.code}>
+						<a href={item.code === 'en' ? `/` : `/${item.code}`} onClick={() => { 
+							setActiveLocale( item.label )
+							setLocalesActive( false )
+						}}>
+							<span className={CSS.localesButton}>
+								{ item.label }
+							</span>
+						</a>
 					</p>
 				)
 			})
@@ -174,23 +211,7 @@ export default function Layout ({ children, globals }) {
 						<Brand className/>
 					</div>
 					
-					<ul className='fw-500 mt-md lh-9'>
-						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category/videos-and-webinars'>Videos &amp; Webinars</UnderlineLink>
-						</li>
-						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category/news-and-insights'>News and Insights</UnderlineLink>
-						</li>
-						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category/explainers'>Explainers</UnderlineLink>
-						</li>
-						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category/crypto-technical-analysis'>Crypto Technical Analysis</UnderlineLink>
-						</li>
-						<li onClick={ () => setNavActive( false ) }>
-							<UnderlineLink href='/category/press-room'>Press Room</UnderlineLink>
-						</li>
-					</ul>
+					{handleMainMenu()}
 					
 					{/* TEMP UI FOR SEARCH */}
 
@@ -286,7 +307,7 @@ export default function Layout ({ children, globals }) {
 
 				<aside className={CSS.sidebar}></aside>
 				<main className={`${CSS.main} px-md py-sm`}>
-					<p className='fs-sm'>© {new Date().getFullYear()} AAX Trends. All rights reserved.</p>
+					<p className='fs-sm'>© {new Date().getFullYear()} AAX Trends. {g('All rights reserved')}</p>
 				</main>
 			</div>
 
