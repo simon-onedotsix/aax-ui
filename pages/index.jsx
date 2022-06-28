@@ -26,7 +26,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 	// console.log('news:', news)
 	// console.log('analysis:', analysis)
 	// console.log('press:', press)
-	console.log('cta:', cta)
+	// console.log('cta:', cta)
 
 
 	const handleMainFeature = () => {
