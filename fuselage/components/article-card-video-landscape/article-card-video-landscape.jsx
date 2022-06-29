@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import Link from 'next/link'
 
+import { truncate } from '../../../lib/truncate'
 import { VideoPlayer } from '../video-player/video-player'
 import { ArticleCategories } from '../article-categories/article-categories'
 import { VideoMeta } from '../video-meta/video-meta'
@@ -34,7 +35,7 @@ export const ArticleCardVideoLandscape = ({ href, videoUrl, autoplay, muted, con
                         <Link href={href}><a className={CSS.link}>{ title }</a></Link>
                     </h3>
                     
-                    <p className='formatted pb-xs'>{ excerpt }</p>
+                    { excerpt ? <p className='formatted pb-xs'>{truncate(excerpt, 35)}</p> : null }
                 </div>
                 
                 <div className='flex gap-xs'>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
+import { truncate } from '../../../lib/truncate'
 import { VideoPlayer } from '../video-player/video-player'
 import { VideoMeta } from '../video-meta/video-meta'
 import { ArticleCategories } from '../article-categories/article-categories'
@@ -41,7 +42,7 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
                     <div>
                         <ArticleCategories categories={ categories } />
                         
-                        <p className='my-sm'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quod nihil ad, quisquam expedita commodi a enim? Libero hic sint aliquam sunt fuga cum rerum, voluptatem amet temporibus. Vitae, dolores?</p>
+                        { excerpt ? <p className='my-sm'>{truncate(excerpt, 45)}</p> : null }
                     </div>
 
                     <div className='flex flex-wrap gap-xs'>

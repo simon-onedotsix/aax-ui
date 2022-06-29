@@ -227,7 +227,8 @@ export default function Post ({ entry }) {
             )
         }
 
-    } 
+    }
+    
 
     return (
         <>

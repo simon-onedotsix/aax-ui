@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { truncate } from '../../../lib/truncate'
 import { ArticleCategories } from '../article-categories/article-categories'
 import { ArticleMeta } from '../article-meta/article-meta'
 
 import CSS from './article-card-landscape.module.css'
 
 export const ArticleCardLandscape = ({ href, image, title, excerpt, author, date, categories }) => {
+
     return (
         <article className={CSS.layout}>
             <Link href={href}>
@@ -20,7 +22,7 @@ export const ArticleCardLandscape = ({ href, image, title, excerpt, author, date
                     <h3 className='h fs-3 lh-4 fw-600 my-xs'>
                         <Link href={href}><a className={CSS.link}>{ title }</a></Link>
                     </h3>
-                    <p className='formatted'>{ excerpt }</p>
+                    { excerpt ? <p className='formatted'>{truncate(excerpt, 35)}</p> : null }
                 </div>
                 
                 <div className="flex jc-between mt-xs">

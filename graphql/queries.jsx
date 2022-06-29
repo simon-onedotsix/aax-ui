@@ -5,6 +5,7 @@ export const QueryPostForCard = `
         title
         postDate
         excerpt
+        body
         heroType
         hero {
             ... on hero_BlockType {

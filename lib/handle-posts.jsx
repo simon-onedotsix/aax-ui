@@ -15,7 +15,7 @@ export const handlePosts = ( entries ) => {
                                     href={`/${entry.slug}`}
                                     videoUrl={'https://www.youtube.com/watch?v=e6aogh5OFJ8'}
                                     title={entry.title}
-                                    excerpt={entry.excerpt}
+                                    excerpt={entry.body}
                                     date={entry.postDate}
                                     categories={entry.categories}
                                 />
@@ -33,7 +33,7 @@ export const handlePosts = ( entries ) => {
                                     key={entry.id}
                                     href={`/${entry.slug}`}
                                     title={entry.title}
-                                    excerpt={entry.excerpt}
+                                    excerpt={entry.body}
                                     image={heroImage}
                                     date={entry.postDate}
                                     categories={entry.categories}

@@ -123,6 +123,7 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
                         title
                         postDate
                         excerpt
+                        body
                         heroType
                         hero {
                             ... on hero_BlockType {

@@ -46,6 +46,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 					title={mainFeature.title}
 					videoUrl={`https://www.youtube.com/watch?v=${mainFeature.hero[0].video}`}
 					categories={mainFeature.categories}
+					excerpt={mainFeature.body}
 					author={mainFeature.postAuthor && null}
 					date={mainFeature.postDate}
 				/>
@@ -68,7 +69,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 					href={`/${mainFeature.slug}`}
 					title={mainFeature.title}
 					heroUrl={heroImage}
-					excerpt={mainFeature.excerpt}
+					excerpt={mainFeature.body}
 					ctaLabel='Read more'
 					categories={mainFeature.categories}
 					author={mainFeature.postAuthor && null}
@@ -101,7 +102,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 										href={`/${entry.slug}`}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.excerpt}
+										excerpt={entry.body}
 										date='2022-06-02T06:20:00-07:00'
 									/>
 								)
@@ -121,7 +122,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 										image={heroImage}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.excerpt}
+										excerpt={entry.body}
 										date='2022-06-02T06:20:00-07:00'
 									/>
 								)
@@ -155,7 +156,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 										href={`/${entry.slug}`}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.excerpt}
+										excerpt={entry.body}
 										date={entry.postDate}
 									/>
 								)
@@ -175,7 +176,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 										image={heroImage}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.excerpt}
+										excerpt={entry.body}
 										date={entry.postDate}
 									/>
 								)
@@ -302,6 +303,7 @@ export async function getStaticProps({ locale, preview, previewData }) {
 							title
 							postDate
 							excerpt
+							body
 							heroType
 							hero {
 								... on hero_BlockType {
@@ -331,6 +333,7 @@ export async function getStaticProps({ locale, preview, previewData }) {
 								title
 								postDate
 								excerpt
+								body
 								heroType
 								hero {
 									... on hero_BlockType {
