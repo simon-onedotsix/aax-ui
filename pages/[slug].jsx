@@ -28,7 +28,7 @@ export default function Post ({ entry }) {
 
     const t = useTranslations('Global')
 
-    console.log('entry:', entry)
+    // console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('schema:', entry.schemaCode)
@@ -95,7 +95,7 @@ export default function Post ({ entry }) {
             )
         }
     }
-
+ 
     const handleSchema = () => {
         if ( entry.heroType && entry.hero[0].video ) {
             // video hero schema
@@ -344,57 +344,27 @@ export default function Post ({ entry }) {
 }
 
 
-// export async function getStaticPaths({ locales }) {
-
-//     const entriesData = await craftApolloClient().query({
-//         query: gql`
-//             query Posts {
-//                 entries(section: "posts", site: "ru") {
-//                     slug
-//                 }
-//             }
-//         `
-//     })
-//     const entries = await entriesData.data.entries
-
-//     console.log('entries found:', entries.length)
-//     console.log('entries:', entries)
-
-//     let localisedEntries = []
-
-//     entries.map( entry => {
-//         return (
-//             locales.forEach( locale => localisedEntries.push({ params: { slug: entry.slug }, locale: locale }) )
-//         )
-//     })
-
-//     console.log('localisedEntries:', localisedEntries)
-
-//     return {
-//         paths: localisedEntries,
-//         fallback: false
-//     }
-
-// }
 
 
 export async function getStaticPaths() {
 
-    const entriesDataEn = await craftApolloClient().query({
-        query: gql`
-            query Posts {
-                entries(section: "posts" site: "en") {
-                    id
-                    title
-                    slug
-                    siteId
-                }
+    // original code (fallback) ––––––––––––––––––––––––––––––––––
 
-            }
-        `
-    })
-    const entriesEn = await entriesDataEn.data.entries
-    const entriesEnLocalised = entriesEn.map( entry => ({ params: { slug: entry.slug }, locale: 'en' }) )
+    // const entriesDataEn = await craftApolloClient().query({
+    //     query: gql`
+    //         query Posts {
+    //             entries(section: "posts" site: "en") {
+    //                 id
+    //                 title
+    //                 slug
+    //                 siteId
+    //             }
+
+    //         }
+    //     `
+    // })
+    // const entriesEn = await entriesDataEn.data.entries
+    // const entriesEnLocalised = entriesEn.map( entry => ({ params: { slug: entry.slug }, locale: 'en' }) )
 
     // console.log('entries found:', entriesEn.length)
     // console.log('entries:', entriesEn)
@@ -402,36 +372,78 @@ export async function getStaticPaths() {
 
 
 
-    const entriesDataRu = await craftApolloClient().query({
-        query: gql`
-            query Posts {
-                entries(section: "posts" site: "ru") {
-                    id
-                    title
-                    slug
-                    siteId
-                }
+    // const entriesDataRu = await craftApolloClient().query({
+    //     query: gql`
+    //         query Posts {
+    //             entries(section: "posts" site: "ru") {
+    //                 id
+    //                 title
+    //                 slug
+    //                 siteId
+    //             }
 
-            }
-        `
-    })
-    const entriesRu = await entriesDataRu.data.entries
+    //         }
+    //     `
+    // })
+    // const entriesRu = await entriesDataRu.data.entries
 
-    const entriesRuLocalised = entriesRu.map( entry => ({ params: { slug: entry.slug }, locale: 'ru' }) )
+    // const entriesRuLocalised = entriesRu.map( entry => ({ params: { slug: entry.slug }, locale: 'ru' }) )
     
     // console.log('entries found [ru]:', entriesRu.length)
     // console.log('entries [ru]:', entriesRu)
     // console.log('entries [ru] localised:', entriesRuLocalised)
 
 
+    // end original code (fallback) ––––––––––––––––––––––––––––––––––
 
 
+    async function queryLocalisedPosts ( localeCode ) {
 
+        let locale
+        localeCode === 'id' ? locale = 'in' : locale = localeCode
 
-    const entries = [ ...entriesEnLocalised, ...entriesRuLocalised ]
+        const entriesData = await craftApolloClient().query({
+            query: gql`
+                query Posts {
+                    entries(section: "posts" site: "${locale}") {
+                        id
+                        title
+                        slug
+                        siteId
+                    }
+    
+                }
+            `
+        })
+        const entries = await entriesData.data.entries
+        const entriesLocalised = entries.map( entry => ({ params: { slug: entry.slug }, locale: localeCode }) )
+        return entriesLocalised
+    }
 
-    console.log('ENTRIES FOUND:', entries.length)
-    console.log('ENTRIES:', entries)
+    const enEntries = await queryLocalisedPosts('en')
+    const ruEntries = await queryLocalisedPosts('ru')
+    const zhEntries = await queryLocalisedPosts('zh')
+    const koEntries = await queryLocalisedPosts('ko')
+    const frEntries = await queryLocalisedPosts('fr')
+    const esEntries = await queryLocalisedPosts('es')
+    const ptEntries = await queryLocalisedPosts('pt')
+    const idEntries = await queryLocalisedPosts('id')
+    const viEntries = await queryLocalisedPosts('vi')
+
+    const entries = [ 
+        ...enEntries, 
+        ...ruEntries, 
+        ...zhEntries, 
+        ...koEntries,
+        ...frEntries,
+        ...esEntries,
+        ...ptEntries,
+        ...idEntries,
+        ...viEntries 
+    ]
+
+    // console.log('ENTRIES FOUND:', entries.length)
+    // console.log('ENTRIES:', entries)
 
     return {
         paths: entries,

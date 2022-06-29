@@ -24,10 +24,11 @@ const locales = [
 	{ code: 'zh', label: '中文 (台灣)'},
 	{ code: 'ru', label: 'Русский'},
 	{ code: 'ko', label: '한국어'},
-	{ code: 'fr', label: 'Française'},
+	{ code: 'fr', label: 'Français'},
 	{ code: 'es', label: 'Espagñol'},
 	{ code: 'pt', label: 'Português'},
 	{ code: 'id', label: 'Bahasa Indonesia'},
+	{ code: 'vi', label: 'Tiếng Việt'},
 ]
 
 export default function Layout ({ children, globals, categories }) {
@@ -39,7 +40,7 @@ export default function Layout ({ children, globals, categories }) {
 
 	// console.log('categories:', categories)
 	// console.log('sidebar:', sidebar)
-	// console.log('footer:', footer)
+	console.log('footer:', footer)
 
 	const router = useRouter()
 	const { locale, pathname, asPath, query } = router
@@ -236,7 +237,7 @@ export default function Layout ({ children, globals, categories }) {
 						<ButtonSocial href='https://www.facebook.com/AAXExchange' icon='facebook' />
 						<ButtonSocial href='https://twitter.com/AAXExchange/' icon='twitter' />
 						<ButtonSocial href='https://www.linkedin.com/company/aax-atom-asset-exchange/' icon='linkedin' />
-						<ButtonSocial href='#' icon='discord' />
+						<ButtonSocial href='https://discord.gg/QbXev4qAec' icon='discord' />
 					</div>
                 </aside>
 
@@ -282,16 +283,26 @@ export default function Layout ({ children, globals, categories }) {
 							{handleFooterLinks()}
 
 							<section className={`${CSS.footerColumns2} mt-md gap-md`}>
-								<div className='formatted'>
-									<p className='fs-2 lh-2 serif c-primary'>Be part of the conversation</p>
-									<p>Stay up to date on the latest news, industry trends and developments.</p>
-									
-									<SubscribeForm />
-								</div>
+								{
+									footer.subscribeForm.length ?
+									<div className='formatted'>
+										<p className='fs-2 lh-2 serif c-primary'>{ footer.subscribeForm[0].heading }</p>
+										<p>{ footer.subscribeForm[0].body }</p>
+										
+										<SubscribeForm />
+									</div>
+									: null
+								}
 
 								<div className='formatted'>
-									<p className="h6">Disclaimer</p>
-									<p className='fs-sm'>This blog provides general information only. It is not a substitute for obtaining any legal, financial or any other form of professional advice from a suitably qualified and licensed advisor. The information may be changed without notice and is not guaranteed to be complete, accurate, correct or up-to-date.</p>
+									{
+										footer.disclaimer.length ?
+										<>
+											<p className="h6">{ footer.disclaimer[0].heading }</p>
+											<p className='fs-sm'>{ footer.disclaimer[0].body }</p>
+										</>
+										: null
+									}
 									<p className='fw-500 mt-sm'><UnderlineBarLink href="https://www.aax.com">aax.com</UnderlineBarLink></p>
 								</div>
 							</section>

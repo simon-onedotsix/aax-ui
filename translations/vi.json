@@ -1,0 +1,25 @@
+{
+    "Global": {
+        "Tags": "[vi] Tags",
+        "All rights reserved": "[vi] All rights reserved.",
+        "Share this article": "[vi] Share this article"
+    },
+    
+    "Home": {
+        "message":  "[vi] Message"
+    },
+    
+    "Category": {
+        "Categories": "[vi] Categories",
+        "Related searches": "[vi] Related searches",
+        "Videos & Webinars": "[vi] Videos & Webinars"
+    },
+
+    "Tags": {
+        "Tags": "[vi] Tags"
+    },
+
+    "Search": {
+        "Search": "[vi] Search"
+    }
+}

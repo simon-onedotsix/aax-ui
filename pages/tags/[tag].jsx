@@ -3,10 +3,15 @@ import craftApolloClient from "../api/apollo"
 
 import { useRouter } from 'next/router'
 
+import {useTranslations} from 'next-intl'
+
 import { handlePosts } from "../../lib/handle-posts"
 import { handleTags } from "../../lib/handle-tags"
 
 export default function TagPage ({ entries, tags }) {
+
+    const g = useTranslations('Global')
+    const t = useTranslations('Tags')
 
     // console.log('entries:', entries)
     // console.log('tags:', tags)
@@ -115,5 +120,11 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
     const entries = entryData.data.entries
     const tags = entryData.data.tags
 
-    return { props: { entries, tags }}
+    return { 
+        props: { 
+            entries, 
+            tags, 
+            messages: (await import(`../../translations/${locale}.json`)).default 
+        }
+    }
 }

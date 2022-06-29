@@ -17,9 +17,11 @@ export default function SearchPage () {
     const [isLoading, setLoading] = useState(false)
     const [query, setQuery] = useState('')
     const [currentQuery, setCurrentQuery] = useState('')
-    
 
+    
     const searchEntries = ( query ) => {
+
+        if ( !query ) return
 
         setLoading(true)
 
@@ -48,7 +50,6 @@ export default function SearchPage () {
         })
 
     }
-
 
     const handleEntries = () => {
         if ( data ) {
@@ -102,6 +103,7 @@ export default function SearchPage () {
                     type="text" 
                     value={query}
                     onChange={ e => setQuery(e.target.value)}
+                    placeholder="Keyword/s"
                 />
                 <button className="button" onClick={ () => {
                     setCurrentQuery(query)

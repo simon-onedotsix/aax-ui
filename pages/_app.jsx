@@ -69,6 +69,20 @@ App.getInitialProps = async (ctx) => {
 								}
 							}
 						}
+						disclaimer {
+							... on disclaimer_BlockType {
+								id
+								heading
+								body
+							}
+						}
+						subscribeForm {
+							... on subscribeForm_BlockType {
+								id
+								heading
+								body
+							}
+						}
 					}
 				}
 				categories(site: "${siteHandle}", level: 1) {
@@ -81,7 +95,7 @@ App.getInitialProps = async (ctx) => {
 		`
 	})
 
-	console.log(data)
+	// console.log(data)
 
 	return { globals: data.globalSets, categories: data.categories }
 
