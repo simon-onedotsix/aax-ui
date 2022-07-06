@@ -18,7 +18,7 @@ import { CtaCallout } from '../fuselage/components/cta-callout/cta-callout'
 
 export default function Home({ features, explainers, videos, news, press, analysis, cta }) {
 
-	const t = useTranslations('Home')
+	const t = useTranslations('Global')
 
 	// console.log('features:', features)
 	// console.log('explainers:', explainers)
@@ -188,7 +188,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 				</div>
 
 				<p className='fs-6 fw-500 mt-sm'>
-					<UnderlineBarLink href={`/category/${section.category.slug}`}>See all in { section.category.title }</UnderlineBarLink>
+					<UnderlineBarLink href={`/category/${section.category.slug}`}>{t("See all in")} { section.category.title }</UnderlineBarLink>
 				</p>
 
 			</section>
@@ -252,7 +252,6 @@ export default function Home({ features, explainers, videos, news, press, analys
 			<Head>
 				<title>AAX</title>
 				<meta name="description" content="AAX blog" />
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 

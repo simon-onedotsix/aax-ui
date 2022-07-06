@@ -9,7 +9,7 @@ import { handlePosts } from '../lib/handle-posts'
 
 export default function SearchPage () {   
 
-    const t = useTranslations('Search')
+    const t = useTranslations('Global')
     
     const router = useRouter()
     
@@ -57,7 +57,7 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">{data.length} Results for &ldquo;{ currentQuery }&rdquo;</p>
+                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo; : {data.length}</p>
                             <p>
                                 <button 
                                     className="clearButton" 
@@ -78,12 +78,12 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">No results for &ldquo;{ currentQuery }&rdquo;</p>
+                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo; : {data.length} </p>
                             {/* <p><button className="clearButton" onClick={ () => setData(null) }>&#215;</button></p> */}
                         </section>
 
                         <section className="mt-sm bt-1 bc-grey-10 pt-sm">
-                            <p>Please try again.</p>
+                            {/* <p>Please try again.</p> */}
                         </section>
                     </>
                 )
@@ -103,7 +103,7 @@ export default function SearchPage () {
                     type="text" 
                     value={query}
                     onChange={ e => setQuery(e.target.value)}
-                    placeholder="Keyword/s"
+                    placeholder={t("Keyword/s")}
                 />
                 <button className="button" onClick={ () => {
                     setCurrentQuery(query)
@@ -115,7 +115,7 @@ export default function SearchPage () {
             </div>
 
             
-            { isLoading ? <p className="fs-5 fw-600 mt-md">Loading...</p> : handleEntries()}
+            { isLoading ? <p className="fs-5 fw-600 mt-md">{t("Loading")}...</p> : handleEntries()}
         </>
     )
 

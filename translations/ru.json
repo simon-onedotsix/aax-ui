@@ -1,25 +1,25 @@
 {
     "Global": {
-        "Tags": "[ru] Tags",
-        "All rights reserved": "[ru] All rights reserved.",
-        "Share this article": "[ru] Share this article"
-    },
-    
-    "Home": {
-        "message":  "[ru] Message"
-    },
-    
-    "Category": {
-        "Categories": "[ru] Categories",
-        "Related searches": "[ru] Related searches",
-        "Videos & Webinars": "[ru] Videos & Webinars"
-    },
-
-    "Tags": {
-        "Tags": "[ru] Tags"
-    },
-
-    "Search": {
-        "Search": "[ru] Search"
+        "Go to": "Перейти",
+        "Trade": "Торговать",
+        "Tags": "Теги",
+        "All rights reserved": "Все права защищены.",
+        "Share this article": "Поделиться статьей",
+        "See all in": "Просмотреть все в",
+        "Table of contents": "Содержание",
+        "Recommended articles": "Рекомендуемые статьи",
+        "Popular articles": "Популярные статьи",
+        "Email": "Email",
+        "Subscribe": "Подписаться",
+        "Categories": "Категории",
+        "There are no posts in this category": "Приносим извинения! В настоящее время в этой категории нет статей.",
+        "Related searches": "Похожие запросы",
+        "Articles tagged with": "Статьи с тегами",
+        "Search": "Поиск",
+        "Keyword/s": "Ключевое слово/ы",
+        "Loading": "Загрузка",
+        "Results for": "Результаты поиска",
+        "Article 404": "Русскоязычная версия этой статьи пока недоступна. Следите за обновлениями!"
     }
+
 }

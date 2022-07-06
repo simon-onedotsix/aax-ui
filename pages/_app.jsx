@@ -97,7 +97,10 @@ App.getInitialProps = async (ctx) => {
 
 	// console.log(data)
 
-	return { globals: data.globalSets, categories: data.categories }
+	return { 
+		globals: data.globalSets, 
+		categories: data.categories
+	}
 
 }
 

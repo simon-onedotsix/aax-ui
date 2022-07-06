@@ -33,14 +33,14 @@ const locales = [
 
 export default function Layout ({ children, globals, categories }) {
 
-	const g = useTranslations('Global')
+	const t = useTranslations('Global')
 
 	const sidebar = globals[0]
 	const footer = globals[1]
 
 	// console.log('categories:', categories)
 	// console.log('sidebar:', sidebar)
-	console.log('footer:', footer)
+	// console.log('footer:', footer)
 
 	const router = useRouter()
 	const { locale, pathname, asPath, query } = router
@@ -91,29 +91,31 @@ export default function Layout ({ children, globals, categories }) {
 	const handleLocales = () => {
 
 
-		// <p key={item.code} onClick={() => { 
-		// 	router.push({ pathname, query }, asPath, { locale: item.code }) 
-		// 	setActiveLocale( item.label )
-		// 	setLocalesActive( false )
-		// }}>
-		// 	<span className={CSS.localesButton}>
-		// 		{ item.label }
-		// 	</span>
+		
+
+		// <p key={item.code}>
+		// 	<a href={item.code === 'en' ? `/` : `/${item.code}`} onClick={() => { 
+		// 		setActiveLocale( item.label )
+		// 		setLocalesActive( false )
+		// 	}}>
+		// 		<span className={CSS.localesButton}>
+		// 			{ item.label }
+		// 		</span>
+		// 	</a>
 		// </p>
 
 
 		return (
 			locales.map( item => {
 				return (
-					<p key={item.code}>
-						<a href={item.code === 'en' ? `/` : `/${item.code}`} onClick={() => { 
-							setActiveLocale( item.label )
-							setLocalesActive( false )
-						}}>
-							<span className={CSS.localesButton}>
-								{ item.label }
-							</span>
-						</a>
+					<p key={item.code} onClick={() => { 
+						router.push({ pathname, query }, asPath, { locale: item.code }) 
+						setActiveLocale( item.label )
+						setLocalesActive( false )
+					}}>
+						<span className={CSS.localesButton}>
+							{ item.label }
+						</span>
 					</p>
 				)
 			})
@@ -206,7 +208,7 @@ export default function Layout ({ children, globals, categories }) {
 						<img src="/assets/ui/icon-close.svg" alt="" />
 					</button>
 					
-					<p><ArrowLink href="https://www.aax.com" direction='left' decal='fs-sm fw-400'>Go to aax.com</ArrowLink></p>
+					<p><ArrowLink href="https://www.aax.com" direction='left' decal='fs-sm fw-400'>{t("Go to")} aax.com</ArrowLink></p>
                     
 					<div className="onlyDesktop mt-md">
 						<Brand className/>
@@ -221,7 +223,7 @@ export default function Layout ({ children, globals, categories }) {
 					</div> */}
 
 					<div>
-						<p className='mt-sm'><Link href='/search'><span style={{ textDecoration: `none`}}><SearchButton>Search</SearchButton></span></Link></p>
+						<p className='mt-sm'><Link href='/search'><span style={{ textDecoration: `none`}}><SearchButton>{t("Search")}</SearchButton></span></Link></p>
 					</div>
 					
 					{/* END TEMP UI FOR SEARCH */}
@@ -253,11 +255,68 @@ export default function Layout ({ children, globals, categories }) {
 
                     <div className={CSS.cryptoTicker}>
 						<div>
-							<CryptoChart currency='Bitcoin'/>
-							<CryptoChart currency='Ethereum'/>
-							<CryptoChart currency='AAB'/>
+							<CryptoChart 
+								currency='Bitcoin'
+								handle='BTC (24hr)' 
+								value={0.00004999}
+								shift={-0.55}
+								data={ [
+									{uv: 300}, 
+									{uv: 200},
+									{uv: 450},
+									{uv: 400}, 
+									{uv: 420},
+									{uv: 450},
+									{uv: 250},
+									{uv: 230},
+									{uv: 120}, 
+									{uv: 200},
+									{uv: 440},
+									{uv: 250},
+								]}
+							/>
+							<CryptoChart 
+								currency='Ethereum'
+								handle='ETH (24hr)' 
+								value={0.00091506}
+								shift={2.95}
+								data={ [
+									{uv: 200}, 
+									{uv: 240},
+									{uv: 150},
+									{uv: 100}, 
+									{uv: 420},
+									{uv: 250},
+									{uv: 250},
+									{uv: 230},
+									{uv: 120}, 
+									{uv: 200},
+									{uv: 340},
+									{uv: 250},
+								]}
+							/>
+							<CryptoChart 
+								currency='USDT'
+								handle='USDT (24hr)' 
+								value={1.00120144}
+								shift={-0.55}
+								data={ [
+									{uv: 300}, 
+									{uv: 200},
+									{uv: 450},
+									{uv: 400}, 
+									{uv: 420},
+									{uv: 450},
+									{uv: 250},
+									{uv: 230},
+									{uv: 120}, 
+									{uv: 200},
+									{uv: 440},
+									{uv: 250},
+								]}
+							/>
 						</div>
-						<p><Button href='https://www.aax.com' target='_blank' outline>Trade</Button></p>
+						<p><Button href='https://www.aax.com' target='_blank' outline>{t("Trade")}</Button></p>
 					</div>
 
                     <div className={CSS.mainContent}>
@@ -318,7 +377,7 @@ export default function Layout ({ children, globals, categories }) {
 
 				<aside className={CSS.sidebar}></aside>
 				<main className={`${CSS.main} px-md py-sm`}>
-					<p className='fs-sm'>© {new Date().getFullYear()} AAX Trends. {g('All rights reserved')}</p>
+					<p className='fs-sm'>© {new Date().getFullYear()} AAX Trends. {t('All rights reserved')}</p>
 				</main>
 			</div>
 

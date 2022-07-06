@@ -1,25 +1,25 @@
 {
     "Global": {
-        "Tags": "Tags",
-        "All rights reserved": "[ko] All rights reserved.",
-        "Share this article": "[ko] Share this article"
-    },
-
-    "Home": {
-        "message":  "Message"
-    },
-
-    "Category": {
-        "Categories": "Categories",
-        "Related searches": "Related searches",
-        "Videos & Webinars": "Videos & Webinars"
-    },
-
-    "Tags": {
-        "Tags": "Tags"
-    },
-
-    "Search": {
-        "Search": "Search"
+        "Go to": "이동하기",
+        "Trade": "거래",
+        "Tags": "태그",
+        "All rights reserved": "무단 전재와 무단 복제를 금함.",
+        "Share this article": "글 공유하기",
+        "See all in": "전문 보기",
+        "Table of contents": "콘텐츠 목록",
+        "Recommended articles": "추천글",
+        "Popular articles": "인기글",
+        "Email": "이메일",
+        "Subscribe": "구독하기",
+        "Categories": "카테고리",
+        "There are no posts in this category": "죄송합니다. 본 카테고리에 속해 있는 포스트가 없습니다.",
+        "Related searches": "관련검색",
+        "Articles tagged with": "...태그 달린 글",
+        "Search": "검색",
+        "Keyword/s": "키워드",
+        "Loading": "로딩중입니다",
+        "Results for": "...의 검색결과",
+        "Article 404": "The Korean version of this article is coming up soon. Stay tuned!"
     }
+
 }

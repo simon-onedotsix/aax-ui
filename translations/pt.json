@@ -1,25 +1,25 @@
 {
     "Global": {
-        "Tags": "Tags",
-        "All rights reserved": "[pt] All rights reserved.",
-        "Share this article": "[pt] Share this article"
-    },
-
-    "Home": {
-        "message":  "Message"
-    },
-
-    "Category": {
-        "Categories": "Categories",
-        "Related searches": "Related searches",
-        "Videos & Webinars": "Videos & Webinars"
-    },
-
-    "Tags": {
-        "Tags": "Tags"
-    },
-
-    "Search": {
-        "Search": "Search"
+        "Go to": "Ir para",
+        "Trade": "Negociação",
+        "Tags": "Etiquetas",
+        "All rights reserved": "Todos os direitos reservados.",
+        "Share this article": "Compartilhe este artigo",
+        "See all in": "Veja tudo em",
+        "Table of contents": "Tabela de conteúdo",
+        "Recommended articles": "Artigos recomendados",
+        "Popular articles": "Artigos populares",
+        "Email": "Email",
+        "Subscribe": "Inscreva-se",
+        "Categories": "Categorias",
+        "There are no posts in this category": "Desculpe! Atualmente, não há postagens nesta categoria.",
+        "Related searches": "Pesquisas relacionadas",
+        "Articles tagged with": "Artigos marcados com",
+        "Search": "Pesquisador",
+        "Keyword/s": "Palavra(s) chave",
+        "Loading": "Carregando",
+        "Results for": "Resultados para",
+        "Article 404": "A versão em espanhol deste artigo ainda não está disponível. Fique ligado!"
     }
+
 }

@@ -7,14 +7,13 @@ import { handleTags } from "../../lib/handle-tags"
 
 export default function TagsPage ({ tags }) {
 
-    const g = useTranslations('Global')
-    const t = useTranslations('Tags')
+    const t = useTranslations('Global')
 
     // console.log('tags:', tags)
 
     return (
         <>
-            <h1 className="h fs-1 serif c-primary pb-sm">{g('Tags')}</h1>
+            <h1 className="h fs-1 serif c-primary pb-sm">{t('Tags')}</h1>
 
             {handleTags(tags)}
         </>

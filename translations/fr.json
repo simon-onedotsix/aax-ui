@@ -1,25 +1,25 @@
 {
     "Global": {
-        "Tags": "Mots clés",
-        "All rights reserved": "[fr] All rights reserved.",
-        "Share this article": "[fr] Share this article"
-    },
-
-    "Home": {
-        "message":  "Le Message"
-    },
-
-    "Category": {
+        "Go to": "Aller à",
+        "Trade": "Trader",
+        "Tags": "Étiquettes",
+        "All rights reserved": "Tous droits réservés.",
+        "Share this article": "Partagez cet article",
+        "See all in": "Voir tous en",
+        "Table of contents": "Table des matières",
+        "Recommended articles": "Articles recommendés",
+        "Popular articles": "Articles populaires",
+        "Email": "Email",
+        "Subscribe": "S'abonner",
         "Categories": "Catégories",
-        "Related searches": "Recherches associées",
-        "Videos & Webinars": "Vidéos et webinaires"
-    },
-
-    "Tags": {
-        "Tags": "Mots clés"
-    },
-
-    "Search": {
-        "Search": "Trouver"
+        "There are no posts in this category": "Désolé, pour l'instant, il n'y a pas d'articles dans cette catégorie.",
+        "Related searches": "Recherches liées",
+        "Articles tagged with": "Articles étiquettés",
+        "Search": "Rechercher",
+        "Keyword/s": "Mots clés",
+        "Loading": "Chargement en cours",
+        "Results for": "Résultats pour",
+        "Article 404": "La version française de cet article n'est pas disponible pour l'instant. Restez à l'écoute!"
     }
+
 }

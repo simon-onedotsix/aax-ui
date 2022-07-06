@@ -1,25 +1,25 @@
 {
     "Global": {
-        "Tags": "Tags",
-        "All rights reserved": "[id] All rights reserved.",
-        "Share this article": "[id] Share this article"
-    },
-
-    "Home": {
-        "message":  "Message"
-    },
-
-    "Category": {
-        "Categories": "Categories",
-        "Related searches": "Related searches",
-        "Videos & Webinars": "Videos & Webinars"
-    },
-
-    "Tags": {
-        "Tags": "Tags"
-    },
-
-    "Search": {
-        "Search": "Search"
+        "Go to": "Pergi Ke",
+        "Trade": "Perdagangkan",
+        "Tags": "Tag",
+        "All rights reserved": "Semua hak dilindungi.",
+        "Share this article": "Bagikan artikel ini",
+        "See all in": "Lihat semuanya di",
+        "Table of contents": "Tabel konten",
+        "Recommended articles": "Artikel yang direkomendasikan",
+        "Popular articles": "Artikel populer",
+        "Email": "Surel",
+        "Subscribe": "Mendaftar",
+        "Categories": "Kategori",
+        "There are no posts in this category": "Maaf! Saat ini, tidak ada postingan dalam kategori ini.",
+        "Related searches": "Penelusuran terkait",
+        "Articles tagged with": "Artikel yang di-tag dengan",
+        "Search": "Telusuri",
+        "Keyword/s": "Kata kunci",
+        "Loading": "Memuat",
+        "Results for": "Hasil dari",
+        "Article 404": "Versi bahasa Indonesia dari artikel ini akan segera hadir. Nantikan!"
     }
+
 }

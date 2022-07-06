@@ -10,8 +10,7 @@ import { handleTags } from "../../lib/handle-tags"
 
 export default function TagPage ({ entries, tags }) {
 
-    const g = useTranslations('Global')
-    const t = useTranslations('Tags')
+    const t = useTranslations('Global')
 
     // console.log('entries:', entries)
     // console.log('tags:', tags)
@@ -22,7 +21,7 @@ export default function TagPage ({ entries, tags }) {
 
     return (
         <>
-            <h1 className="h fs-1 serif c-primary pb-sm">Articles tagged with &ldquo;{ tagTitle.title }&rdquo;</h1>
+            <h1 className="h fs-1 serif c-primary pb-sm">{t("Articles tagged with")} &ldquo;{ tagTitle.title }&rdquo;</h1>
 
             {handlePosts(entries)}
 

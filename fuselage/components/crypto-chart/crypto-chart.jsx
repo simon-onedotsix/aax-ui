@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types'
 import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 import CSS from './crypto-chart.module.css'
 
 export const CryptoChart = ({ data, currency, handle, value, shift }) => {
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    })
 
     return (
 
@@ -22,38 +26,9 @@ export const CryptoChart = ({ data, currency, handle, value, shift }) => {
             </div>
 
             <div className={CSS.values}>
-                <p className='fw-600 fs-sm'>{ value }</p>
-                <p className='fw-600 fs-xs c-negative'>{ shift }</p>
+                <p className='fw-600 fs-sm'>${ formatter.format(1 / value) }</p>
+                <p className={`fw-600 fs-xs ${ shift >= 0 ? "c-positive" : "c-negative"}`}>{ shift >= 0 ? "+" : ""}{ shift }%</p>
             </div>
         </div>
     )
-}
-
-CryptoChart.propTypes = {
-    data: PropTypes.array,
-    currency: PropTypes.string, 
-    handle: PropTypes.string, 
-    value: PropTypes.string,  
-    shift: PropTypes.string
-}
-
-CryptoChart.defaultProps = {
-    data: [
-        {name: 'Page A', uv: 400}, 
-        {name: 'Page b', uv: 200},
-        {name: 'Page b', uv: 450},
-        {name: 'Page A', uv: 400}, 
-        {name: 'Page b', uv: 420},
-        {name: 'Page b', uv: 450},
-        {name: 'Page b', uv: 250},
-        {name: 'Page b', uv: 230},
-        {name: 'Page A', uv: 120}, 
-        {name: 'Page b', uv: 200},
-        {name: 'Page b', uv: 440},
-        {name: 'Page b', uv: 250},
-    ],
-    currency: 'Binance Coin', 
-    handle: 'BTC (24hr)', 
-    value: '$43,917.85', 
-    shift: '-0.55%'
 }

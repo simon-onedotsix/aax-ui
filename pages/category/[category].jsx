@@ -10,8 +10,7 @@ import { CategorySearchButton } from '../../fuselage/components/category-search-
 
 export default function CategoryPage ({ category, entries, tags }) {
 
-    const g = useTranslations('Global')
-    const t = useTranslations('Category')
+    const t = useTranslations('Global')
 
     // console.log('category:', category)
     // console.log('childCategories:', category.children)
@@ -45,12 +44,16 @@ export default function CategoryPage ({ category, entries, tags }) {
         <>
             <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : 'fallback' }</h1>
 
-            {handlePosts(entries)}
+            {
+                entries.length ?
+                handlePosts(entries)
+                : <p className="fs-6">{t("There are no posts in this category")}</p>
+            }
 
             {handleRelatedCategories()}
 
             <section>
-                <p className='fw-600 mt-md'>{g('Tags')}</p>
+                <p className='fw-600 mt-md'>{t('Tags')}</p>
                 {handleTags(tags)}
             </section>
             

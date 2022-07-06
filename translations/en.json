@@ -1,25 +1,26 @@
 {
     "Global": {
+        "Go to": "Go to",
+        "Trade": "Trade",
         "Tags": "Tags",
         "All rights reserved": "All rights reserved.",
-        "Share this article": "Share this article"
-    },
-
-    "Home": {
-        "message":  "Message"
-    },
-
-    "Category": {
+        "Share this article": "Share this article",
+        "See all in": "See all in",
+        "Table of contents": "Table of contents",
+        "Recommended articles": "Recommended articles",
+        "Popular articles": "Popular articles",
+        "Email": "Email",
+        "Subscribe": "Subscribe",
         "Categories": "Categories",
+        "There are no posts in this category": "Sorry! Currently, there are no posts in this category.",
         "Related searches": "Related searches",
-        "Videos & Webinars": "Videos & Webinars"
-    },
-
-    "Tags": {
-        "Tags": "Tags"
-    },
-
-    "Search": {
-        "Search": "Search"
+        "Articles tagged with": "Articles tagged with",
+        "Search": "Search",
+        "Keyword/s": "Keyword/s",
+        "Loading": "Loading",
+        "Results for": "Results for",
+        "Article 404": "The English version of this article is coming up soon. Stay tuned!"
+        
     }
+
 }

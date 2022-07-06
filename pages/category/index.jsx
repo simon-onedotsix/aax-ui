@@ -12,7 +12,7 @@ import { ArticleCardLandscape } from '../../fuselage/components/article-card-lan
 
 export default function Categories({ categories }) {
 
-	const t = useTranslations('Category')
+	const t = useTranslations('Global')
 
 	console.log('categories:', categories)
 
