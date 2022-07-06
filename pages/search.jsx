@@ -57,7 +57,7 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo; : {data.length}</p>
+                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo;</p>
                             <p>
                                 <button 
                                     className="clearButton" 
@@ -78,7 +78,7 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo; : {data.length} </p>
+                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo; </p>
                             {/* <p><button className="clearButton" onClick={ () => setData(null) }>&#215;</button></p> */}
                         </section>
 
