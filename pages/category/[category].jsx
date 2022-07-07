@@ -6,9 +6,10 @@ import {useTranslations} from 'next-intl'
 import { handlePosts } from "../../lib/handle-posts"
 import { handleTags } from "../../lib/handle-tags"
 
+import { CtaVideo } from "../../fuselage/components/cta-video/cta-video"
 import { CategorySearchButton } from '../../fuselage/components/category-search-button/category-search-button'
 
-export default function CategoryPage ({ category, entries, tags }) {
+export default function CategoryPage ({ category, entries, tags, videoCta }) {
 
     const t = useTranslations('Global')
 
@@ -16,6 +17,7 @@ export default function CategoryPage ({ category, entries, tags }) {
     // console.log('childCategories:', category.children)
     // console.log('category page entries:', entries)
     // console.log('tags:', tags)
+    // console.log('videoCta:', videoCta)
 
 
     const handleRelatedCategories = () => {
@@ -40,9 +42,31 @@ export default function CategoryPage ({ category, entries, tags }) {
     }
 
 
+    const handleVideoCta = () => {
+
+        if ( category.slug != 'videos-and-webinars' || !videoCta.showCta ) return 
+
+        return (
+            <section className="mb-md">
+                <CtaVideo
+                    videoUrl={`https://www.youtube.com/watch?v=${videoCta.video}`} 
+                    autoplay={true}
+                    muted={false}
+                    controls={true}
+                    heading={videoCta.ctaBody[0].heading}
+                    body={videoCta.ctaBody[0].body}
+                    date={videoCta.date}
+                /> 
+            </section>
+        )
+    }
+
+
     return (
         <>
             <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : 'fallback' }</h1>
+
+            {handleVideoCta()}
 
             {
                 entries.length ?
@@ -157,10 +181,36 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
     const category = entryData.data.category
     const tags = entryData.data.tags
 
+
+    const videoCtaData = await craftApolloClient( preview, previewData ).query({
+        query: gql`
+            query VideoCategoryPage {
+                entry(id: 4231, site: "${siteHandle}") {
+                    ... on videoCategoryPage_videoCategoryPage_Entry {
+                        id
+                        showCta
+                        video
+                        date
+                        ctaBody {
+                            ... on ctaBody_BlockType {
+                                id
+                                heading
+                                body
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    })
+    const videoCta = videoCtaData.data.entry
+
+
     return { props: { 
         category, 
         entries, 
         tags,
+        videoCta,
         messages: (await import(`../../translations/${locale}.json`)).default 
     }}
 }

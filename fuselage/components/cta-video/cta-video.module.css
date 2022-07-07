@@ -69,3 +69,13 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.live::before {
+    content: '';
+    display: inline-block;
+    width: .75rem;
+    height: .75rem;
+    border-radius: .75rem;
+    background-color: rgb(71, 181, 12);
+    margin-right: .5rem;
+}
