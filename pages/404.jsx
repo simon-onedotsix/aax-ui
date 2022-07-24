@@ -6,16 +6,14 @@ export default function FourZeroFour () {
 
     return (
         <>
-            <p>{t("Article 404")}</p>
+            <h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>404</h1>
+            <p className='fw-400'>{t("Generic 404")}</p>
+            {/* <p>{t("Article 404")}</p> */}
         </>
     )
 }
 
 export async function getStaticProps({locale}) {
-
-    // fix for not being able to query cms for language (convert indonesian)
-    let siteHandle
-    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
     return {
         props: {

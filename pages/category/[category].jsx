@@ -105,6 +105,8 @@ export async function getStaticPaths({ locales }) {
 
     const categories = await categoryData.data.categories
 
+    // console.log('categories:', categories)
+
     let localisedCategories = []
 
     categories.map( category => {
@@ -124,7 +126,14 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
 
     // fix for not being able to query cms for language (convert indonesian)
     let siteHandle
-    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
+
+    if ( locale === 'id') {
+        siteHandle = 'in'
+    } else if ( locale === 'default') {
+        siteHandle = 'en'
+    } else {
+        siteHandle = locale
+    }
 
     const entryData = await craftApolloClient( preview, previewData ).query({
         query: gql`

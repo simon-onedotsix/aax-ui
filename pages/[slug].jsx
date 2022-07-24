@@ -22,9 +22,9 @@ import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
 export default function Post ({ entry }) {
 
-    // const router = useRouter()
+    const router = useRouter()
+    // console.log('ROUTER:', router)
 
-    // console.log('ROUTER:', router.query.slug)
 
     const t = useTranslations('Global')
 
@@ -230,116 +230,130 @@ export default function Post ({ entry }) {
     }
     
 
-    return (
-        <>
-            <Head>
-                <title>{metaTitle.title.title}</title>
+    console.log('satus:', entry.status)
 
-                <meta name="description" content={metaTags.description.content} />
-                <meta name="referrer" content={metaTags.referrer.content} />
-                <meta content={metaTags['og:locale'].content} property="og:locale" />
-                <meta content={metaTags['og:site_name'].content} property="og:site_name" />
-                <meta content={metaTags['og:type'].content} property="og:type" />
-                <meta content={metaTags['og:url'].content} property="og:url" />
-                <meta content={metaTags['og:title'].content} property="og:title" />
-                <meta content={metaTags['og:description'].content} property="og:description" />
-                <meta content={metaTags['og:image'].content} property="og:image"></meta>
+    if ( entry.status === 'live' ) {
+        return (
+            <>
+                <Head>
+                    <title>{metaTitle.title.title}</title>
+    
+                    <meta name="description" content={metaTags.description.content} />
+                    <meta name="referrer" content={metaTags.referrer.content} />
+                    <meta content={metaTags['og:locale'].content} property="og:locale" />
+                    <meta content={metaTags['og:site_name'].content} property="og:site_name" />
+                    <meta content={metaTags['og:type'].content} property="og:type" />
+                    <meta content={metaTags['og:url'].content} property="og:url" />
+                    <meta content={metaTags['og:title'].content} property="og:title" />
+                    <meta content={metaTags['og:description'].content} property="og:description" />
+                    <meta content={metaTags['og:image'].content} property="og:image"></meta>
+                    
+                    <link rel='canonical' href={metaTags['og:url'].content} key='canonical' />
+    
+                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${handleSchema()}` }} />
+                </Head>
+    
+    
+                <section>
+                    <h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>{ entry.title }</h1>
+                    
+                    { handleHero() }
+    
+                    {
+                        entry.excerpt ?
+                        <p className='fs-5 fw-500 maxw-55 mt-sm'>{ entry.excerpt }</p>
+                        : null
+                    }
+                </section>
+    
+    
+                {/* <section className="mt-lg">
+                    <p className="fw-500 caps ls-2 c-primary pb-xs">Table of contents</p>
+                    <ul className='tableOfContents'>
+                        <li><Link href='#'><a>Mauris purus. Donec est nunc</a></Link></li>
+                        <li><Link href='#'><a>Ornare non, aliquet non tempus vel dolor. </a></Link></li>
+                        <li><Link href='#'><a>Integer sapien nibh</a></Link></li>
+                        <li><Link href='#'><a>Egestas ut cursus sit amet</a></Link></li>
+                    </ul>
+                </section> */}
+    
+    
+                <section className="mt-md maxw-55 formatted">
+                    <div dangerouslySetInnerHTML={{__html: entry.body }} />
+                </section>
+    
+    
+                <section className='mt-md'>
+                    <p className='fw-500 mb-xs'>{t('Share this article')}</p>
                 
-                <link rel='canonical' href={metaTags['og:url'].content} key='canonical' />
-
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${handleSchema()}` }} />
-            </Head>
-
-
-            <section>
-				<h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>{ entry.title }</h1>
-                
-                { handleHero() }
-
-                {
-                    entry.excerpt ?
-                    <p className='fs-5 fw-500 maxw-55 mt-sm'>{ entry.excerpt }</p>
-                    : null
+                    <ButtonSocial href={`https://www.facebook.com/sharer/sharer.php?u=${`https://aax-ui.vercel.app`}${router.asPath}`} icon='facebook'/>
+                    <ButtonSocial href={`https://twitter.com/intent/tweet?url=${`https://aax-ui.vercel.app`}${router.asPath}`} icon='twitter'/>
+                    <ButtonSocial href={`https://www.linkedin.com/sharing/share-offsite/?url=${`https://aax-ui.vercel.app`}${router.asPath}`} icon='linkedin'/>
+                </section>
+    
+    
+                { 
+                    entry.postAuthor.length ?
+                    entry.postAuthor.map( author => {
+                        return (
+                            <AuthorCredit
+                                key={ author.id }
+                                fullName={ author.title }
+                                jobTitle={ author.jobTitle }
+                                bio={ author.bio }
+                                avatarUrl={ author.avatar[0].url }
+                                socialConnections={ author.socialPlatforms }
+                            />
+                        )
+                    }) : null
                 }
-			</section>
-
-
-            {/* <section className="mt-lg">
-				<p className="fw-500 caps ls-2 c-primary pb-xs">Table of contents</p>
-				<ul className='tableOfContents'>
-					<li><Link href='#'><a>Mauris purus. Donec est nunc</a></Link></li>
-					<li><Link href='#'><a>Ornare non, aliquet non tempus vel dolor. </a></Link></li>
-					<li><Link href='#'><a>Integer sapien nibh</a></Link></li>
-					<li><Link href='#'><a>Egestas ut cursus sit amet</a></Link></li>
-				</ul>
-			</section> */}
-
-
-            <section className="mt-md maxw-55 formatted">
-                <div dangerouslySetInnerHTML={{__html: entry.body }} />
-			</section>
-
-
-			<section className='mt-md'>
-				<p className='fw-500 mb-xs'>{t('Share this article')}</p>
-			
-				<ButtonSocial icon='facebook'/>
-				<ButtonSocial icon='twitter'/>
-				<ButtonSocial icon='linkedin'/>
-			</section>
-
-
-			{ 
-                entry.postAuthor.length ?
-                entry.postAuthor.map( author => {
-                    return (
-                        <AuthorCredit
-                            key={ author.id }
-                            fullName={ author.title }
-                            jobTitle={ author.jobTitle }
-                            bio={ author.bio }
-                            avatarUrl={ author.avatar[0].url }
-                            socialConnections={ author.socialPlatforms }
+    
+    
+    
+                {/* related posts */}
+                
+                {/* <section className="mt-lg mb-md">
+                    <h2 className="h fs-1 serif c-primary">Related Articles</h2>
+    
+                    <div className="columns-3 gap-sm mt-sm">
+                        <ArticleCard
+                            href='/'
+                            image='https://picsum.photos/1920/1080'
+                            title='Damn! Doze shares just got expensive, doh'
+                            excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                            date='2022-02-09T04:07:42-08:00'
                         />
-                    )
-                }) : null
-            }
+                        <ArticleCard
+                            href='/'
+                            image='https://picsum.photos/1920/1080'
+                            title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
+                            excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                            author='James Herbert'
+                            date='2022-02-09T04:07:42-08:00'
+                        />
+                        <ArticleCard
+                            href='/'
+                            image='https://picsum.photos/1920/1080'
+                            title='Damn! Doze shares just got expensive, doh'
+                            excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
+                            date='2022-02-09T04:07:42-08:00'
+                        />
+                    </div>
+    
+                </section> */}
+            </>
+        )
 
+    } else {
+        return (
+            <section>
+                <h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>{ entry.title }</h1>
+                <p className='mt-sm fw-600'>{t("Article 404")}</p>
+            </section>
+        )
+    }
 
-
-			{/* related posts */}
-			
-			{/* <section className="mt-lg mb-md">
-				<h2 className="h fs-1 serif c-primary">Related Articles</h2>
-
-				<div className="columns-3 gap-sm mt-sm">
-					<ArticleCard
-						href='/'
-						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
-						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-                        date='2022-02-09T04:07:42-08:00'
-					/>
-					<ArticleCard
-						href='/'
-						image='https://picsum.photos/1920/1080'
-						title='AAX Announces Listing of MOLA Token with Prize Pool of 13 Million MOLA'
-						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-						author='James Herbert'
-						date='2022-02-09T04:07:42-08:00'
-					/>
-					<ArticleCard
-						href='/'
-						image='https://picsum.photos/1920/1080'
-						title='Damn! Doze shares just got expensive, doh'
-						excerpt='Repellendus eius molestias modi consectetur soluta eveniet doloremque commodi quas mollitia pariatur?'
-                        date='2022-02-09T04:07:42-08:00'
-					/>
-				</div>
-
-			</section> */}
-        </>
-    )
+    
 }
 
 
@@ -350,13 +364,23 @@ export async function getStaticPaths() {
 
     async function queryLocalisedPosts ( localeCode ) {
 
+        // let locale
+        // localeCode === 'id' ? locale = 'in' : locale = localeCode
+
         let locale
-        localeCode === 'id' ? locale = 'in' : locale = localeCode
+
+        if ( localeCode === 'id') {
+            locale = 'in'
+        } else if ( localeCode === 'default') {
+            locale = 'en'
+        } else {
+            locale = localeCode
+        }
 
         const entriesData = await craftApolloClient().query({
             query: gql`
                 query Posts {
-                    entries(section: "posts" site: "${locale}") {
+                    entries(section: "posts" site: "${locale}", status: ["live","disabled"]) {
                         id
                         title
                         slug
@@ -408,13 +432,21 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
 
     // fix for not being able to query cms for language (convert indonesian)
     let siteHandle
-    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
+
+    if ( locale === 'id') {
+        siteHandle = 'in'
+    } else if ( locale === 'default') {
+        siteHandle = 'en'
+    } else {
+        siteHandle = locale
+    }
 
     const entryData = await craftApolloClient( preview, previewData ).query({
         query: gql`
             query Post {
-                entry(section: "posts", slug: "${params.slug}", site: "${siteHandle}") {
+                entry(section: "posts", slug: "${params.slug}", site: "${siteHandle}", status: ["live","disabled"]) {
                     ... on posts_Post_Entry {
+                        status
                         id
                         slug
                         title

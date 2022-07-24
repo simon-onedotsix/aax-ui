@@ -19,7 +19,8 @@
         "Keyword/s": "Palabras claves",
         "Loading": "Cargando",
         "Results for": "Resultados para",
-        "Article 404": "La versión en español de este artículo aún no está disponible. ¡Manténganse al tanto!"
+        "Article 404": "La versión en español de este artículo aún no está disponible. ¡Manténganse al tanto!",
+        "Generic 404": "[es] Error: Content not found."
     }
 
 }

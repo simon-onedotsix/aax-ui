@@ -124,9 +124,6 @@ export default function SearchPage () {
 
 export async function getStaticProps({locale}) {
 
-    // fix for not being able to query cms for language (convert indonesian)
-    let siteHandle
-    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
 
     return {
         props: {

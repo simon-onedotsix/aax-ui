@@ -90,9 +90,6 @@ export default function Layout ({ children, globals, categories }) {
 
 	const handleLocales = () => {
 
-
-		
-
 		// <p key={item.code}>
 		// 	<a href={item.code === 'en' ? `/` : `/${item.code}`} onClick={() => { 
 		// 		setActiveLocale( item.label )
@@ -257,63 +254,15 @@ export default function Layout ({ children, globals, categories }) {
 						<div>
 							<CryptoChart 
 								currency='Bitcoin'
-								handle='BTC (24hr)' 
-								value={0.00004999}
-								shift={-0.55}
-								data={ [
-									{uv: 300}, 
-									{uv: 200},
-									{uv: 450},
-									{uv: 400}, 
-									{uv: 420},
-									{uv: 450},
-									{uv: 250},
-									{uv: 230},
-									{uv: 120}, 
-									{uv: 200},
-									{uv: 440},
-									{uv: 250},
-								]}
+								code='BTC' 
 							/>
 							<CryptoChart 
 								currency='Ethereum'
-								handle='ETH (24hr)' 
-								value={0.00091506}
-								shift={2.95}
-								data={ [
-									{uv: 200}, 
-									{uv: 240},
-									{uv: 150},
-									{uv: 100}, 
-									{uv: 420},
-									{uv: 250},
-									{uv: 250},
-									{uv: 230},
-									{uv: 120}, 
-									{uv: 200},
-									{uv: 340},
-									{uv: 250},
-								]}
+								code='ETH' 
 							/>
 							<CryptoChart 
-								currency='USDT'
-								handle='USDT (24hr)' 
-								value={1.00120144}
-								shift={-0.55}
-								data={ [
-									{uv: 300}, 
-									{uv: 200},
-									{uv: 450},
-									{uv: 400}, 
-									{uv: 420},
-									{uv: 450},
-									{uv: 250},
-									{uv: 230},
-									{uv: 120}, 
-									{uv: 200},
-									{uv: 440},
-									{uv: 250},
-								]}
+								currency='Cardano'
+								code='ADA' 
 							/>
 						</div>
 						<p><Button href='https://www.aax.com' target='_blank' outline>{t("Trade")}</Button></p>

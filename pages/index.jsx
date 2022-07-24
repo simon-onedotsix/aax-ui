@@ -285,7 +285,14 @@ export async function getStaticProps({ locale, preview, previewData }) {
 
 	// fix for not being able to query cms for language (convert indonesian)
     let siteHandle
-    locale === 'id' ? siteHandle = 'in' : siteHandle = locale
+
+    if ( locale === 'id') {
+        siteHandle = 'in'
+    } else if ( locale === 'default') {
+        siteHandle = 'en'
+    } else {
+        siteHandle = locale
+    }
 
 	//feature articles
     const featuresData = await craftApolloClient().query({

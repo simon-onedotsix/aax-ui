@@ -19,7 +19,8 @@
         "Keyword/s": "키워드",
         "Loading": "로딩중입니다",
         "Results for": "...의 검색결과",
-        "Article 404": "The Korean version of this article is coming up soon. Stay tuned!"
+        "Article 404": "The Korean version of this article is coming up soon. Stay tuned!",
+        "Generic 404": "[ko] Error: Content not found."
     }
 
 }
