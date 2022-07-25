@@ -35,6 +35,6 @@ Button.defaultProps = {
 }
 
 
-export const AppStoreIcon = () => <i className={CSS.icon}><AppleIcon /></i>
+export const AppStoreIcon = ({ color }) => <i className={CSS.icon}><AppleIcon style={{ fill: color }} /></i>
 
-export const PlayStoreIcon = () => <i className={CSS.icon}><GoogleIcon /></i>
+export const PlayStoreIcon = ({ color }) => <i className={CSS.icon}><GoogleIcon style={{ fill: color }} /></i>

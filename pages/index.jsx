@@ -26,7 +26,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 	// console.log('news:', news)
 	// console.log('analysis:', analysis)
 	// console.log('press:', press)
-	// console.log('cta:', cta)
+	console.log('cta:', cta)
 
 
 	const handleMainFeature = () => {
@@ -213,6 +213,9 @@ export default function Home({ features, explainers, videos, news, press, analys
 				heroWidth={hero.width}
 				heroHeight={hero.height}
 				backgroundSrc={background}
+				backgroundOpacity={cta.ctaBackgroundImageOpacity}
+				backgroundColor={cta.ctaBackgroundColor}
+				textColor={cta.ctaTextColor}
 			>
 				<div>
 					<div className='formatted'>
@@ -231,14 +234,14 @@ export default function Home({ features, explainers, videos, news, press, analys
 					{
 						cta.appStoreButtons[0].appleAppStoreLink ?
 						<Button href={ cta.appStoreButtons[0].appleAppStoreLink } outline inverse target='_blank'>
-							<AppStoreIcon />App Store
+							<AppStoreIcon color={cta.ctaTextColor}/>App Store
 						</Button> 
 						: null
 					}
 					{
 						cta.appStoreButtons[0].googlePlayLink ?
 						<Button href={cta.appStoreButtons[0].googlePlayLink} outline inverse target='_blank'>
-							<PlayStoreIcon />Google Play
+							<PlayStoreIcon color={cta.ctaTextColor}/>Google Play
 						</Button>
 						: null
 					}
@@ -389,6 +392,9 @@ export async function getStaticProps({ locale, preview, previewData }) {
 							width
 							height
 						}
+						ctaBackgroundImageOpacity
+						ctaBackgroundColor
+						ctaTextColor
 						ctaBody {
 							... on ctaBody_BlockType {
 								id
