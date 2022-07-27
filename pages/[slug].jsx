@@ -28,10 +28,10 @@ export default function Post ({ entry }) {
 
     const t = useTranslations('Global')
 
-    // console.log('entry:', entry)
+    console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
-    // console.log('schema:', entry.schemaCode)
+    console.log('schema:', entry.schemaCode)
 
     let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
     let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
@@ -173,10 +173,10 @@ export default function Post ({ entry }) {
                         },
                         "author": {
                             "@type": "Person",
-                            "name": "${entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].title : ''}",
+                            "name": "${entry.postAuthor.length ? entry.postAuthor[0].title : ''}",
                             "url":[
-                                "${entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
-                                "${entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
+                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
+                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
                             ]
                         },
                         "publisher": {
@@ -293,7 +293,7 @@ export default function Post ({ entry }) {
     
     
                 { 
-                    entry.postAuthor[0].socialPlatforms.length ?
+                    entry.postAuthor.length ?
                     entry.postAuthor.map( author => {
                         return (
                             <AuthorCredit
