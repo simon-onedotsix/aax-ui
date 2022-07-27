@@ -173,10 +173,10 @@ export default function Post ({ entry }) {
                         },
                         "author": {
                             "@type": "Person",
-                            "name": "${entry.postAuthor.length ? entry.postAuthor[0].title : ''}",
+                            "name": "${entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].title : ''}",
                             "url":[
-                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
-                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
+                                "${entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
+                                "${entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
                             ]
                         },
                         "publisher": {
@@ -189,7 +189,7 @@ export default function Post ({ entry }) {
                             }
                         },
                         "headline": "${entry.title}",
-                        "image": "${entry.hero[0].image[0].url}",
+                        "image": "${entry.hero[0] ? entry.hero[0].image[0].url : null}",
                         "datePublished": "${entry.postDate}"
                     },
                     {
@@ -211,8 +211,8 @@ export default function Post ({ entry }) {
                             {
                                 "@type": "ListItem",
                                 "position": 3,
-                                "name": "${entry.categories[1].title}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[1].slug}"
+                                "name": "${entry.categories[1] ? entry.categories[1].title : null}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
                             },
                             {
                                 "@type": "ListItem",
@@ -293,7 +293,7 @@ export default function Post ({ entry }) {
     
     
                 { 
-                    entry.postAuthor.length ?
+                    entry.postAuthor[0].socialPlatforms.length ?
                     entry.postAuthor.map( author => {
                         return (
                             <AuthorCredit
