@@ -28,10 +28,10 @@ export default function Post ({ entry }) {
 
     const t = useTranslations('Global')
 
-    console.log('entry:', entry)
+    // console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
-    console.log('schema:', entry.schemaCode)
+    // console.log('schema:', entry.schemaCode)
 
     let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
     let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
@@ -175,8 +175,8 @@ export default function Post ({ entry }) {
                             "@type": "Person",
                             "name": "${entry.postAuthor.length ? entry.postAuthor[0].title : ''}",
                             "url":[
-                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
-                                "${entry.postAuthor.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
+                                "${entry.postAuthor.length && entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].socialPlatforms[0].weblink : ''}",
+                                "${entry.postAuthor.length && entry.postAuthor[0].socialPlatforms.length ? entry.postAuthor[0].socialPlatforms[1].weblink : ''}"
                             ]
                         },
                         "publisher": {
@@ -189,7 +189,7 @@ export default function Post ({ entry }) {
                             }
                         },
                         "headline": "${entry.title}",
-                        "image": "${entry.hero[0] ? entry.hero[0].image[0].url : null}",
+                        "image": "${entry.hero[0] && entry.hero[0].image.length ? entry.hero[0].image[0].url : null}",
                         "datePublished": "${entry.postDate}"
                     },
                     {
@@ -205,8 +205,8 @@ export default function Post ({ entry }) {
                             {
                                 "@type": "ListItem",
                                 "position": 2,
-                                "name": "${entry.categories[0].title}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[0].slug}"
+                                "name": "${entry.categories.length && entry.categories[0].title}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories.length && entry.categories[0].slug}"
                             },
                             {
                                 "@type": "ListItem",
@@ -230,7 +230,7 @@ export default function Post ({ entry }) {
     }
     
 
-    console.log('satus:', entry.status)
+    // console.log('satus:', entry.status)
 
     if ( entry.status === 'live' ) {
         return (
@@ -519,6 +519,7 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
         props: { 
             entry: page.data.entry,
             messages: (await import(`../translations/${locale}.json`)).default
-        }
+        },
+        revalidate: 86400
     }
 }

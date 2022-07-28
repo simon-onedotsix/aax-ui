@@ -13,7 +13,7 @@ export default function TagPage ({ entries, tags }) {
     const t = useTranslations('Global')
 
     // console.log('entries:', entries)
-    // console.log('tags:', tags)
+    console.log('tags:', tags)
 
     const router = useRouter()
     const tagTitle = tags.find( obj => obj.slug == router.query.tag )

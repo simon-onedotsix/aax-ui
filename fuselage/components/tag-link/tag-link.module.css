@@ -1,4 +1,5 @@
 .tagLink {
+    display: inline-block;
     text-decoration: none;
     color: var(--medium);
     font-weight: 500;

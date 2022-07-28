@@ -5,64 +5,71 @@ import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 import CSS from './crypto-chart.module.css'
 
+// API_KEY: 3b98fc55-b5ab-4aee-9f26-eeb4f46a41b5
+// 864000000 ms = 10 days
+// 86400000 ms = 1 days
+
 export const CryptoChart = ({ currency, code }) => {
 
     const [ currentValue, setCurrentValue ] = useState(21086.911725760347)
     const [ shift, setShift ] = useState(0)
-    const [ coinData, setCoinData ] = useState([ {uv: 300}, {uv: 200}, {uv: 450}, {uv: 400}, {uv: 420}, {uv: 450}, {uv: 250}, {uv: 230}, {uv: 120}, {uv: 200} ])
+    const [ coinData, setCoinData ] = useState([ {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0}, {uv: 0} ])
 
     useEffect( () => {
 
         const fetchData = async ( code ) => {
-            // const chartLiveDataReq = await fetch(new Request("https://api.livecoinwatch.com/coins/single/history"), {
-            //     method: "POST",
-            //     headers: new Headers({
-            //         "content-type": "application/json",
-            //         "x-api-key": "3b98fc55-b5ab-4aee-9f26-eeb4f46a41b5",
-            //     }),
-            //     body: JSON.stringify({
-            //         currency: "USD",
-            //         code: code,
-            //         start: Date.now() - 864000000,
-            //         end: Date.now(),
-            //         meta: true,
-            //     }),
-            // })
+            const chartLiveDataReq = await fetch(new Request("https://api.livecoinwatch.com/coins/single/history"), {
+                method: "POST",
+                headers: new Headers({
+                    "content-type": "application/json",
+                    "x-api-key": "3b98fc55-b5ab-4aee-9f26-eeb4f46a41b5",
+                }),
+                body: JSON.stringify({
+                    currency: "USD",
+                    code: code,
+                    start: Date.now() - 864000000,
+                    end: Date.now(),
+                    meta: true,
+                }),
+            })
             
-            // const chartLiveData = await chartLiveDataReq.json()
+            const chartLiveData = await chartLiveDataReq.json()
 
-
+            // console.log('data:',chartLiveData)
 
             // current value
 
-            // setCurrentValue(chartLiveData.history[99].rate)
+            setCurrentValue(chartLiveData.history[95].rate)
 
             // % change over 24hrs
 
-            // let nowValue = chartLiveData.history[99].rate
-            // let oldValue = chartLiveData.history[89].rate
-            // let difference = nowValue - oldValue
-            // let change = difference / nowValue * 100
-            // setShift(change.toFixed(2))
+            let nowValue = chartLiveData.history[history.length].rate
+            let oldValue = chartLiveData.history[0].rate
+            let difference = nowValue - oldValue
+            let change = difference / nowValue * 100
+            setShift(change.toFixed(2))
 
             // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${formatPrice(snapshot.rate)}`))
+            
+            // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${snapshot.rate}`))
             
 
             //rates
 
-            // const rates = []
-
-            // for ( let i = 0; i <= 99; i+=10 ) {
-            //     console.log(`value[${ code }]:`, chartLiveData.history[i].rate)
-
-            //     const coinSnapshot = new CoinSnapshot( 
-            //         chartLiveData.history[i].rate
-            //     )
-            //     rates.push( coinSnapshot )
-            // }
-
-            // console.log('RATES:', rates)
-            // setCoinData(rates)
+            const rates = [ 
+                {uv: chartLiveData.history[0].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.1)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.2)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.3)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.4)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.5)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.6)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.7)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.8)].rate}, 
+                {uv: chartLiveData.history[parseInt(history.length * 0.9)].rate}, 
+                {uv: chartLiveData.history[history.length].rate} 
+            ]
+            setCoinData(rates)
         }
 
         class CoinSnapshot {

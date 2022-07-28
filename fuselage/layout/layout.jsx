@@ -75,7 +75,7 @@ export default function Layout ({ children, globals, categories }) {
 		const text = sidebar.ctaBody[0]
 		const button = sidebar.ctaButton[0]
 
-		if ( !sidebar || !text || !button ) return
+		if ( !sidebar || !text || !button.buttonLink || !button.buttonLabel ) return
 
 		return (
 			<div className='mt-sm'>
