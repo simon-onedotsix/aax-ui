@@ -380,7 +380,7 @@ export async function getStaticPaths() {
         const entriesData = await craftApolloClient().query({
             query: gql`
                 query Posts {
-                    entries(section: "posts" site: "${locale}", status: ["live","disabled"]) {
+                    entries(section: "posts" site: "${locale}", status: ["live","disabled"], limit: 100) {
                         id
                         title
                         slug
@@ -422,7 +422,7 @@ export async function getStaticPaths() {
 
     return {
         paths: entries,
-        fallback: false
+        fallback: 'blocking'
     }
 
 }

@@ -14,7 +14,7 @@ export default function Categories({ categories }) {
 
 	const t = useTranslations('Global')
 
-	console.log('categories:', categories)
+	// console.log('categories:', categories)
 
 	const handleCategoryButtons = () => {
 
