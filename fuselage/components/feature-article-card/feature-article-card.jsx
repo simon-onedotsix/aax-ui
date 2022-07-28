@@ -21,7 +21,11 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, alt, title, excerpt, ca
 
             <div className={CSS.layout}>
              
-                <FeatureArticleHero heroUrl={heroUrl} alt={alt} />
+                <Link href={ href }>
+                    <a className={CSS.imgLink}>
+                        <FeatureArticleHero heroUrl={heroUrl} alt={alt} />
+                    </a>
+                </Link>
 
                 <div className={CSS.content}>
                     <div>

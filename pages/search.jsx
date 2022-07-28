@@ -35,7 +35,7 @@ export default function SearchPage () {
           body: JSON.stringify({
             query: `
                 query Search {
-                    entries(section: "posts", search: "${query}" site: "${router.locale}") {
+                    entries(section: "posts", search: "${query}" site: "${router.locale}" limit: 30) {
                         ${QueryPostForCard}
                     }
                 }

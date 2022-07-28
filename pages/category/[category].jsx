@@ -152,7 +152,7 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
                     slug
                     title
                 }
-                entries(section: "posts", relatedToCategories: {slug: "${params.category}"} site: "${siteHandle}") {
+                entries(section: "posts", relatedToCategories: {slug: "${params.category}"} site: "${siteHandle}" limit: 50) {
                     ... on posts_Post_Entry {
                         id
                         slug

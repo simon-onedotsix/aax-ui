@@ -16,6 +16,9 @@
     display: block;
     text-decoration: none;
 }
+.imgLink {
+    display: block;
+}
 
 @media(hover:hover) {
     .title {
