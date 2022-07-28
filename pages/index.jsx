@@ -498,7 +498,7 @@ export async function getStaticProps({ locale, preview, previewData }) {
     const analysisData = await craftApolloClient().query({
         query: gql`
 			query AnalysisPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "crypto-technical-analysis", site: "${siteHandle}"}) {
+                entries(section: "posts", limit: 3, relatedToCategories: {slug: "crypto-technical-analysis"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
 				category (slug: "crypto-technical-analysis", site: "${siteHandle}") {
