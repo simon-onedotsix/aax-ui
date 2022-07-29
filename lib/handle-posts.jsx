@@ -15,7 +15,7 @@ export const handlePosts = ( entries ) => {
                             <ArticleCardVideoLandscape
                                 key={entry.id}
                                 href={`/${entry.slug}`}
-                                videoUrl={'https://www.youtube.com/watch?v=e6aogh5OFJ8'}
+                                videoUrl={`https://www.youtube.com/watch?v=${entry.hero[0].video}`}
                                 title={entry.title}
                                 excerpt={entry.body}
                                 date={entry.postDate}
