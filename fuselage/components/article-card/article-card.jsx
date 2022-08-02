@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { truncate } from '../../../lib/truncate'
+import { Truncate } from '../../../lib/truncate'
 import { ArticleCategories } from '../article-categories/article-categories'
 import { ArticleMeta } from '../article-meta/article-meta'
 
@@ -30,7 +30,7 @@ export const ArticleCard = ({ href, image, title, excerpt, author, date, categor
                     <Link href={href}><a className={CSS.link}>{ title }</a></Link>
                 </h3>
                 
-                { excerpt ? <p className='formatted py-xs'>{truncate(excerpt, 25)}</p> : null }
+                { excerpt ? <p className='formatted py-xs'>{Truncate(excerpt, 25)}</p> : null }
                 
                 <ArticleMeta author={author} date={date}/>
             </div>

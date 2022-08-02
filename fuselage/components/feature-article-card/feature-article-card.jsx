@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { truncate } from '../../../lib/truncate'
+import { Truncate } from '../../../lib/truncate'
 import { ArticleCategories } from '../article-categories/article-categories'
 import { ArticleMeta } from '../article-meta/article-meta'
 import { Button } from '../button/button'
@@ -30,7 +30,7 @@ export const FeatureArticle = ({ href, eyebrow, heroUrl, alt, title, excerpt, ca
                 <div className={CSS.content}>
                     <div>
                         <ArticleCategories categories={ categories } />
-                        { excerpt ? <p className='my-sm'>{truncate(excerpt, 45)}</p> : null }
+                        { excerpt ? <p className='my-sm'>{Truncate(excerpt, 45)}</p> : null }
                     </div>
 
                     <ArticleMeta author={ author } date={ date }/>

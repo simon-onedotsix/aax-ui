@@ -5,9 +5,7 @@ import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 import CSS from './crypto-chart.module.css'
 
-// API_KEY: 3b98fc55-b5ab-4aee-9f26-eeb4f46a41b5
-// 864000000 ms = 10 days
-// 86400000 ms = 1 days
+
 
 export const CryptoChart = ({ currency, code }) => {
 
@@ -35,11 +33,11 @@ export const CryptoChart = ({ currency, code }) => {
             
             const chartLiveData = await chartLiveDataReq.json()
 
-            // console.log('data:',chartLiveData)
 
             // current value
 
             setCurrentValue(chartLiveData.history[95].rate)
+
 
             // % change over 24hrs
 
@@ -49,12 +47,8 @@ export const CryptoChart = ({ currency, code }) => {
             let change = difference / nowValue * 100
             setShift(change.toFixed(2))
 
-            // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${formatPrice(snapshot.rate)}`))
-            
-            // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${snapshot.rate}`))
-            
 
-            //rates
+            // assemble rates
 
             const rates = [ 
                 {uv: chartLiveData.history[0].rate}, 
@@ -69,14 +63,30 @@ export const CryptoChart = ({ currency, code }) => {
                 {uv: chartLiveData.history[parseInt(history.length * 0.9)].rate}, 
                 {uv: chartLiveData.history[history.length].rate} 
             ]
-            setCoinData(rates)
+            
+
+            // get min and max values
+
+            let maxRate = Math.max.apply(Math, rates.map( rate => rate.uv))
+            let minRate = Math.min.apply(Math, rates.map( rate => rate.uv))
+
+
+            // interpolate
+
+            let interpolatedRates = []
+
+            rates.map( rate => {
+                let val = ( rate.uv - minRate ) * 100 / ( maxRate - minRate )
+                let obj = new Object()
+                obj.uv = val
+                interpolatedRates.push(obj)
+            })
+
+            console.log('interpolatedRates:', interpolatedRates)
+
+            setCoinData(interpolatedRates)
         }
 
-        class CoinSnapshot {
-            constructor( rate ) {
-                this.uv = rate
-            }
-        }
 
         fetchData(code)
 

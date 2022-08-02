@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-import { truncate } from '../../../lib/truncate'
+import { Truncate } from '../../../lib/truncate'
 import { VideoPlayer } from '../video-player/video-player'
 import { VideoMeta } from '../video-meta/video-meta'
 import { ArticleCategories } from '../article-categories/article-categories'
@@ -42,7 +42,7 @@ export const FeatureVideo = ({ href, videoUrl, autoplay, muted, controls, eyebro
                     <div>
                         <ArticleCategories categories={ categories } />
                         
-                        { excerpt ? <p className='my-sm'>{truncate(excerpt, 45)}</p> : null }
+                        { excerpt ? <p className='my-sm'>{Truncate(excerpt, 45)}</p> : null }
                     </div>
 
                     <div className='flex flex-wrap gap-xs'>
