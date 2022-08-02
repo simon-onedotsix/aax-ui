@@ -25,7 +25,7 @@ export const CryptoChart = ({ currency, code }) => {
                 body: JSON.stringify({
                     currency: "USD",
                     code: code,
-                    start: Date.now() - 864000000,
+                    start: Date.now() - 86400000,
                     end: Date.now(),
                     meta: true,
                 }),
@@ -48,6 +48,10 @@ export const CryptoChart = ({ currency, code }) => {
             let difference = nowValue - oldValue
             let change = difference / nowValue * 100
             setShift(change.toFixed(2))
+
+            // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${formatPrice(snapshot.rate)}`))
+            
+            // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${snapshot.rate}`))
 
 
             // assemble rates
