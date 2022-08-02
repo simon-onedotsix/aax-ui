@@ -15,13 +15,13 @@ export default function SearchPage () {
     
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
-    const [query, setQuery] = useState('')
-    const [currentQuery, setCurrentQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
+    const [currentSearchQuery, setCurrentSearchQuery] = useState('')
 
     
-    const searchEntries = ( query ) => {
+    const searchEntries = ( searchQuery ) => {
 
-        if ( !query ) return
+        if ( !searchQuery ) return
 
         setLoading(true)
 
@@ -35,7 +35,7 @@ export default function SearchPage () {
           body: JSON.stringify({
             query: `
                 query Search {
-                    entries(section: "posts", search: "${query}" site: "${router.locale}" limit: 30) {
+                    entries(section: "posts", search: "${searchQuery}" site: "${router.locale}" limit: 30) {
                         ${QueryPostForCard}
                     }
                 }
@@ -57,13 +57,13 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo;</p>
+                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentSearchQuery }&rdquo;</p>
                             <p>
                                 <button 
                                     className="clearButton" 
                                     onClick={ () => {
                                         setData(null)
-                                        setQuery('')
+                                        setSearchQuery('')
                                     }}
                                 >&#215;</button>
                             </p>
@@ -78,7 +78,7 @@ export default function SearchPage () {
                 return (
                     <>
                         <section className="mt-md flex ai-center gap-xs">
-                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentQuery }&rdquo; </p>
+                            <p className="fs-5 fw-600">{t("Results for")} &ldquo;{ currentSearchQuery }&rdquo; </p>
                             {/* <p><button className="clearButton" onClick={ () => setData(null) }>&#215;</button></p> */}
                         </section>
 
@@ -101,13 +101,13 @@ export default function SearchPage () {
             <div className="searchForm maxw-25 flex mt-sm">
                 <input 
                     type="text" 
-                    value={query}
-                    onChange={ e => setQuery(e.target.value)}
+                    value={searchQuery}
+                    onChange={ e => setSearchQuery(e.target.value)}
                     placeholder={t("Keyword/s")}
                 />
                 <button className="button" onClick={ () => {
-                    setCurrentQuery(query)
-                    searchEntries(query)
+                    setCurrentSearchQuery(searchQuery)
+                    searchEntries(searchQuery)
                 } }>
                     <Image src={'/assets/ui/icon-search.svg'} width={30} height={30} alt='Search' />
                 </button>
