@@ -26,7 +26,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 	// console.log('news:', news)
 	// console.log('analysis:', analysis)
 	// console.log('press:', press)
-	console.log('cta:', cta)
+	// console.log('cta:', cta)
 
 
 	const handleMainFeature = () => {
@@ -224,7 +224,7 @@ export default function Home({ features, explainers, videos, news, press, analys
 					</div>
 
 					{
-						cta.ctaButton.length ?
+						cta.ctaButton.length && cta.ctaButton.buttonLink ?
 						<p className='mt-md'><Button href={cta.ctaButton[0].buttonLink} inverse>{cta.ctaButton[0].buttonLabel}</Button></p>
 						: null
 					}
