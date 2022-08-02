@@ -33,10 +33,12 @@ export const CryptoChart = ({ currency, code }) => {
             
             const chartLiveData = await chartLiveDataReq.json()
 
+            // console.log('chartLiveData:', chartLiveData)
+
 
             // current value
 
-            setCurrentValue(chartLiveData.history[95].rate)
+            setCurrentValue(chartLiveData.history[chartLiveData.history.length - 1].rate)
 
 
             // % change over 24hrs
@@ -70,19 +72,22 @@ export const CryptoChart = ({ currency, code }) => {
             let maxRate = Math.max.apply(Math, rates.map( rate => rate.uv))
             let minRate = Math.min.apply(Math, rates.map( rate => rate.uv))
 
+            // console.log('maxRate:', maxRate)
+            // console.log('minRate:', minRate)
+
 
             // interpolate
 
             let interpolatedRates = []
 
             rates.map( rate => {
-                let val = ( rate.uv - minRate ) * 100 / ( maxRate - minRate )
+                let val = (( rate.uv - minRate ) * 100 / ( maxRate - minRate ))
                 let obj = new Object()
                 obj.uv = val
                 interpolatedRates.push(obj)
             })
 
-            console.log('interpolatedRates:', interpolatedRates)
+            // console.log('interpolatedRates:', interpolatedRates)
 
             setCoinData(interpolatedRates)
         }
