@@ -104,6 +104,18 @@ App.getInitialProps = async (ctx) => {
 							}
 						}
 					}
+
+					... on header_GlobalSet {
+						id
+						name
+						ctaButton {
+						  ... on ctaButton_BlockType {
+								id
+								buttonLabel
+								buttonLink
+							}
+						}
+					}
 					
 				}
 				categories(site: "${siteHandle}", level: 1) {

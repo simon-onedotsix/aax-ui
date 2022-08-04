@@ -47,13 +47,13 @@ export default function Layout ({ children, globals, categories }) {
 
 	const sidebar = globals[0]
 	const footer = globals[1]
-	// const header = globals[2]
+	const header = globals[2]
 
-	console.log('globals:', globals)
+	// console.log('globals:', globals)
 	// console.log('categories:', categories)
 	// console.log('sidebar:', sidebar)
 	// console.log('footer:', footer)
-	// console.log('header:', header)
+	console.log('header:', header)
 
 	const { locale, pathname, asPath, query } = router
 	let initialLocale = locales.find( obj => locale === obj.code )
@@ -98,10 +98,10 @@ export default function Layout ({ children, globals, categories }) {
 		
 	const handleCta = () => {
 
+		if ( !sidebar || !sidebar.ctaBody || !sidebar.ctaButton ) return
+		
 		const text = sidebar.ctaBody[0]
 		const button = sidebar.ctaButton[0]
-
-		if ( !sidebar || !text || !button.buttonLink || !button.buttonLabel ) return
 
 		return (
 			<div className='mt-sm'>
@@ -147,7 +147,7 @@ export default function Layout ({ children, globals, categories }) {
 
 	const handleFooterLinks = () => {
 
-		if ( !footer.footerLinks.length ) return 
+		if ( !footer.footerLinks ) return 
 
 		return (
 			<section className={`${CSS.footerColumns4} gap-md`}>
@@ -495,7 +495,12 @@ export default function Layout ({ children, globals, categories }) {
 								code='ADA' 
 							/>
 						</div>
-						<p><Button href='https://www.aax.com' target='_blank' outline>{t("Trade")}</Button></p>
+						{
+							header.ctaButton && header.ctaButton[0].buttonLabel && header.ctaButton[0].buttonLink ?
+							<p><Button href={header.ctaButton[0].buttonLink} target='_blank' outline>{header.ctaButton[0].buttonLabel}</Button></p>
+							:
+							<p><Button href='https://www.aax.com/en-US/markets/' target='_blank' outline>{t("Trade")}</Button></p>
+						}
 					</div>
 
                     <div className={CSS.mainContent}>
@@ -534,7 +539,7 @@ export default function Layout ({ children, globals, categories }) {
 
 								<div className='formatted'>
 									{
-										footer.disclaimer.length ?
+										footer.disclaimer ?
 										<>
 											<p className="h6">{ footer.disclaimer[0].heading }</p>
 											<p className='fs-sm'>{ footer.disclaimer[0].body }</p>
