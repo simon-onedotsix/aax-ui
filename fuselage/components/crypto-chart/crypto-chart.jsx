@@ -50,42 +50,46 @@ export const CryptoChart = ({ currency, code }) => {
             setShift(change.toFixed(2))
 
             // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${formatPrice(snapshot.rate)}`))
-            
             // chartLiveData.history.map( (snapshot, index) => console.log(`${code}[${index}]: ${formatDate(snapshot.date)} - rate: ${snapshot.rate}`))
-
-
-            // assemble rates
-
-            const rates = [ 
-                {uv: chartLiveData.history[0].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.1)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.2)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.3)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.4)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.5)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.6)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.7)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.8)].rate}, 
-                {uv: chartLiveData.history[parseInt(history.length * 0.9)].rate}, 
-                {uv: chartLiveData.history[history.length].rate} 
-            ]
             
 
-            // get min and max values
 
-            let maxRate = Math.max.apply(Math, rates.map( rate => rate.uv))
-            let minRate = Math.min.apply(Math, rates.map( rate => rate.uv))
-
+                        
+            
+            // assemble rates [ for simplified line graph]
+            // let rates = [ 
+            //     {uv: chartLiveData.history[0].rate}, 
+            //     {uv: chartLiveData.history[10].rate}, 
+            //     {uv: chartLiveData.history[20].rate}, 
+            //     {uv: chartLiveData.history[30].rate}, 
+            //     {uv: chartLiveData.history[40].rate}, 
+            //     {uv: chartLiveData.history[50].rate}, 
+            //     {uv: chartLiveData.history[60].rate}, 
+            //     {uv: chartLiveData.history[70].rate}, 
+            //     {uv: chartLiveData.history[80].rate}, 
+            //     {uv: chartLiveData.history[90].rate}, 
+            //     {uv: chartLiveData.history[history.length].rate} 
+            // ]
+            // search array to get min and max values
+            // let maxRate = Math.max.apply(Math, rates.map( rate => rate.uv))
+            // let minRate = Math.min.apply(Math, rates.map( rate => rate.uv))
+            
+            
+            
+            // search data for min+max values
+            
+            let maxRate = Math.max.apply(Math, chartLiveData.history.map( snapshot => snapshot.rate))
+            let minRate = Math.min.apply(Math, chartLiveData.history.map( snapshot => snapshot.rate))
+            
             // console.log('maxRate:', maxRate)
             // console.log('minRate:', minRate)
-
-
+            
             // interpolate
 
             let interpolatedRates = []
 
-            rates.map( rate => {
-                let val = (( rate.uv - minRate ) * 100 / ( maxRate - minRate ))
+            chartLiveData.history.map( snapshot => {
+                let val = (( snapshot.rate - minRate ) * 100 / ( maxRate - minRate ))
                 let obj = new Object()
                 obj.uv = val
                 interpolatedRates.push(obj)

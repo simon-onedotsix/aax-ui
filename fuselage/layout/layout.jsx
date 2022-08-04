@@ -47,10 +47,13 @@ export default function Layout ({ children, globals, categories }) {
 
 	const sidebar = globals[0]
 	const footer = globals[1]
+	// const header = globals[2]
 
+	console.log('globals:', globals)
 	// console.log('categories:', categories)
 	// console.log('sidebar:', sidebar)
 	// console.log('footer:', footer)
+	// console.log('header:', header)
 
 	const { locale, pathname, asPath, query } = router
 	let initialLocale = locales.find( obj => locale === obj.code )
