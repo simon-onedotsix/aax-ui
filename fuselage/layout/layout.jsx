@@ -45,15 +45,15 @@ export default function Layout ({ children, globals, categories }) {
 	
 	const router = useRouter()
 
-	const sidebar = globals[0]
-	const footer = globals[1]
-	const header = globals[2]
+	const sidebar = globals[1]
+	const footer = globals[2]
+	const header = globals[0]
 
-	// console.log('globals:', globals)
+	console.log('globals:', globals)
 	// console.log('categories:', categories)
 	// console.log('sidebar:', sidebar)
 	// console.log('footer:', footer)
-	console.log('header:', header)
+	// console.log('header:', header)
 
 	const { locale, pathname, asPath, query } = router
 	let initialLocale = locales.find( obj => locale === obj.code )
@@ -103,15 +103,18 @@ export default function Layout ({ children, globals, categories }) {
 		const text = sidebar.ctaBody[0]
 		const button = sidebar.ctaButton[0]
 
-		return (
-			<div className='mt-sm'>
-				<div className="formatted">
-					<p className='h3 serif lh-2'>{text.heading}</p>
-					<p className='pb-xs'>{text.body}</p>
+		if ( text && button && text.heading && text.body ) {
+			return (
+				<div className='mt-sm'>
+					<div className="formatted">
+						<p className='h3 serif lh-2'>{text.heading}</p>
+						<p className='pb-xs'>{text.body}</p>
+					</div>
+					<Button href={button.buttonLink}>{button.buttonLabel}</Button>
 				</div>
-				<Button href={button.buttonLink}>{button.buttonLabel}</Button>
-			</div>
-		)
+			)
+		}
+ 
 	}
 
 	const handleLocales = () => {
@@ -148,6 +151,8 @@ export default function Layout ({ children, globals, categories }) {
 	const handleFooterLinks = () => {
 
 		if ( !footer.footerLinks ) return 
+
+		console.log('footerLinks:', footer.footerLinks)
 
 		return (
 			<section className={`${CSS.footerColumns4} gap-md`}>
