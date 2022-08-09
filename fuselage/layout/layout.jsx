@@ -49,7 +49,7 @@ export default function Layout ({ children, globals, categories }) {
 	const footer = globals[2]
 	const header = globals[0]
 
-	console.log('globals:', globals)
+	// console.log('globals:', globals)
 	// console.log('categories:', categories)
 	// console.log('sidebar:', sidebar)
 	// console.log('footer:', footer)
@@ -151,8 +151,6 @@ export default function Layout ({ children, globals, categories }) {
 	const handleFooterLinks = () => {
 
 		if ( !footer.footerLinks ) return 
-
-		console.log('footerLinks:', footer.footerLinks)
 
 		return (
 			<section className={`${CSS.footerColumns4} gap-md`}>

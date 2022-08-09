@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl'
 
-export default function FourZeroFour () {
+export default function FiveHundred () {
 
     const t = useTranslations('Global')
 
