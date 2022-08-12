@@ -139,14 +139,14 @@ export default function Post ({ entry }) {
                             {
                                 "@type": "ListItem",
                                 "position": 2,
-                                "name": "${entry.categories[0].title}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[0].slug}"
+                                "name": "${entry.categories && entry.categories[0] ? entry.categories[0].title : ''}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories && entry.categories[0] ? entry.categories[0].slug : ''}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 3,
-                                "name": "${entry.categories[1].title}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[1].slug}"
+                                "name": "${entry.categories && entry.categories[1] ? entry.categories[1].title : ''}",
+                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories && entry.categories[1] ? entry.categories[1].slug : ''}"
                             },
                             {
                                 "@type": "ListItem",
