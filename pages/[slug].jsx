@@ -240,7 +240,7 @@ export default function Post ({ entry }) {
                     <link href={metaLinks['home'].href} rel="home"/>
                     {/* <link type="text/plain" href={metaLinks['author'].href} rel="author"/> */}
                     { metaLinks.alternate.map( (link, index) => (
-                        <link key={index} href={link.href} rel="alternate" hrefLang={link.hreflang}/> 
+                        <link key={index} href={`https://trends.aax.com/${link.hreflang}${router.asPath}`} rel="alternate" hrefLang={link.hreflang}/> 
                     )) }
                 </>
             )
