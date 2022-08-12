@@ -24,6 +24,7 @@ export default function Post ({ entry }) {
 
     const router = useRouter()
     // console.log('ROUTER:', router)
+    // console.log('ROUTER:', router.locale)
 
 
     const t = useTranslations('Global')
@@ -31,10 +32,12 @@ export default function Post ({ entry }) {
     // console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
+    // console.log('SEO — links:', JSON.parse(entry.seomatic.metaLinkContainer))
     // console.log('schema:', entry.schemaCode)
 
     let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
     let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
+    let metaLinks = JSON.parse(entry.seomatic.metaLinkContainer)  
 
 
     const [ videoDuration, setVideoDuration ] = useState('00:00')
@@ -229,6 +232,20 @@ export default function Post ({ entry }) {
 
     }
     
+    const handleMetaLinks = () => {
+        if ( metaLinks ) {
+            return (
+                <>
+                    <link href={metaLinks['canonical'].href} rel='canonical' />
+                    <link href={metaLinks['home'].href} rel="home"/>
+                    {/* <link type="text/plain" href={metaLinks['author'].href} rel="author"/> */}
+                    { metaLinks.alternate.map( (link, index) => (
+                        <link key={index} href={link.href} rel="alternate" hrefLang={link.hreflang}/> 
+                    )) }
+                </>
+            )
+        }
+    }
 
     // console.log('satus:', entry.status)
 
@@ -248,9 +265,11 @@ export default function Post ({ entry }) {
                     <meta content={metaTags['og:description'].content} property="og:description" />
                     <meta content={metaTags['og:image'].content} property="og:image"></meta>
                     
-                    <link rel='canonical' href={metaTags['og:url'].content} key='canonical' />
+                    
+
+                    { handleMetaLinks() }
     
-                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${handleSchema()}` }} />
+                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ handleSchema() }` }} />
                 </Head>
     
     
