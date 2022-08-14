@@ -34,10 +34,13 @@ export default function Post ({ entry }) {
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('SEO — links:', JSON.parse(entry.seomatic.metaLinkContainer))
     // console.log('schema:', entry.schemaCode)
-
+    
     let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
     let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
     let metaLinks = JSON.parse(entry.seomatic.metaLinkContainer)  
+    
+    // console.log('metaLinks:', metaLinks)
+
 
 
     const [ videoDuration, setVideoDuration ] = useState('00:00')
@@ -238,10 +241,16 @@ export default function Post ({ entry }) {
                 <>
                     <link href={metaLinks['canonical'].href} rel='canonical' />
                     <link href={metaLinks['home'].href} rel="home"/>
-                    {/* <link type="text/plain" href={metaLinks['author'].href} rel="author"/> */}
-                    { metaLinks.alternate.map( (link, index) => (
-                        <link key={index} href={`https://trends.aax.com/${link.hreflang}${router.asPath}`} rel="alternate" hrefLang={link.hreflang}/> 
-                    )) }
+                    <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="en"></link>
+                    <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"></link>
+
+                    { metaLinks.alternate.map( (link, index) => {
+                        if ( link.hreflang !== 'en' && link.hreflang !== 'x-default' ) {
+                            return (
+                                <link key={index} href={`https://trends.aax.com/${link.hreflang}${router.asPath}`} rel="alternate" hrefLang={link.hreflang}/> 
+                            )}
+                        }
+                    )}
                 </>
             )
         }

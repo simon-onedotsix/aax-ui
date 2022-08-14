@@ -2,6 +2,7 @@ import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
 import {useTranslations} from 'next-intl'
+import Head from 'next/head'
 
 import { handlePosts } from "../../lib/handle-posts"
 import { handleTags } from "../../lib/handle-tags"
@@ -13,11 +14,15 @@ export default function CategoryPage ({ category, entries, tags, videoCta }) {
 
     const t = useTranslations('Global')
 
-    // console.log('category:', category)
+    console.log('category:', category)
     // console.log('childCategories:', category.children)
     // console.log('category page entries:', entries)
     // console.log('tags:', tags)
     // console.log('videoCta:', videoCta)
+
+    let metaTitle = JSON.parse(category.seomatic.metaTitleContainer)
+    let metaTags = JSON.parse(category.seomatic.metaTagContainer)  
+    // let metaLinks = JSON.parse(seomatic.metaLinkContainer)
 
 
     const handleRelatedCategories = () => {
@@ -64,6 +69,21 @@ export default function CategoryPage ({ category, entries, tags, videoCta }) {
 
     return (
         <>
+            <Head>
+				<title>{metaTitle.title.title}</title>
+
+				<meta name="description" content={metaTags.description.content} />
+				<meta name="referrer" content={metaTags.referrer.content} />
+				<meta content={metaTags['og:locale'].content} property="og:locale" />
+				<meta content={metaTags['og:site_name'].content} property="og:site_name" />
+				<meta content={metaTags['og:type'].content} property="og:type" />
+				<meta content={metaTags['og:url'].content} property="og:url" />
+				<meta content={metaTags['og:title'].content} property="og:title" />
+				<meta content={metaTags['og:description'].content} property="og:description" />
+				<meta content={metaTags['og:image'].content} property="og:image"></meta>
+			</Head>
+
+            
             <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : 'fallback' }</h1>
 
             {handleVideoCta()}
@@ -145,6 +165,11 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
                         id
                         title
                         slug
+                    }
+                    seomatic(asArray: true) {
+                        metaTitleContainer
+                        metaTagContainer
+                        metaLinkContainer
                     }
                 }
                 tags {

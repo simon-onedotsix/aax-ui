@@ -1,32 +1,32 @@
 import { gql } from "@apollo/client"
-import craftApolloClient from "./api/apollo"
+import craftApolloClient from "../api/apollo"
 
-import { QueryPostForCard } from "../graphql/queries"
+import { QueryPostForCard } from "../../graphql/queries"
 
 import Head from 'next/head'
 import { useTranslations } from 'next-intl'
 
-import { Button, AppStoreIcon, PlayStoreIcon } from '../fuselage/components/button/button'
-import { UnderlineBarLink } from '../fuselage/components/u-bar-link/u-bar-link'
+import { UnderlineBarLink } from '../../fuselage/components/u-bar-link/u-bar-link'
 
-import { FeatureVideo } from '../fuselage/components/feature-video-card/feature-video-card'
-import { ArticleCardVideo } from '../fuselage/components/article-card-video/article-card-video'
-import { FeatureArticle } from '../fuselage/components/feature-article-card/feature-article-card'
-import { ArticleCard } from '../fuselage/components/article-card/article-card'
+import { FeatureVideo } from '../../fuselage/components/feature-video-card/feature-video-card'
+import { ArticleCardVideo } from '../../fuselage/components/article-card-video/article-card-video'
+import { FeatureArticle } from '../../fuselage/components/feature-article-card/feature-article-card'
+import { ArticleCard } from '../../fuselage/components/article-card/article-card'
+import { CtaVideo } from "../../fuselage/components/cta-video/cta-video"
 
-import { CtaCallout } from '../fuselage/components/cta-callout/cta-callout'
-
-export default function Home({ entry, features, explainers, videos, news, press, analysis, cta }) {
+export default function Home({ entry, featured, ben, update, bitcoin, crypto, trends, tutorials, videoCta }) {
 
 	const t = useTranslations('Global')
 
-	// console.log('features:', features)
-	// console.log('explainers:', explainers)
-	// console.log('videos:', videos)
-	// console.log('news:', news)
-	// console.log('analysis:', analysis)
-	// console.log('press:', press)
-	// console.log('cta:', cta)
+	console.log('entry:', entry)
+	// console.log('featured:', featured)
+	// console.log('ben:', ben)
+	// console.log('update:', update)
+	// console.log('bitcoin:', bitcoin)
+	// console.log('crypto:', crypto)
+	// console.log('trends:', trends)
+	// console.log('tutorials:', tutorials)
+	// console.log('videoCta:', videoCta)
 
 
 	let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
@@ -36,9 +36,9 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
 	const handleMainFeature = () => {
 
-		if ( !features || !features.mainFeatureArticle.length ) return
+		if ( !featured || !featured.mainFeatureArticle.length ) return
 		
-		const mainFeature = features.mainFeatureArticle[0]
+		const mainFeature = featured.mainFeatureArticle[0]
 		let excerpt
 
 		mainFeature.excerpt ? excerpt = mainFeature.excerpt : mainFeature.body
@@ -87,15 +87,18 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
 	}
 
-	const handleFeatures = () => {
+	const handleRecommendations = () => {
 
-		if ( !features ) return
-		if ( !features.featureArticles.length ) return
+		if ( !featured || !featured.featureArticles.length ) return
 		
-		const featuredArticles = features.featureArticles
+		const featuredArticles = featured.featureArticles
 
 		return (
-			<section className="mt-md">
+			<section className="mt-md bt-1 bc-grey-20 pt-sm">
+				<div>
+					<p className="fs-5 fw-600 c-primary">Recommended for you</p>
+				</div>
+
 				<div className="columns-3 gap-sm mt-sm">
 
 					{
@@ -202,58 +205,75 @@ export default function Home({ entry, features, explainers, videos, news, press,
 		)
 	}
 
-	const handleCta = () => {
+	const handleVideoCta = () => {
 
-		// return
+        if ( !videoCta.showCta ) return 
 
-		if ( !cta || !cta.showCta ) return
+        return (
+            <section className="my-md">
+                <CtaVideo
+                    videoUrl={`https://www.youtube.com/watch?v=${videoCta.video}`} 
+                    autoplay={true}
+                    muted={false}
+                    controls={true}
+                    heading={videoCta.ctaBody[0].heading}
+                    body={videoCta.ctaBody[0].body}
+                    date={videoCta.date}
+                /> 
+            </section>
+        )
+    }
 
-		let hero = cta.ctaHero[0]
-		let background
-		
-		cta.ctaBackground.length ? background = cta.ctaBackground[0].url : null
-
-
+	const handlePeopleAreWatching = () => {
 		return (
-			<CtaCallout 
-				heroSrc={hero.url}
-				heroWidth={hero.width}
-				heroHeight={hero.height}
-				backgroundSrc={background}
-				backgroundOpacity={cta.ctaBackgroundImageOpacity}
-				backgroundColor={cta.ctaBackgroundColor}
-				textColor={cta.ctaTextColor}
-			>
+			<section className="mt-md bt-1 bc-grey-20 pt-sm">
 				<div>
-					<div className='formatted'>
-						<p className='h fs-0 serif lh-1'>{ cta.ctaBody[0].heading }</p>
-						<p className="fw-600 mt-sm">{ cta.ctaBody[0].body }</p>
-					</div>
-
-					{
-						cta.ctaButton.length && cta.ctaButton.buttonLink ?
-						<p className='mt-md'><Button href={cta.ctaButton[0].buttonLink} inverse>{cta.ctaButton[0].buttonLabel}</Button></p>
-						: null
-					}
+					<p className="fs-5 fw-600 c-primary">People are also watching</p>
 				</div>
 
-				<div>
+				<div className="columns-3 gap-sm mt-sm">
+
 					{
-						cta.appStoreButtons[0].appleAppStoreLink ?
-						<Button href={ cta.appStoreButtons[0].appleAppStoreLink } outline inverse target='_blank'>
-							<AppStoreIcon color={cta.ctaTextColor}/>App Store
-						</Button> 
-						: null
-					}
-					{
-						cta.appStoreButtons[0].googlePlayLink ?
-						<Button href={cta.appStoreButtons[0].googlePlayLink} outline inverse target='_blank'>
-							<PlayStoreIcon color={cta.ctaTextColor}/>Google Play
-						</Button>
-						: null
+						featuredArticles.map( entry => {
+							if ( entry.heroType ) {
+								//video hero
+								return (
+									<ArticleCardVideo
+										key={entry.id}
+										videoUrl={`https://www.youtube.com/watch?v=${entry.hero[0].video}`}
+										href={`/${entry.slug}`}
+										// categories={entry.categories}
+										title={entry.title}
+										excerpt={entry.body}
+										date='2022-06-02T06:20:00-07:00'
+									/>
+								)
+
+							} else {
+								// image hero
+								let heroImage
+								if ( entry.hero.length && entry.hero[0].image.length ) { 
+									heroImage = entry.hero[0].image[0].url
+								} else {
+									heroImage = '/assets/ui/fallback.png'
+								}
+								return (
+									<ArticleCard
+										key={entry.id}
+										href={`/${entry.slug}`}
+										image={heroImage}
+										// categories={entry.categories}
+										title={entry.title}
+										excerpt={entry.body}
+										date='2022-06-02T06:20:00-07:00'
+									/>
+								)
+
+							}
+						})
 					}
 				</div>
-			</CtaCallout>
+			</section>
 		)
 	}
 
@@ -273,24 +293,23 @@ export default function Home({ entry, features, explainers, videos, news, press,
 				<meta content={metaTags['og:image'].content} property="og:image"></meta>
 			</Head>
 
-
 			{handleMainFeature()}
 
-			{handleFeatures()}
+			{handleRecommendations()}
 
-			{handleCategory(news)}
-			
-			{handleCategory(analysis)}
+			{handleVideoCta()}
 
+			{handleCategory(ben)}
 
-			{handleCta()}
+			{handleCategory(update)}
 
+			{handleCategory(bitcoin)}
 
-			{handleCategory(explainers)}
-			
-			{handleCategory(videos)}
-			
-			{handleCategory(press)}
+			{handleCategory(crypto)}
+
+			{handleCategory(trends)}
+
+			{handleCategory(tutorials)}
 
 			<div className="mt-md"></div>
 
@@ -317,9 +336,9 @@ export async function getStaticProps({ locale, preview, previewData }) {
 	const entryData = await craftApolloClient().query({
         query: gql`
 			query SEO {
-				entry(id: "2", site: "${siteHandle}") {
+				entry(id: "4231", site: "${siteHandle}") {
 					id
-					... on homepage_homepage_Entry {
+					... on videoCategoryPage_videoCategoryPage_Entry {
 						id
 						seomatic(asArray: true) {
 								metaTitleContainer
@@ -333,14 +352,13 @@ export async function getStaticProps({ locale, preview, previewData }) {
     })
     const entry = await entryData
 
-	
-	//feature articles
-    const featuresData = await craftApolloClient().query({
+	//featured and recommended articles
+    const featureArticlesData = await craftApolloClient().query({
         query: gql`
 			query FeatureArticles {
-				entry(id: "2", site: "${siteHandle}") {
+				entry(id: "	4231", site: "${siteHandle}") {
 					id
-					... on homepage_homepage_Entry {
+					... on videoCategoryPage_videoCategoryPage_Entry {
 						id
 						featureArticles {
 							... on posts_Post_Entry {
@@ -407,68 +425,40 @@ export async function getStaticProps({ locale, preview, previewData }) {
 			}
         `
     })
-    const features = await featuresData
+    const featured = await featureArticlesData
 
-
-	//CTA 
-	const ctaData = await craftApolloClient().query({
+	// video cta
+	const videoCtaData = await craftApolloClient( preview, previewData ).query({
         query: gql`
-			query FeatureArticles {
-				entry(id: "2", site: "${siteHandle}") {
-					... on homepage_homepage_Entry {
-						id
-						showCta
-						ctaHero {
-							id
-							url
-							width
-							height
-						}
-						ctaBackground {
-							id
-							url
-							width
-							height
-						}
-						ctaBackgroundImageOpacity
-						ctaBackgroundColor
-						ctaTextColor
-						ctaBody {
-							... on ctaBody_BlockType {
-								id
-								heading
-								body
-							}
-						}
-						ctaButton {
-							... on ctaButton_BlockType {
-								buttonLink
-								buttonLabel
-							}
-						}
-						appStoreButtons {
-							... on appStoreButtons_BlockType {
-								id
-								googlePlayLink
-								appleAppStoreLink
-							}
-						}
-					}
-				}
-			}
+            query VideoCategoryPage {
+                entry(id: 4231, site: "${siteHandle}") {
+                    ... on videoCategoryPage_videoCategoryPage_Entry {
+                        id
+                        showCta
+                        video
+                        date
+                        ctaBody {
+                            ... on ctaBody_BlockType {
+                                id
+                                heading
+                                body
+                            }
+                        }
+                    }
+                }
+            }
         `
     })
-    const cta = await ctaData
+    const videoCta = videoCtaData.data.entry
 
-
-	//explainers
-    const explainersData = await craftApolloClient().query({
+	// ben and breakfast
+    const benData = await craftApolloClient().query({
         query: gql`
-			query ExplainerPosts {
-				entries(section: "posts", limit: 3, relatedToCategories: {slug: "explainers"}, site: "${siteHandle}") {
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "ben-and-breakfast"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "explainers", site: "${siteHandle}") {
+				category (slug: "ben-and-breakfast", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -476,53 +466,16 @@ export async function getStaticProps({ locale, preview, previewData }) {
 			}
         `
     })
-    const explainers = await explainersData
+    const ben = await benData
 
-
-	// videos
-    const videosData = await craftApolloClient().query({
+	// digital assets: market update
+    const updateData = await craftApolloClient().query({
         query: gql`
-			query VideoPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "videos-and-webinars"}, site: "${siteHandle}") {
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "digital-assets-market-update"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "videos-and-webinars", site: "${siteHandle}") {
-					id
-					slug
-					title
-				}
-            }
-        `
-    })
-    const videos = await videosData
-
-
-	// news
-    const newsData = await craftApolloClient().query({
-        query: gql`
-            query NewsPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "news-and-insights"}, site: "${siteHandle}") {
-					${QueryPostForCard}
-				}
-				category (slug: "news-and-insights", site: "${siteHandle}") {
-					id
-					slug
-					title
-				}
-            }
-        `
-    })
-    const news = await newsData
-
-
-	// press
-    const pressData = await craftApolloClient().query({
-        query: gql`
-			query NewsPosts {
-				entries(section: "posts", limit: 3, relatedToCategories: {slug: "press-room"}, site: "${siteHandle}") {
-					${QueryPostForCard}
-				}
-				category (slug: "press-room", site: "${siteHandle}") {
+				category (slug: "digital-assets-market-update", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -530,38 +483,92 @@ export async function getStaticProps({ locale, preview, previewData }) {
 			}
         `
     })
-    const press = await pressData
-	
+    const update = await updateData
 
-	// crypto-technical-analysis
-    const analysisData = await craftApolloClient().query({
+	// bitcoin riase and shine
+    const bitcoinData = await craftApolloClient().query({
         query: gql`
-			query AnalysisPosts {
-                entries(section: "posts", limit: 3, relatedToCategories: {slug: "crypto-technical-analysis"}, site: "${siteHandle}") {
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "bitcoin-rise-and-shine"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "crypto-technical-analysis", site: "${siteHandle}") {
+				category (slug: "bitcoin-rise-and-shine", site: "${siteHandle}") {
 					id
 					slug
 					title
 				}
-            }
+			}
         `
     })
-    const analysis = await analysisData
+    const bitcoin = await bitcoinData
+
+	// crytpo en rouge
+    const cryptoData = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "crypto-en-rouge"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "crypto-en-rouge", site: "${siteHandle}") {
+					id
+					slug
+					title
+				}
+			}
+        `
+    })
+    const crypto = await cryptoData
+
+	// aax trends events
+    const trendsData = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "aax-trends-events"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "aax-trends-events", site: "${siteHandle}") {
+					id
+					slug
+					title
+				}
+			}
+        `
+    })
+    const trends = await trendsData
+
+	// tutorials
+    const tutorialsData = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "tutorials"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "tutorials", site: "${siteHandle}") {
+					id
+					slug
+					title
+				}
+			}
+        `
+    })
+    const tutorials = await tutorialsData
+
+
+
 
 
     return { 
-		props: {
+		props: { 
 			entry: entry.data.entry,
-			features : features.data.entry,
-			explainers : explainers.data,
-			videos : videos.data,
-			news : news.data,
-			press : press.data,
-			analysis : analysis.data,
-			cta : cta.data.entry,
-			messages: (await import(`../translations/${locale}.json`)).default
+			featured: featured.data.entry,
+			ben : ben.data,
+			update : update.data,
+			bitcoin : bitcoin.data,
+			crypto : crypto.data,
+			trends : trends.data,
+			tutorials : tutorials.data,
+			videoCta,
+			messages: (await import(`../../translations/${locale}.json`)).default
 		}
 	}
 }
