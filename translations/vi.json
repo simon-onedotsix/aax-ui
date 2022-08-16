@@ -20,7 +20,8 @@
         "Loading": "Đang tải",
         "Results for": "Kết quả cho",
         "Article 404": "Phiên bản bằng tiếng việt của bài viết này sẽ được đăng tải sớm.",
-        "Generic 404": "[vi] Error: Content not found."
+        "Generic 404": "[vi] Error: Content not found.",
+        "Generic 500": "Error: Content not found."
     }
 
 }

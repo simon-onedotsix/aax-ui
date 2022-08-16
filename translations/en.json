@@ -20,7 +20,8 @@
         "Loading": "Loading",
         "Results for": "Results for",
         "Article 404": "The English version of this article is coming up soon. Stay tuned!",
-        "Generic 404": "Error: Content not found."
+        "Generic 404": "Error: Content not found.",
+        "Generic 500": "Error: Content not found."
         
     }
 

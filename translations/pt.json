@@ -20,7 +20,8 @@
         "Loading": "Carregando",
         "Results for": "Resultados para",
         "Article 404": "A versão em espanhol deste artigo ainda não está disponível. Fique ligado!",
-        "Generic 404": "[pt] Error: Content not found."
+        "Generic 404": "[pt] Error: Content not found.",
+        "Generic 500": "Error: Content not found."
     }
 
 }
