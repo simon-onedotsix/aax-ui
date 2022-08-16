@@ -14,7 +14,7 @@ export default function CategoryPage ({ category, entries, tags, videoCta }) {
 
     const t = useTranslations('Global')
 
-    console.log('category:', category)
+    // console.log('category:', category)
     // console.log('childCategories:', category.children)
     // console.log('category page entries:', entries)
     // console.log('tags:', tags)
