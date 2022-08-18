@@ -33,7 +33,7 @@ const locales = [
 	{ code: 'ru', label: 'Русский'},
 	{ code: 'ko', label: '한국어'},
 	{ code: 'fr', label: 'Français'},
-	{ code: 'es', label: 'Espagñol'},
+	{ code: 'es', label: 'Español'},
 	{ code: 'pt', label: 'Português'},
 	{ code: 'id', label: 'Bahasa Indonesia'},
 	{ code: 'vi', label: 'Tiếng Việt'},

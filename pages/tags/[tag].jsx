@@ -61,7 +61,7 @@ export async function getStaticPaths({ locales }) {
         )
     })
 
-    console.log('tags:', tags)
+    // console.log('tags:', tags)
 
     return {
         paths: localisedTags,

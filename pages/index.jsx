@@ -4,6 +4,7 @@ import craftApolloClient from "./api/apollo"
 import { QueryPostForCard } from "../graphql/queries"
 
 import Head from 'next/head'
+import Link from "next/link"
 import { useTranslations } from 'next-intl'
 
 import { Button, AppStoreIcon, PlayStoreIcon } from '../fuselage/components/button/button'
@@ -39,9 +40,9 @@ export default function Home({ entry, features, explainers, videos, news, press,
 		if ( !features || !features.mainFeatureArticle.length ) return
 		
 		const mainFeature = features.mainFeatureArticle[0]
+		
 		let excerpt
-
-		mainFeature.excerpt ? excerpt = mainFeature.excerpt : mainFeature.body
+		mainFeature.excerpt ? excerpt = mainFeature.excerpt : excerpt = mainFeature.body
 
 		if ( mainFeature.heroType ) {
 
@@ -100,6 +101,10 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
 					{
 						featuredArticles.map( entry => {
+
+							let excerpt
+							entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
+
 							if ( entry.heroType ) {
 								//video hero
 								return (
@@ -109,7 +114,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 										href={`/${entry.slug}`}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date='2022-06-02T06:20:00-07:00'
 									/>
 								)
@@ -129,7 +134,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 										image={heroImage}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date='2022-06-02T06:20:00-07:00'
 									/>
 								)
@@ -148,12 +153,18 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
 		return (
 			<section className="mt-lg">
-				<h2 className="h fs-1 serif c-primary">{ section.category.title }</h2>
+				<h2 className="h fs-1 serif c-primary">
+					<Link href={`/category/${section.category.slug}`}><a style={{textDecoration: `none`}}>{ section.category.title }</a></Link>
+				</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 
 					{ 
 						section.entries.map( entry => {
+
+							let excerpt
+							entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
+
 							if ( entry.heroType ) {
 								//video hero
 								return (
@@ -163,7 +174,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 										href={`/${entry.slug}`}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date={entry.postDate}
 									/>
 								)
@@ -183,7 +194,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 										image={heroImage}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date={entry.postDate}
 									/>
 								)

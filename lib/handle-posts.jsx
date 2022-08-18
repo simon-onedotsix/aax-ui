@@ -9,6 +9,9 @@ export const handlePosts = ( entries ) => {
         <>
             {
                 entries.map( entry => {
+
+                    let excerpt
+                    entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
                     
                     if ( entry.heroType && entry.hero[0].video ) {
                         return (
@@ -17,7 +20,7 @@ export const handlePosts = ( entries ) => {
                                 href={`/${entry.slug}`}
                                 videoUrl={`https://www.youtube.com/watch?v=${entry.hero[0].video}`}
                                 title={entry.title}
-                                excerpt={entry.body}
+                                excerpt={excerpt}
                                 date={entry.postDate}
                                 categories={entry.categories}
                             />
@@ -35,7 +38,7 @@ export const handlePosts = ( entries ) => {
                                 key={entry.id}
                                 href={`/${entry.slug}`}
                                 title={entry.title}
-                                excerpt={entry.body}
+                                excerpt={excerpt}
                                 image={heroImage}
                                 date={entry.postDate}
                                 categories={entry.categories}

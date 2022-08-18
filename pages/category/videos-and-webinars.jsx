@@ -18,7 +18,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 	const t = useTranslations('Global')
 
-	console.log('entry:', entry)
+	// console.log('entry:', entry)
 	// console.log('featured:', featured)
 	// console.log('ben:', ben)
 	// console.log('update:', update)
@@ -103,6 +103,10 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 					{
 						featuredArticles.map( entry => {
+
+							let excerpt
+							entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
+
 							if ( entry.heroType ) {
 								//video hero
 								return (
@@ -112,7 +116,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 										href={`/${entry.slug}`}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date='2022-06-02T06:20:00-07:00'
 									/>
 								)
@@ -132,7 +136,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 										image={heroImage}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date='2022-06-02T06:20:00-07:00'
 									/>
 								)
@@ -157,6 +161,10 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 					{ 
 						section.entries.map( entry => {
+
+							let excerpt
+							entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
+
 							if ( entry.heroType ) {
 								//video hero
 								return (
@@ -166,7 +174,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 										href={`/${entry.slug}`}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date={entry.postDate}
 									/>
 								)
@@ -186,7 +194,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 										image={heroImage}
 										// categories={entry.categories}
 										title={entry.title}
-										excerpt={entry.body}
+										excerpt={excerpt}
 										date={entry.postDate}
 									/>
 								)
@@ -428,7 +436,7 @@ export async function getStaticProps({ locale, preview, previewData }) {
     const featured = await featureArticlesData
 
 	// video cta
-	const videoCtaData = await craftApolloClient( preview, previewData ).query({
+	const videoCtaData = await craftApolloClient().query({
         query: gql`
             query VideoCategoryPage {
                 entry(id: 4231, site: "${siteHandle}") {
@@ -462,6 +470,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 					id
 					slug
 					title
+					excerpt
+					body
 				}
 			}
         `
@@ -479,6 +489,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 					id
 					slug
 					title
+					excerpt
+					body
 				}
 			}
         `
@@ -496,6 +508,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 					id
 					slug
 					title
+					excerpt
+					body
 				}
 			}
         `
@@ -513,6 +527,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 					id
 					slug
 					title
+					excerpt
+					body
 				}
 			}
         `
@@ -530,6 +546,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 					id
 					slug
 					title
+					excerpt
+					body
 				}
 			}
         `
@@ -547,6 +565,8 @@ export async function getStaticProps({ locale, preview, previewData }) {
 					id
 					slug
 					title
+					excerpt
+					body
 				}
 			}
         `

@@ -8,8 +8,8 @@
 
     --bg-global: rgb(255, 255, 255);
 
-    --default-text-color: #212121;
-    --default-heading-color: #212121;
+    --default-text-color: #1a1a1a;
+    --default-heading-color: #1a1a1a;
 
     --wash: hsl(240, 9%, 98%);
     --light: hsl(233, 18%, 96%);
@@ -40,7 +40,7 @@
     /* type */
 
     --default-font-family: 'Roboto', sans-serif;
-    --default-font-weight: 300;
+    --default-font-weight: 400;
     --default-font-size: 1rem;
     --default-line-height: 1.7;
 
