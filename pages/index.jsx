@@ -311,7 +311,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
 
 
-export async function getStaticProps({ locale, preview, previewData }) {
+export async function getStaticProps({ locale }) {
 
 	// fix for not being able to query cms for language (convert indonesian)
     let siteHandle

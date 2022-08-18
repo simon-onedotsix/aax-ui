@@ -39,9 +39,9 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 		if ( !featured || !featured.mainFeatureArticle.length ) return
 		
 		const mainFeature = featured.mainFeatureArticle[0]
+		
 		let excerpt
-
-		mainFeature.excerpt ? excerpt = mainFeature.excerpt : mainFeature.body
+		mainFeature.excerpt ? excerpt = mainFeature.excerpt : excerpt = mainFeature.body
 
 		if ( mainFeature.heroType ) {
 
@@ -327,7 +327,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 
 
-export async function getStaticProps({ locale, preview, previewData }) {
+export async function getStaticProps({ locale }) {
 
 	// fix for not being able to query cms for language (convert indonesian)
     let siteHandle

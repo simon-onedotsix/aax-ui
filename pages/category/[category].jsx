@@ -86,7 +86,7 @@ export default function CategoryPage ({ category, entries, tags }) {
 }
 
 
-
+// add (id: "not 103") to prevent video-and-webinar category from being queried
 
 export async function getStaticPaths({ locales }) {
     
