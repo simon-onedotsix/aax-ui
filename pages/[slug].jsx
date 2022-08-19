@@ -26,7 +26,6 @@ export default function Post ({ entry }) {
     // console.log('ROUTER:', router)
     // console.log('ROUTER:', router.locale)
 
-
     const t = useTranslations('Global')
 
     // console.log('entry:', entry)
@@ -35,13 +34,17 @@ export default function Post ({ entry }) {
     // console.log('SEO — links:', JSON.parse(entry.seomatic.metaLinkContainer))
     // console.log('schema:', entry.schemaCode)
     
-    let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
-    let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
-    let metaLinks = JSON.parse(entry.seomatic.metaLinkContainer)  
+    let metaTitle
+    let metaTags
+    let metaLinks 
+    
+    if ( entry ) {
+        metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
+        metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
+        metaLinks = JSON.parse(entry.seomatic.metaLinkContainer)  
+    }
     
     // console.log('metaLinks:', metaLinks)
-
-
 
     const [ videoDuration, setVideoDuration ] = useState('00:00')
 
@@ -103,7 +106,7 @@ export default function Post ({ entry }) {
     }
  
     const handleSchema = () => {
-        if ( entry.heroType && entry.hero[0].video ) {
+        if ( entry && entry.heroType && entry.hero[0].video ) {
             // video hero schema
             return (
                 `
@@ -234,9 +237,31 @@ export default function Post ({ entry }) {
         }
 
     }
+
+    const handleMetaTags = () => {
+        if ( entry && entry.seomatic ) {
+            
+            return (
+                <>
+                    <title>{metaTitle.title.title}</title>
+                        
+                    <meta name="description" content={metaTags.description.content} />
+                    <meta name="referrer" content={metaTags.referrer.content} />
+                    <meta content={metaTags['og:locale'].content} property="og:locale" />
+                    <meta content={metaTags['og:site_name'].content} property="og:site_name" />
+                    <meta content={metaTags['og:type'].content} property="og:type" />
+                    <meta content={metaTags['og:url'].content} property="og:url" />
+                    <meta content={metaTags['og:title'].content} property="og:title" />
+                    <meta content={metaTags['og:description'].content} property="og:description" />
+                    <meta content={metaTags['og:image'].content} property="og:image"></meta>
+                </>
+            )
+        }
+    }
     
     const handleMetaLinks = () => {
-        if ( metaLinks ) {
+        if ( entry && entry.seomatic ) {
+
             return (
                 <>
                     <link href={metaLinks['canonical'].href} rel='canonical' />
@@ -258,26 +283,12 @@ export default function Post ({ entry }) {
 
     // console.log('satus:', entry.status)
 
-    if ( entry.status === 'live' ) {
+    if ( entry && entry.status === 'live' ) {
         return (
             <>
-                <Head>
-                    <title>{metaTitle.title.title}</title>
-    
-                    <meta name="description" content={metaTags.description.content} />
-                    <meta name="referrer" content={metaTags.referrer.content} />
-                    <meta content={metaTags['og:locale'].content} property="og:locale" />
-                    <meta content={metaTags['og:site_name'].content} property="og:site_name" />
-                    <meta content={metaTags['og:type'].content} property="og:type" />
-                    <meta content={metaTags['og:url'].content} property="og:url" />
-                    <meta content={metaTags['og:title'].content} property="og:title" />
-                    <meta content={metaTags['og:description'].content} property="og:description" />
-                    <meta content={metaTags['og:image'].content} property="og:image"></meta>
-                    
-                    
-
+                <Head>                    
+                    { handleMetaTags() }
                     { handleMetaLinks() }
-    
                     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ handleSchema() }` }} />
                 </Head>
     
@@ -372,6 +383,14 @@ export default function Post ({ entry }) {
             </>
         )
 
+    } else if ( !entry ) {
+        return (
+            <section>
+                <h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>404</h1>
+                <p className='mt-sm fw-600'>{t("Generic 404")}</p>
+            </section>
+        )
+
     } else {
         return (
             <section>
@@ -426,7 +445,7 @@ export async function getStaticPaths() {
     const enEntries = await queryLocalisedPosts('en')
     const ruEntries = await queryLocalisedPosts('ru')
     const zhEntries = await queryLocalisedPosts('zh')
-    const koEntries = await queryLocalisedPosts('ko')
+    // const koEntries = await queryLocalisedPosts('ko')
     const frEntries = await queryLocalisedPosts('fr')
     const esEntries = await queryLocalisedPosts('es')
     const ptEntries = await queryLocalisedPosts('pt')
@@ -437,7 +456,7 @@ export async function getStaticPaths() {
         ...enEntries, 
         ...ruEntries, 
         ...zhEntries, 
-        ...koEntries,
+        // ...koEntries,
         ...frEntries,
         ...esEntries,
         ...ptEntries,

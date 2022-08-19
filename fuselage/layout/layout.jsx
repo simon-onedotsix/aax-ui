@@ -31,7 +31,7 @@ const locales = [
 	{ code: 'en', label: 'English'},
 	{ code: 'zh', label: '中文 (台灣)'},
 	{ code: 'ru', label: 'Русский'},
-	{ code: 'ko', label: '한국어'},
+	// { code: 'ko', label: '한국어'},
 	{ code: 'fr', label: 'Français'},
 	{ code: 'es', label: 'Español'},
 	{ code: 'pt', label: 'Português'},
