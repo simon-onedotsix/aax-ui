@@ -120,15 +120,15 @@ export default function Post ({ entry }) {
                         "author": {
                             "@type": "Organization",
                             "name": "AAX Trends",
-                            "url": "${process.env.NEXT_PUBLIC_SITE_URL}"
+                            "url": "${process.env.NEXT_PUBLIC_CMS_URL}"
                         },
                         "publisher": {
                             "@type": "Organization",
                             "name": "AAX Trends",
-                            "url": "${process.env.NEXT_PUBLIC_SITE_URL}",
+                            "url": "${process.env.NEXT_PUBLIC_CMS_URL}",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "${process.env.NEXT_PUBLIC_SITE_URL}/assets/ui/AAX-trends-logo.svg"
+                                "url": "${process.env.NEXT_PUBLIC_CMS_URL}/assets/ui/AAX-trends-logo.svg"
                             }
                         },
                         "headline": "${entry.title}",
@@ -143,19 +143,19 @@ export default function Post ({ entry }) {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "AAX Trends",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}"
+                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "${entry.categories && entry.categories[0] ? entry.categories[0].title : ''}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories && entry.categories[0] ? entry.categories[0].slug : ''}"
+                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories && entry.categories[0] ? entry.categories[0].slug : ''}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 3,
                                 "name": "${entry.categories && entry.categories[1] ? entry.categories[1].title : ''}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories && entry.categories[1] ? entry.categories[1].slug : ''}"
+                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories && entry.categories[1] ? entry.categories[1].slug : ''}"
                             },
                             {
                                 "@type": "ListItem",
@@ -191,10 +191,10 @@ export default function Post ({ entry }) {
                         "publisher": {
                             "@type": "Organization",
                             "name": "AAX Trends",
-                            "url": "${process.env.NEXT_PUBLIC_SITE_URL}",
+                            "url": "${process.env.NEXT_PUBLIC_CMS_URL}",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "${process.env.NEXT_PUBLIC_SITE_URL}/assets/ui/AAX-trends-logo.svg"
+                                "url": "${process.env.NEXT_PUBLIC_CMS_URL}/assets/ui/AAX-trends-logo.svg"
                             }
                         },
                         "headline": "${entry.title}",
@@ -209,19 +209,19 @@ export default function Post ({ entry }) {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "AAX Trends",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}"
+                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "${entry.categories.length && entry.categories[0].title}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories.length && entry.categories[0].slug}"
+                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories.length && entry.categories[0].slug}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 3,
                                 "name": "${entry.categories[1] ? entry.categories[1].title : null}",
-                                "item": "${process.env.NEXT_PUBLIC_SITE_URL}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
+                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
                             },
                             {
                                 "@type": "ListItem",
