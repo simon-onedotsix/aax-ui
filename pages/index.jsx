@@ -5,6 +5,7 @@ import { QueryPostForCard } from "../graphql/queries"
 
 import Head from 'next/head'
 import Link from "next/link"
+import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
 
 import { Button, AppStoreIcon, PlayStoreIcon } from '../fuselage/components/button/button'
@@ -19,6 +20,8 @@ import { CtaCallout } from '../fuselage/components/cta-callout/cta-callout'
 
 export default function Home({ entry, features, explainers, videos, news, press, analysis, cta }) {
 
+	const router = useRouter()
+
 	const t = useTranslations('Global')
 
 	// console.log('features:', features)
@@ -30,9 +33,62 @@ export default function Home({ entry, features, explainers, videos, news, press,
 	// console.log('cta:', cta)
 
 
-	let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
-    let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
+	// let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
+    // let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
     // let metaLinks = JSON.parse(seomatic.metaLinkContainer)
+
+	let metaTitle
+    let metaTags
+    let metaLinks 
+    
+    if ( entry ) {
+        metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
+        metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
+        metaLinks = JSON.parse(entry.seomatic.metaLinkContainer)  
+    }
+
+	const handleMetaTags = () => {
+        if ( entry && entry.seomatic ) {
+            
+            return (
+                <>
+                    <title>{metaTitle.title.title}</title>
+                        
+                    <meta name="description" content={metaTags.description.content} />
+                    <meta name="referrer" content={metaTags.referrer.content} />
+                    <meta content={metaTags['og:locale'].content} property="og:locale" />
+                    <meta content={metaTags['og:site_name'].content} property="og:site_name" />
+                    <meta content={metaTags['og:type'].content} property="og:type" />
+                    <meta content={metaTags['og:url'].content} property="og:url" />
+                    <meta content={metaTags['og:title'].content} property="og:title" />
+                    <meta content={metaTags['og:description'].content} property="og:description" />
+                    <meta content={metaTags['og:image'].content} property="og:image"></meta>
+                </>
+            )
+        }
+    }
+    
+    const handleMetaLinks = () => {
+        if ( entry && entry.seomatic ) {
+
+            return (
+                <>
+                    <link href={`https://trends.aax.com/${router.locale}`} rel='canonical' />
+                    <link href={metaLinks['home'].href} rel="home"/>
+                    <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="en"></link>
+                    <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"></link>
+
+                    { metaLinks.alternate.map( (link, index) => {
+                        if ( link.hreflang !== 'en' && link.hreflang !== 'x-default' ) {
+                            return (
+                                <link key={index} href={`https://trends.aax.com/${link.hreflang}${router.asPath}`} rel="alternate" hrefLang={link.hreflang}/> 
+                            )}
+                        }
+                    )}
+                </>
+            )
+        }
+    }
 
 
 	const handleMainFeature = () => {
@@ -271,7 +327,10 @@ export default function Home({ entry, features, explainers, videos, news, press,
 	return (
 		<>
 			<Head>
-				<title>{metaTitle.title.title}</title>
+				{ handleMetaTags() }
+				{ handleMetaLinks() }
+
+				{/* <title>{metaTitle.title.title}</title>
 
 				<meta name="description" content={metaTags.description.content} />
 				<meta name="referrer" content={metaTags.referrer.content} />
@@ -281,7 +340,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 				<meta content={metaTags['og:url'].content} property="og:url" />
 				<meta content={metaTags['og:title'].content} property="og:title" />
 				<meta content={metaTags['og:description'].content} property="og:description" />
-				<meta content={metaTags['og:image'].content} property="og:image"></meta>
+				<meta content={metaTags['og:image'].content} property="og:image"></meta> */}
 			</Head>
 
 

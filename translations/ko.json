@@ -20,7 +20,7 @@
         "Loading": "로딩중입니다",
         "Results for": "...의 검색결과",
         "Article 404": "The Korean version of this article is coming up soon. Stay tuned!",
-        "Generic 404": "[ko] Error: Content not found.",
+        "Generic 404": "찾는 페이지가 없습니다.",
         "Generic 500": "Error: Content not found."
     }
 

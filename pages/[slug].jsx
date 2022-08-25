@@ -264,7 +264,7 @@ export default function Post ({ entry }) {
 
             return (
                 <>
-                    <link href={metaLinks['canonical'].href} rel='canonical' />
+                    <link href={`https://trends.aax.com/${router.locale}${router.asPath}`} rel='canonical' />
                     <link href={metaLinks['home'].href} rel="home"/>
                     <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="en"></link>
                     <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"></link>

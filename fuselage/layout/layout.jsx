@@ -119,16 +119,28 @@ export default function Layout ({ children, globals, categories }) {
 
 	const handleLocales = () => {
 
-		// <p key={item.code}>
-		// 	<a href={item.code === 'en' ? `/` : `/${item.code}`} onClick={() => { 
-		// 		setActiveLocale( item.label )
-		// 		setLocalesActive( false )
-		// 	}}>
-		// 		<span className={CSS.localesButton}>
-		// 			{ item.label }
-		// 		</span>
-		// 	</a>
-		// </p>
+		// test for translations ----------------------------------------------------------
+
+		let availableTranslations = [ { locale: 'en', url: 'en-translation-slug'}, { locale: 'ru', url: 'ru-translation-slug'}, { locale: 'fr', url: 'fr-translation-slug'} ]
+		// console.log('availableTranslations:', availableTranslations)
+		
+		// if a slug exists, we must be on an entry page
+		if ( router.query.slug ) {
+			// console.log('we are on an entry page:', router.locale)
+
+			// filter availableTranslations for existence of locale
+			let translationTarget = availableTranslations.find( obj => obj.locale === router.locale)
+			
+			if ( translationTarget ) {
+				// console.log('FOUND TRANSLTION, redirect to:', translationTarget.url)
+			
+			} else {
+				// console.log('NO TRANSLATION FOUND, throw a warning')
+
+			}
+		}
+
+		// end test for translations -----------------------------------------------------
 
 
 		return (

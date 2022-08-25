@@ -6,9 +6,8 @@ export default function FourZeroFour () {
 
     return (
         <>
-            <h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>404</h1>
+            <h1 className='fs-0 serif lh-2 c-medium maxw-55'>404</h1>
             <p className='fw-400'>{t("Generic 404")}</p>
-            {/* <p>{t("Article 404")}</p> */}
         </>
     )
 }

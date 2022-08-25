@@ -20,7 +20,7 @@
         "Loading": "Загрузка",
         "Results for": "Результаты поиска",
         "Article 404": "Русскоязычная версия этой статьи пока недоступна. Следите за обновлениями!",
-        "Generic 404": "[ru] Error: Content not found.",
+        "Generic 404": "Упс! Страница не найдена",
         "Generic 500": "Error: Content not found."
     }
 
