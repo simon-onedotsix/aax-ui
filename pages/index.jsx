@@ -73,7 +73,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
             return (
                 <>
-                    <link href={`https://trends.aax.com/${router.locale}`} rel='canonical' />
+                    <link href={`https://trends.aax.com${router.locale != 'en' ? `/${router.locale}` : ''}`} rel='canonical' />
                     <link href={metaLinks['home'].href} rel="home"/>
                     <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="en"></link>
                     <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"></link>
