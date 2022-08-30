@@ -511,7 +511,7 @@ export default function Layout ({ children, globals, categories }) {
 							/>
 						</div>
 						{
-							header.ctaButton && header.ctaButton[0].buttonLabel && header.ctaButton[0].buttonLink ?
+							header.ctaButton[0] && header.ctaButton[0].buttonLabel && header.ctaButton[0].buttonLink ?
 							<p><Button href={header.ctaButton[0].buttonLink} target='_blank' outline>{header.ctaButton[0].buttonLabel}</Button></p>
 							:
 							<p><Button href='https://www.aax.com/en-US/markets/' target='_blank' outline>{t("Trade")}</Button></p>

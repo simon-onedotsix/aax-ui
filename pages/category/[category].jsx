@@ -20,9 +20,15 @@ export default function CategoryPage ({ category, entries, tags }) {
     // console.log('tags:', tags)
 
 
-    let metaTitle = JSON.parse(category.seomatic.metaTitleContainer)
-    let metaTags = JSON.parse(category.seomatic.metaTagContainer)  
-    // let metaLinks = JSON.parse(seomatic.metaLinkContainer)
+    let metaTitle
+	let metaTags
+	// let metaLinks
+
+	if ( category && category.seomatic ) {
+		metaTitle = JSON.parse(category.seomatic.metaTitleContainer)
+		metaTags = JSON.parse(category.seomatic.metaTagContainer)  
+		// metaLinks = JSON.parse(seomatic.metaLinkContainer)
+	}
 
 
     const handleRelatedCategories = () => {
@@ -50,17 +56,17 @@ export default function CategoryPage ({ category, entries, tags }) {
     return (
         <>
             <Head>
-				<title>{metaTitle.title.title}</title>
+                <title>{metaTitle ? metaTitle.title.title : 'AAX Trends'}</title>
 
-				<meta name="description" content={metaTags.description.content} />
-				<meta name="referrer" content={metaTags.referrer.content} />
-				<meta content={metaTags['og:locale'].content} property="og:locale" />
-				<meta content={metaTags['og:site_name'].content} property="og:site_name" />
-				<meta content={metaTags['og:type'].content} property="og:type" />
-				<meta content={metaTags['og:url'].content} property="og:url" />
-				<meta content={metaTags['og:title'].content} property="og:title" />
-				<meta content={metaTags['og:description'].content} property="og:description" />
-				<meta content={metaTags['og:image'].content} property="og:image"></meta>
+                <meta name="description" content={metaTags && metaTags.description.content} />
+                <meta name="referrer" content={metaTags && metaTags.referrer.content} />
+                <meta content={metaTags && metaTags['og:locale'].content} property="og:locale" />
+                <meta content={metaTags && metaTags['og:site_name'].content} property="og:site_name" />
+                <meta content={metaTags && metaTags['og:type'].content} property="og:type" />
+                <meta content={metaTags && metaTags['og:url'].content} property="og:url" />
+                <meta content={metaTags && metaTags['og:title'].content} property="og:title" />
+                <meta content={metaTags && metaTags['og:description'].content} property="og:description" />
+                <meta content={metaTags && metaTags['og:image'].content} property="og:image"></meta>
 			</Head>
 
             

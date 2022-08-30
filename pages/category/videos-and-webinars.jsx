@@ -14,7 +14,7 @@ import { FeatureArticle } from '../../fuselage/components/feature-article-card/f
 import { ArticleCard } from '../../fuselage/components/article-card/article-card'
 import { CtaVideo } from "../../fuselage/components/cta-video/cta-video"
 
-export default function Home({ entry, featured, ben, update, bitcoin, crypto, trends, tutorials, videoCta }) {
+export default function Home({ entry, featured, videoCta, update, ben, bitcoin, crypto, videoExplainers, trends, tutorials, bitcoinAndBeyond, trends427, n2mu  }) {
 
 	const t = useTranslations('Global')
 
@@ -29,9 +29,15 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 	// console.log('videoCta:', videoCta)
 
 
-	let metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
-    let metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
-    // let metaLinks = JSON.parse(seomatic.metaLinkContainer)
+	let metaTitle
+	let metaTags
+	// let metaLinks
+
+	if ( entry && entry.seomatic ) {
+		metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
+		metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
+		// metaLinks = JSON.parse(seomatic.metaLinkContainer)
+	}
 
 
 	const handleMainFeature = () => {
@@ -151,7 +157,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 	const handleCategory = ( section ) => {
 
-		if ( !section.entries.length ) return
+		if ( !section || !section.entries.length || !section.category ) return
 
 		return (
 			<section className="mt-lg">
@@ -215,7 +221,7 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 	const handleVideoCta = () => {
 
-        if ( !videoCta.showCta ) return 
+        if ( !videoCta || !videoCta.showCta ) return 
 
         return (
             <section className="my-md">
@@ -288,17 +294,17 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 	return (
 		<>
 			<Head>
-				<title>{metaTitle.title.title}</title>
+				<title>{metaTitle ? metaTitle.title.title : 'AAX Trends'}</title>
 
-				<meta name="description" content={metaTags.description.content} />
-				<meta name="referrer" content={metaTags.referrer.content} />
-				<meta content={metaTags['og:locale'].content} property="og:locale" />
-				<meta content={metaTags['og:site_name'].content} property="og:site_name" />
-				<meta content={metaTags['og:type'].content} property="og:type" />
-				<meta content={metaTags['og:url'].content} property="og:url" />
-				<meta content={metaTags['og:title'].content} property="og:title" />
-				<meta content={metaTags['og:description'].content} property="og:description" />
-				<meta content={metaTags['og:image'].content} property="og:image"></meta>
+				<meta name="description" content={metaTags && metaTags.description.content} />
+				<meta name="referrer" content={metaTags && metaTags.referrer.content} />
+				<meta content={metaTags && metaTags['og:locale'].content} property="og:locale" />
+				<meta content={metaTags && metaTags['og:site_name'].content} property="og:site_name" />
+				<meta content={metaTags && metaTags['og:type'].content} property="og:type" />
+				<meta content={metaTags && metaTags['og:url'].content} property="og:url" />
+				<meta content={metaTags && metaTags['og:title'].content} property="og:title" />
+				<meta content={metaTags && metaTags['og:description'].content} property="og:description" />
+				<meta content={metaTags && metaTags['og:image'].content} property="og:image"></meta>
 			</Head>
 
 			{handleMainFeature()}
@@ -311,13 +317,21 @@ export default function Home({ entry, featured, ben, update, bitcoin, crypto, tr
 
 			{handleCategory(update)}
 
+			{handleCategory(bitcoinAndBeyond)}
+
+			{handleCategory(videoExplainers)}
+
 			{handleCategory(bitcoin)}
 
 			{handleCategory(crypto)}
+			
+			{handleCategory(n2mu)}
 
 			{handleCategory(trends)}
 
 			{handleCategory(tutorials)}
+			
+			{handleCategory(trends427)}
 
 			<div className="mt-md"></div>
 
@@ -459,6 +473,28 @@ export async function getStaticProps({ locale }) {
     })
     const videoCta = videoCtaData.data.entry
 
+
+
+
+	// digital assets: market update
+    const updateData = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "digital-assets-market-update"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "digital-assets-market-update", site: "${siteHandle}") {
+					id
+					slug
+					title
+					excerpt
+					body
+				}
+			}
+        `
+    })
+	const update = await updateData
+
 	// ben and breakfast
     const benData = await craftApolloClient().query({
         query: gql`
@@ -478,14 +514,14 @@ export async function getStaticProps({ locale }) {
     })
     const ben = await benData
 
-	// digital assets: market update
-    const updateData = await craftApolloClient().query({
+	// bitcoin and beyond
+    const bitcoinAndBeyondData = await craftApolloClient().query({
         query: gql`
 			query Posts {
-				entries(section: "posts", limit: 3, relatedToCategories: {slug: "digital-assets-market-update"}, site: "${siteHandle}") {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "bitcoin-and-beyond"}, site: "${siteHandle}") {
 					${QueryPostForCard}
 				}
-				category (slug: "digital-assets-market-update", site: "${siteHandle}") {
+				category (slug: "bitcoin-and-beyond", site: "${siteHandle}") {
 					id
 					slug
 					title
@@ -495,9 +531,28 @@ export async function getStaticProps({ locale }) {
 			}
         `
     })
-    const update = await updateData
+    const bitcoinAndBeyond = await bitcoinAndBeyondData
 
-	// bitcoin riase and shine
+	// explainers (video)
+    const videoExplainersData = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "video-explainers"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "video-explainers", site: "${siteHandle}") {
+					id
+					slug
+					title
+					excerpt
+					body
+				}
+			}
+        `
+    })
+    const videoExplainers = await videoExplainersData
+
+	// bitcoin rise and shine
     const bitcoinData = await craftApolloClient().query({
         query: gql`
 			query Posts {
@@ -534,6 +589,25 @@ export async function getStaticProps({ locale }) {
         `
     })
     const crypto = await cryptoData
+
+	// n2mu
+    const n2muData = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "n2mu"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "n2mu", site: "${siteHandle}") {
+					id
+					slug
+					title
+					excerpt
+					body
+				}
+			}
+        `
+    })
+    const n2mu = await n2muData
 
 	// aax trends events
     const trendsData = await craftApolloClient().query({
@@ -573,6 +647,27 @@ export async function getStaticProps({ locale }) {
     })
     const tutorials = await tutorialsData
 
+	// tutorials
+    const trends427Data = await craftApolloClient().query({
+        query: gql`
+			query Posts {
+				entries(section: "posts", limit: 3, relatedToCategories: {slug: "aax-trends-24-7"}, site: "${siteHandle}") {
+					${QueryPostForCard}
+				}
+				category (slug: "aax-trends-24-7", site: "${siteHandle}") {
+					id
+					slug
+					title
+					excerpt
+					body
+				}
+			}
+        `
+    })
+    const trends427 = await trends427Data
+	
+	
+
 
 
 
@@ -581,12 +676,16 @@ export async function getStaticProps({ locale }) {
 		props: { 
 			entry: entry.data.entry,
 			featured: featured.data.entry,
-			ben : ben.data,
 			update : update.data,
+			ben : ben.data,
+			bitcoinAndBeyond : bitcoinAndBeyond.data,
+			videoExplainers : videoExplainers.data,
 			bitcoin : bitcoin.data,
 			crypto : crypto.data,
+			n2mu : n2mu.data,
 			trends : trends.data,
 			tutorials : tutorials.data,
+			trends427 : trends427.data,
 			videoCta,
 			messages: (await import(`../../translations/${locale}.json`)).default
 		}
