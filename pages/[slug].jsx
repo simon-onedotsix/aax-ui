@@ -340,7 +340,7 @@ export default function Post ({ entry }) {
                                 fullName={ author.title }
                                 jobTitle={ author.jobTitle }
                                 bio={ author.bio }
-                                avatarUrl={ author.avatar[0].url }
+                                avatarUrl={ author.avatar[0] && author.avatar[0].url }
                                 socialConnections={ author.socialPlatforms }
                             />
                         )
