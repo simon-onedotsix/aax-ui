@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import Script from "next/script"
 
 import { gql } from "@apollo/client"
@@ -9,22 +10,32 @@ import Layout from '../fuselage/layout/layout'
 
 import '../css/index.css'
 
-function App({ Component, pageProps, globals, categories }) {
+
+
+
+export const LocalesContext = React.createContext()
+
+export default function App({ Component, pageProps, globals, categories }) {
+
+	const [ langs, setLangs ] = useState( [] )
+
 	return (
-		<NextIntlProvider messages={pageProps.messages}>
-			<Script id="google-tag-manager" strategy="afterInteractive">
-				{`
-					(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-					})(window,document,'script','dataLayer','GTM-PV785MR');
-				`}
-			</Script>
-			<Layout globals={globals} categories={categories}>
-				<Component {...pageProps} />
-			</Layout>
-		</NextIntlProvider>
+		<LocalesContext.Provider value={{ langs, setLangs }}>
+			<NextIntlProvider messages={pageProps.messages}>
+				<Script id="google-tag-manager" strategy="afterInteractive">
+					{`
+						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','GTM-PV785MR');
+					`}
+				</Script>
+				<Layout globals={globals} categories={categories}>
+					<Component {...pageProps} />
+				</Layout>
+			</NextIntlProvider>
+		</LocalesContext.Provider>
 	)
 }
 
@@ -136,5 +147,3 @@ App.getInitialProps = async (ctx) => {
 	}
 
 }
-
-export default App

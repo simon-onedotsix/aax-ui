@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { gql } from "@apollo/client"
@@ -20,7 +20,23 @@ import { ButtonSocial } from '../fuselage/components/button-social/button-social
 import { AuthorCredit } from '../fuselage/components/author-credit/author-credit'
 import { ArticleCard } from '../fuselage/components/article-card/article-card'
 
-export default function Post ({ entry }) {
+import { LocalesContext } from './_app'
+
+export default function Post ({ entry, availableLocales }) {
+    
+    // connect locales context
+    const { langs, setLangs } = React.useContext(LocalesContext)
+
+    useEffect( () => {
+            
+        // console.log('available translations:', availableLocales)        
+
+        // set locales context
+        setLangs(availableLocales)
+        
+    } ,[])
+
+
 
     const router = useRouter()
     // console.log('ROUTER:', router)
@@ -33,12 +49,13 @@ export default function Post ({ entry }) {
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('SEO — links:', JSON.parse(entry.seomatic.metaLinkContainer))
     // console.log('schema:', entry.schemaCode)
+
     
     let metaTitle
     let metaTags
     let metaLinks 
     
-    if ( entry ) {
+    if ( entry && entry.seomatic ) {
         metaTitle = JSON.parse(entry.seomatic.metaTitleContainer)
         metaTags = JSON.parse(entry.seomatic.metaTagContainer)  
         metaLinks = JSON.parse(entry.seomatic.metaLinkContainer)  
@@ -78,7 +95,7 @@ export default function Post ({ entry }) {
             let heroImageWidth
             let heroImageHeight
 
-            if ( entry.hero.length && entry.hero[0].image.length ) { 
+            if ( entry.hero && entry.hero.length && entry.hero[0].image.length ) { 
                 heroImage = entry.hero[0].image[0].url
                 heroImageWidth = entry.hero[0].image[0].width
                 heroImageHeight = entry.hero[0].image[0].height
@@ -98,7 +115,7 @@ export default function Post ({ entry }) {
                     />
                     <div className="flex jc-between mt-xs">
                         <ArticleCategories categories={entry.categories} />
-                        <ArticleMeta author={entry.postAuthor[0]} date={entry.postDate}/>
+                        <ArticleMeta author={entry.postAuthor && entry.postAuthor[0]} date={entry.postDate}/>
                     </div>
                 </>
             )
@@ -283,7 +300,7 @@ export default function Post ({ entry }) {
 
     // console.log('satus:', entry.status)
 
-    if ( entry && entry.status === 'live' ) {
+    if ( entry ) {
         return (
             <>
                 <Head>                    
@@ -332,7 +349,7 @@ export default function Post ({ entry }) {
     
     
                 { 
-                    entry.postAuthor.length ?
+                    entry.postAuthor && entry.postAuthor.length ?
                     entry.postAuthor.map( author => {
                         return (
                             <AuthorCredit
@@ -409,162 +426,254 @@ export default function Post ({ entry }) {
 export async function getStaticPaths() {
 
 
-    async function queryLocalisedPosts ( localeCode ) {
-
-        // let locale
-        // localeCode === 'id' ? locale = 'in' : locale = localeCode
-
-        let locale
-
-        if ( localeCode === 'id') {
-            locale = 'in'
-        } else if ( localeCode === 'default') {
-            locale = 'en'
-        } else {
-            locale = localeCode
-        }
-
-        const entriesData = await craftApolloClient().query({
-            query: gql`
-                query Posts {
-                    entries(section: "posts" site: "${locale}", status: ["live","disabled"], limit: 100) {
-                        id
-                        title
-                        slug
-                        siteId
-                    }
-    
+    const entriesData = await craftApolloClient().query({
+        query: gql`
+            query Posts {
+                entries(section: "posts", limit: 800) {
+                    id
+                    title
+                    slug
                 }
-            `
-        })
-        const entries = await entriesData.data.entries
-        const entriesLocalised = entries.map( entry => ({ params: { slug: entry.slug }, locale: localeCode }) )
-        return entriesLocalised
-    }
 
-    const enEntries = await queryLocalisedPosts('en')
-    const ruEntries = await queryLocalisedPosts('ru')
-    const zhEntries = await queryLocalisedPosts('zh')
-    // const koEntries = await queryLocalisedPosts('ko')
-    const frEntries = await queryLocalisedPosts('fr')
-    const esEntries = await queryLocalisedPosts('es')
-    const ptEntries = await queryLocalisedPosts('pt')
-    const idEntries = await queryLocalisedPosts('id')
-    const viEntries = await queryLocalisedPosts('vi')
+            }
+        `
+    })
+    const entries = await entriesData.data.entries
+    const pathData = entries.map( entry => ({ params: { slug: entry.slug } }) )
 
-    const entries = [ 
-        ...enEntries, 
-        ...ruEntries, 
-        ...zhEntries, 
-        // ...koEntries,
-        ...frEntries,
-        ...esEntries,
-        ...ptEntries,
-        ...idEntries,
-        ...viEntries 
-    ]
-
-    // console.log('ENTRIES FOUND:', entries.length)
-    // console.log('ENTRIES:', entries)
+    // console.log('ENTRIES FOUND:', pathData.length)
+    // console.log('ENTRIES:', pathData)
 
     return {
-        paths: entries,
+        paths: pathData,
         fallback: 'blocking'
     }
 
 }
 
 
-export async function getStaticProps({ params, preview, previewData, locale }) {
+export async function getStaticProps({ params, locale }) {
 
-    // fix for not being able to query cms for language (convert indonesian)
-    let siteHandle
-
-    if ( locale === 'id') {
-        siteHandle = 'in'
-    } else if ( locale === 'default') {
-        siteHandle = 'en'
-    } else {
-        siteHandle = locale
-    }
-
-    const entryData = await craftApolloClient( preview, previewData ).query({
+    // post data
+    
+    const entryData = await craftApolloClient().query({
         query: gql`
-            query Post {
-                entry(section: "posts", slug: "${params.slug}", site: "${siteHandle}", status: ["live","disabled"]) {
-                    ... on posts_Post_Entry {
-                        status
-                        id
-                        slug
-                        title
-                        postDate
-                        excerpt
-                        heroType
-                        hero {
-                            ... on hero_BlockType {
-                                id
-                                image {
-                                    url
-                                    width
-                                    height
-                                }
-                                video
+        query Post {
+            entry(section: "posts", slug: "${params.slug}", site: "${locale}") {
+                ... on posts_Post_Entry {
+                    status
+                    id
+                    slug
+                    title
+                    postDate
+                    excerpt
+                    heroType
+                    hero {
+                        ... on hero_BlockType {
+                            id
+                            image {
+                                url
+                                width
+                                height
                             }
+                            video
                         }
-                        categories {
-                            ... on categories_Category {
-                                id
-                                title
-                                slug
-                                level
-                            }
-                        }
-                        tags {
+                    }
+                    categories {
+                        ... on categories_Category {
                             id
                             title
                             slug
+                            level
                         }
-                        body
-                        postAuthor {
-                            ... on profiles_profile_Entry {
+                    }
+                    tags {
+                        id
+                        title
+                        slug
+                    }
+                    body
+                    postAuthor {
+                        ... on profiles_profile_Entry {
+                            id
+                            title
+                            jobTitle
+                            bio
+                            avatar {
                                 id
-                                title
-                                jobTitle
-                                bio
-                                avatar {
+                                url
+                            }
+                            socialPlatforms {
+                                ... on socialPlatforms_BlockType {
                                     id
-                                    url
-                                }
-                                socialPlatforms {
-                                    ... on socialPlatforms_BlockType {
-                                        id
-                                        platform
-                                        weblink
-                                    }
+                                    platform
+                                    weblink
                                 }
                             }
                         }
-                        schemaCode
                     }
-                    seomatic (asArray: true) {
-                        metaTitleContainer
-                        metaTagContainer
-                        metaLinkContainer
-                        metaScriptContainer
-                        metaJsonLdContainer
-                        metaSiteVarsContainer
-                        frontendTemplateContainer
-                    }
+                    schemaCode
                 }
-            }
+                seomatic (asArray: true) {
+                    metaTitleContainer
+                    metaTagContainer
+                    metaLinkContainer
+                    metaScriptContainer
+                    metaJsonLdContainer
+                    metaSiteVarsContainer
+                    frontendTemplateContainer
+                }
+            } 
+        }
         `
     })
+    const page = entryData.data.entry
+    
+    
+    // handle locales
+    
+    const availableLocales = []
 
-    const page = entryData
+    if ( page ) {
+
+        //en
+        const enData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "en") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'en', data: enData.data.entry })
+
+        //zh
+        const zhData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "zh") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'zh', data: zhData.data.entry })
+
+        //ru
+        const ruData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "ru") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'ru', data: ruData.data.entry })
+
+        //fr
+        const frData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "fr") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'fr', data: frData.data.entry })
+
+        //es
+        const esData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "es") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'es', data: esData.data.entry })
+
+        //pt
+        const ptData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "pt") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'pt', data: ptData.data.entry })
+
+
+        //id [ note: craft cms site handle for indonesia is 'in' ]
+        const idData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "in") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'id', data: idData.data.entry })
+
+        //vi
+        const viData = await craftApolloClient( page ).query({
+            query: gql`
+                query Post {
+                    entry(section: "posts", id: "${page.id}", site: "vi") {
+                        id
+                        slug
+                        title
+                    }
+                }
+            `
+        })
+        availableLocales.push({ locale: 'vi', data: viData.data.entry })
+
+        //ko
+        // const koData = await craftApolloClient( page ).query({
+        //     query: gql`
+        //         query Post {
+        //             entry(section: "posts", id: "${page.id}", site: "ko") {
+        //                 id
+        //                 slug
+        //                 title
+        //             }
+        //         }
+        //     `
+        // })
+        // availableLocales.push({ locale: 'ko', data: koData.data.entry })
+
+    }
+    
+
+    // console.log('page:', page)
+    // console.log('availableLocales:', availableLocales)
+    
 
     return { 
         props: { 
-            entry: page.data.entry,
+            entry: page,
+            availableLocales,
             messages: (await import(`../translations/${locale}.json`)).default
         },
         revalidate: 86400

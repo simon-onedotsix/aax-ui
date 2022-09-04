@@ -251,7 +251,8 @@
         display: inline-block;
         border-bottom: 2px solid transparent;
         transition: all 350ms ease-in-out;
-        color: white;
+        color: white !important;
+        text-decoration: none;
     }
     .localesButton:hover {
         border-bottom: 2px solid var(--primary);

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
@@ -25,6 +25,8 @@ import { ArticleCardVideoLandscape } from "../components/article-card-video-land
 import { QueryPostForCard } from '../../graphql/queries'
 import { handlePosts } from '../../lib/handle-posts'
 
+import { LocalesContext } from '../../pages/_app'
+
 import CSS from './layout.module.css'
 
 const locales = [
@@ -40,6 +42,18 @@ const locales = [
 ]
 
 export default function Layout ({ children, globals, categories }) {
+
+
+	// handle available post translations  ––––––––––––––––––––––––––––––––––
+	
+	const langs = React.useContext(LocalesContext)
+	// console.log('LAYOUT available translations',langs)
+
+	// handle translations available ––––––––––––––––––––––––––––––––––––––––
+
+
+
+
 
 	const t = useTranslations('Global')
 	
@@ -119,43 +133,65 @@ export default function Layout ({ children, globals, categories }) {
 
 	const handleLocales = () => {
 
-		// test for translations ----------------------------------------------------------
-
-		let availableTranslations = [ { locale: 'en', url: 'en-translation-slug'}, { locale: 'ru', url: 'ru-translation-slug'}, { locale: 'fr', url: 'fr-translation-slug'} ]
-		// console.log('availableTranslations:', availableTranslations)
-		
-		// if a slug exists, we must be on an entry page
-		if ( router.query.slug ) {
-			// console.log('we are on an entry page:', router.locale)
-
-			// filter availableTranslations for existence of locale
-			let translationTarget = availableTranslations.find( obj => obj.locale === router.locale)
-			
-			if ( translationTarget ) {
-				// console.log('FOUND TRANSLTION, redirect to:', translationTarget.url)
-			
-			} else {
-				// console.log('NO TRANSLATION FOUND, throw a warning')
-
-			}
-		}
-
-		// end test for translations -----------------------------------------------------
-
 
 		return (
 			locales.map( item => {
-				return (
-					<p key={item.code} onClick={() => { 
-						router.push({ pathname, query }, asPath, { locale: item.code }) 
-						setActiveLocale( item.label )
-						setLocalesActive( false )
-					}}>
-						<span className={CSS.localesButton}>
-							{ item.label }
-						</span>
-					</p>
-				)
+
+				let translationAvailable = false
+				let translationPath = ''
+
+				
+				// if a slug exists, we must be on an entry page
+				if ( router.query.slug ) {
+					
+					// find if translation is available
+					langs.langs.find( obj => {
+						if (obj.locale === item.code && obj.data) {
+							// console.log(obj)
+							translationAvailable = true
+							translationPath = `/${obj.data.slug}`
+							// console.log('translationPath:', translationPath)
+						}
+					})
+					
+					if (translationPath) {
+						return (
+							<p key={item.code}>
+								<Link href={`/[slug]`} as={translationPath} locale={item.code}>
+									<a className={CSS.localesButton} onClick={() => {
+										setActiveLocale( item.label )
+										setLocalesActive( false )
+									}}>{ item.label }</a>
+								</Link>
+							</p>
+						)
+
+					} else {
+						return (
+							<p key={item.code} className='c-medium'>
+								{ item.label }
+							</p>
+						)
+
+					}
+
+
+				// otherwise, handle routing as normal
+				} else {
+
+					return (
+						<p key={item.code} onClick={() => { 
+							router.push({ pathname, query }, asPath, { locale: item.code })
+							setActiveLocale( item.label )
+							setLocalesActive( false )
+						}}>
+							<span className={CSS.localesButton}>
+								{ item.label }
+							</span>
+						</p>
+					)
+				}
+
 			})
 		)
 	}
