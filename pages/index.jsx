@@ -348,19 +348,21 @@ export default function Home({ entry, features, explainers, videos, news, press,
 
 			{handleFeatures()}
 
-			{handleCategory(news)}
-			
-			{handleCategory(analysis)}
-
-
-			{handleCta()}
-
+			{handleCategory(videos)}
 
 			{handleCategory(explainers)}
 			
-			{handleCategory(videos)}
+			{handleCta()}
 			
+			{handleCategory(news)}
+
 			{handleCategory(press)}
+
+			{handleCategory(analysis)}
+
+
+			
+			
 
 			<div className="mt-md"></div>
 
