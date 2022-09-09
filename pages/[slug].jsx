@@ -454,12 +454,20 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params, locale }) {
 
+    let siteHandle
+
+    if ( locale === 'id') {
+        siteHandle = 'in'
+    } else {
+        siteHandle = locale
+    }
+
     // post data
     
     const entryData = await craftApolloClient().query({
         query: gql`
         query Post {
-            entry(section: "posts", slug: "${params.slug}", site: "${locale}") {
+            entry(section: "posts", slug: "${params.slug}", site: "${siteHandle}") {
                 ... on posts_Post_Entry {
                     status
                     id
@@ -633,6 +641,7 @@ export async function getStaticProps({ params, locale }) {
                 }
             `
         })
+        console.log({ locale: 'id', data: idData.data.entry })
         availableLocales.push({ locale: 'id', data: idData.data.entry })
 
         //vi
