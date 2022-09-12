@@ -298,6 +298,39 @@ export default function Post ({ entry, availableLocales }) {
         }
     }
 
+    const handleHrefLangLinks = () => {
+        
+        // console.log('current locale: ', router.locale)
+        
+        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical">`)
+        // console.log(`<link href="https://trends.aax.com" rel="home">`)
+        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="x-default">`)
+        
+        // if ( availableLocales ) {
+        //     availableLocales.map( link => {
+        //         if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com/${link.locale}/${link.data.slug}" rel="alternate" hreflang="${link.locale}">` )
+        //     })
+        // }
+
+        return (
+            <>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
+                <link href="https://trends.aax.com" rel="home"/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="x-default"/>
+
+                {
+                    availableLocales && availableLocales.map( link => {
+                        if ( link && link.data && link.locale !== router.locale ) {
+                            return <link key={link.locale} href={`https://trends.aax.com/${link.locale}/${link.data.slug}`} rel="alternate" hrefLang={`${link.locale}`}/>
+                        }
+                    })
+                }
+            </>
+        )
+    }
+
+
+
     // console.log('satus:', entry.status)
 
     if ( entry ) {
@@ -305,7 +338,7 @@ export default function Post ({ entry, availableLocales }) {
             <>
                 <Head>                    
                     { handleMetaTags() }
-                    { handleMetaLinks() }
+                    { handleHrefLangLinks() }
                     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ handleSchema() }` }} />
                 </Head>
     
@@ -628,7 +661,6 @@ export async function getStaticProps({ params, locale }) {
         })
         availableLocales.push({ locale: 'pt', data: ptData.data.entry })
 
-
         //id [ note: craft cms site handle for indonesia is 'in' ]
         const idData = await craftApolloClient( page ).query({
             query: gql`
@@ -641,7 +673,6 @@ export async function getStaticProps({ params, locale }) {
                 }
             `
         })
-        console.log({ locale: 'id', data: idData.data.entry })
         availableLocales.push({ locale: 'id', data: idData.data.entry })
 
         //vi
