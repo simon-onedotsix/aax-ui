@@ -4,6 +4,7 @@ import craftApolloClient from "../api/apollo"
 import { QueryPostForCard } from "../../graphql/queries"
 
 import Head from 'next/head'
+import Link from "next/link"
 import { useTranslations } from 'next-intl'
 
 import { UnderlineBarLink } from '../../fuselage/components/u-bar-link/u-bar-link'
@@ -18,8 +19,8 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 
 	const t = useTranslations('Global')
 
-	// console.log('entry:', entry)
-	// console.log('featured:', featured)
+	console.log('entry:', entry)
+	console.log('featured:', featured)
 	// console.log('ben:', ben)
 	// console.log('update:', update)
 	// console.log('bitcoin:', bitcoin)
@@ -27,6 +28,9 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 	// console.log('trends:', trends)
 	// console.log('tutorials:', tutorials)
 	// console.log('videoCta:', videoCta)
+
+	const recommendations = featured && featured.featureArticles.length ? featured.featureArticles : null
+	const peopleAreWatching = featured && featured.peopleAreWatching.length ? featured.peopleAreWatching : null
 
 
 	let metaTitle
@@ -93,22 +97,21 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 
 	}
 
-	const handleRecommendations = () => {
+	const handleRecommendations = ( heading, entries ) => {
 
-		if ( !featured || !featured.featureArticles.length ) return
+		if ( !entries || !entries.length ) return
 		
-		const featuredArticles = featured.featureArticles
-
 		return (
 			<section className="mt-md bt-1 bc-grey-20 pt-sm">
-				<div>
-					<p className="fs-5 fw-600 c-primary">Recommended for you</p>
-				</div>
+				{
+					heading &&
+					<div><p className="fs-5 fw-600 c-primary">{ heading }</p></div>
+				}
 
 				<div className="columns-3 gap-sm mt-sm">
 
 					{
-						featuredArticles.map( entry => {
+						entries.map( entry => {
 
 							let excerpt
 							entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
@@ -123,7 +126,7 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 										// categories={entry.categories}
 										title={entry.title}
 										excerpt={excerpt}
-										date='2022-06-02T06:20:00-07:00'
+										date={entry.postDate}
 									/>
 								)
 
@@ -143,7 +146,7 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 										// categories={entry.categories}
 										title={entry.title}
 										excerpt={excerpt}
-										date='2022-06-02T06:20:00-07:00'
+										date={entry.postDate}
 									/>
 								)
 
@@ -161,7 +164,10 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 
 		return (
 			<section className="mt-lg">
-				<h2 className="h fs-1 serif c-primary">{ section.category.title }</h2>
+				{/* <h2 className="h fs-1 serif c-primary">{ section.category.title }</h2> */}
+				<h2 className="h fs-1 serif c-primary">
+					<Link href={`/category/${section.category.slug}`}><a style={{textDecoration: `none`}}>{ section.category.title }</a></Link>
+				</h2>
 
 				<div className="columns-3 gap-sm mt-sm">
 
@@ -238,58 +244,6 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
         )
     }
 
-	const handlePeopleAreWatching = () => {
-		return (
-			<section className="mt-md bt-1 bc-grey-20 pt-sm">
-				<div>
-					<p className="fs-5 fw-600 c-primary">People are also watching</p>
-				</div>
-
-				<div className="columns-3 gap-sm mt-sm">
-
-					{
-						featuredArticles.map( entry => {
-							if ( entry.heroType ) {
-								//video hero
-								return (
-									<ArticleCardVideo
-										key={entry.id}
-										videoUrl={`https://www.youtube.com/watch?v=${entry.hero[0].video}`}
-										href={`/${entry.slug}`}
-										// categories={entry.categories}
-										title={entry.title}
-										excerpt={entry.body}
-										date='2022-06-02T06:20:00-07:00'
-									/>
-								)
-
-							} else {
-								// image hero
-								let heroImage
-								if ( entry.hero.length && entry.hero[0].image.length ) { 
-									heroImage = entry.hero[0].image[0].url
-								} else {
-									heroImage = '/assets/ui/fallback.png'
-								}
-								return (
-									<ArticleCard
-										key={entry.id}
-										href={`/${entry.slug}`}
-										image={heroImage}
-										// categories={entry.categories}
-										title={entry.title}
-										excerpt={entry.body}
-										date='2022-06-02T06:20:00-07:00'
-									/>
-								)
-
-							}
-						})
-					}
-				</div>
-			</section>
-		)
-	}
 
 	return (
 		<>
@@ -309,7 +263,9 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 
 			{handleMainFeature()}
 
-			{handleRecommendations()}
+			{handleRecommendations( t("Recommended"), recommendations )}
+			
+			{handleRecommendations( t("Most watched"), peopleAreWatching )}
 
 			{handleVideoCta()}
 
@@ -378,7 +334,7 @@ export async function getStaticProps({ locale }) {
     const featureArticlesData = await craftApolloClient().query({
         query: gql`
 			query FeatureArticles {
-				entry(id: "	4231", site: "${siteHandle}") {
+				entry(id: "	4231", site: "${siteHandle}", status: ["live", "disabled"]) {
 					id
 					... on videoCategoryPage_videoCategoryPage_Entry {
 						id
@@ -412,6 +368,7 @@ export async function getStaticProps({ locale }) {
 								}
 							}
 						}
+
 						mainFeatureArticle {
 							... on posts_Post_Entry {
 								id
@@ -442,6 +399,38 @@ export async function getStaticProps({ locale }) {
 								}
 							}
 						}
+
+						peopleAreWatching {
+							... on posts_Post_Entry {
+								id
+								slug
+								title
+								postDate
+								excerpt
+								body
+								heroType
+								hero {
+									... on hero_BlockType {
+										id
+										image {
+											url
+											width
+											height
+										}
+										video
+									}
+								}
+								categories {
+									... on categories_Category {
+										id
+										title
+										slug
+										level
+									}
+								}
+							}
+						}
+
 					}
 				}
 			}

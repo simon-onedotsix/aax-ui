@@ -375,9 +375,9 @@ export default function Post ({ entry, availableLocales }) {
                 <section className='mt-md'>
                     <p className='fw-500 mb-xs'>{t('Share this article')}</p>
                 
-                    <ButtonSocial href={`https://www.facebook.com/sharer/sharer.php?u=${`https://aax-ui.vercel.app`}${router.asPath}`} icon='facebook'/>
-                    <ButtonSocial href={`https://twitter.com/intent/tweet?url=${`https://aax-ui.vercel.app`}${router.asPath}`} icon='twitter'/>
-                    <ButtonSocial href={`https://www.linkedin.com/sharing/share-offsite/?url=${`https://aax-ui.vercel.app`}${router.asPath}`} icon='linkedin'/>
+                    <ButtonSocial href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='facebook'/>
+                    <ButtonSocial href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='twitter'/>
+                    <ButtonSocial href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='linkedin'/>
                 </section>
     
     
