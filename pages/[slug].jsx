@@ -318,7 +318,7 @@ export default function Post ({ entry, availableLocales }) {
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="x-default"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} hreflang="${router.locale}"/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} hrefLang="${router.locale}"/>
 
                 {
                     availableLocales && availableLocales.map( link => {
