@@ -691,6 +691,9 @@ export async function getStaticProps({ params, locale }) {
         })
         availableLocales.push({ locale: 'vi', data: viData.data.entry })
 
+        // TEMP DISABLED –––––––––––––––––––––––––––––––––––---
+        // * remember to update sitemap config when re-enabling
+
         //ko
         // const koData = await craftApolloClient( page ).query({
         //     query: gql`
@@ -704,6 +707,8 @@ export async function getStaticProps({ params, locale }) {
         //     `
         // })
         // availableLocales.push({ locale: 'ko', data: koData.data.entry })
+
+        // TEMP DISABLED –––––––––––––––––––––––––––––––––––---
 
     }
     
