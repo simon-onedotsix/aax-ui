@@ -300,25 +300,25 @@ export default function Post ({ entry, availableLocales }) {
 
     const handleHrefLangLinks = () => {
         
-        // console.log('current locale: ', router.locale)
+        console.log('current locale: ', router.locale)
         
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
-        // console.log(`<link href="https://trends.aax.com" rel="home">`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="x-default"/>`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
+        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
+        console.log(`<link href="https://trends.aax.com" rel="home">`)
+        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="x-default"/>`)
+        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
         
-        // if ( availableLocales ) {
-        //     availableLocales.map( link => {
-        //         if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com/${link.locale}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` )
-        //     })
-        // }
+        if ( availableLocales ) {
+            availableLocales.map( link => {
+                if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com/${link.locale}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` )
+            })
+        }
 
         return (
             <>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="x-default"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} hrefLang={router.locale}/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang="x-default"/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
 
                 {
                     availableLocales && availableLocales.map( link => {

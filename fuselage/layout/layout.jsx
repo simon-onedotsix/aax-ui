@@ -27,6 +27,8 @@ import { handlePosts } from '../../lib/handle-posts'
 
 import { LocalesContext } from '../../pages/_app'
 
+import { MailchimpSignup } from '../components/mailchimp-subscribe/mailchimp-subscribe'
+
 import CSS from './layout.module.css'
 
 const locales = [
@@ -577,16 +579,17 @@ export default function Layout ({ children, globals, categories }) {
 							{handleFooterLinks()}
 
 							<section className={`${CSS.footerColumns2} mt-md gap-md`}>
-								{/* {
+								{
 									footer.subscribeForm.length ?
 									<div className='formatted'>
 										<p className='fs-2 lh-2 serif c-primary'>{ footer.subscribeForm[0].heading }</p>
 										<p>{ footer.subscribeForm[0].body }</p>
 										
-										<SubscribeForm />
+										<MailchimpSignup/>
 									</div>
 									: null
-								} */}
+								}
+
 
 								<div className='formatted'>
 									{
