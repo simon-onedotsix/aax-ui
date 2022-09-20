@@ -300,18 +300,18 @@ export default function Post ({ entry, availableLocales }) {
 
     const handleHrefLangLinks = () => {
         
-        console.log('current locale: ', router.locale)
+        // console.log('current locale: ', router.locale)
         
-        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
-        console.log(`<link href="https://trends.aax.com" rel="home">`)
-        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="x-default"/>`)
-        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
+        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
+        // console.log(`<link href="https://trends.aax.com" rel="home">`)
+        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="x-default"/>`)
+        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
         
-        if ( availableLocales ) {
-            availableLocales.map( link => {
-                if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com/${link.locale}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` )
-            })
-        }
+        // if ( availableLocales ) {
+        //     availableLocales.map( link => {
+        //         if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` )
+        //     })
+        // }
 
         return (
             <>
@@ -323,7 +323,7 @@ export default function Post ({ entry, availableLocales }) {
                 {
                     availableLocales && availableLocales.map( link => {
                         if ( link && link.data && link.locale !== router.locale ) {
-                            return <link key={link.locale} href={`https://trends.aax.com/${link.locale}/${link.data.slug}`} rel="alternate" hrefLang={link.locale}/>
+                            return <link key={link.locale} href={`https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}`} rel="alternate" hrefLang={link.locale}/>
                         }
                     })
                 }
