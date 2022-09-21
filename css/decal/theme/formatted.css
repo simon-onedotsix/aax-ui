@@ -101,5 +101,26 @@
 
 .formatted img { max-width: 100%;}
 
+
+.formatted table {
+    border-collapse: collapse;
+    border-spacing: 1px;
+    background-color: black;
+    margin-bottom: var(--space-xs);
+}
+.formatted table td {
+    background-color: white;
+    padding: .35rem .5rem;
+    border: 1px solid #ddd;
+}
+.tableContainer {
+    overflow-x: auto;
+}
+@media(max-width:600px) {
+    .formatted table {
+        width: 100%;
+    }
+}
+
 /* purgecss end ignore */
 

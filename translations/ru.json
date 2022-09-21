@@ -23,7 +23,10 @@
         "Results for": "Результаты поиска",
         "Article 404": "Русскоязычная версия этой статьи пока недоступна. Следите за обновлениями!",
         "Generic 404": "Упс! Страница не найдена",
-        "Generic 500": "Error: Content not found."
+        "Generic 500": "Error: Content not found.",
+        
+        "Sending": "Отправляется...",
+        "Thank you for subscribing!": "Спасибо за Вашу подписку!"
     }
 
 }

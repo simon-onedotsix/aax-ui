@@ -253,7 +253,7 @@ export default function Layout ({ children, globals, categories }) {
           body: JSON.stringify({
             query: `
                 query Search {
-                    entries(section: "posts", search: "${searchQuery}", site: "${router.locale}", relatedTo: [${catergoryIds}] limit: 30) {
+                    entries(section: "posts", search: "${searchQuery}", site: "${router.locale}", relatedTo: [${catergoryIds}], orderBy: "score", limit: 30) {
                         ${QueryPostForCard}
                     }
                 }

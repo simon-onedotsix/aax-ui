@@ -23,7 +23,10 @@
         "Results for": "Résultats pour",
         "Article 404": "La version française de cet article n'est pas disponible pour l'instant. Restez à l'écoute!",
         "Generic 404": "Oops, désolé! La page que vous recherchiez ne peut être trouvé en ce moment.",
-        "Generic 500": "Error: Content not found."
+        "Generic 500": "Error: Content not found.",
+        
+        "Sending": "Envoi en cours...",
+        "Thank you for subscribing!": "Merci pour votre abonnement!"
     }
 
 }

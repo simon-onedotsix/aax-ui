@@ -23,7 +23,10 @@
         "Results for": "Kết quả cho",
         "Article 404": "Phiên bản bằng tiếng việt của bài viết này sẽ được đăng tải sớm.",
         "Generic 404": "Oops! Hiện không tìm thấy trang bạn đang tìm kiếm.",
-        "Generic 500": "Error: Content not found."
+        "Generic 500": "Error: Content not found.",
+        
+        "Sending": "Đang gửi ...",
+        "Thank you for subscribing!": "Cảm ơn bạn đã đăng ký!"
     }
 
 }

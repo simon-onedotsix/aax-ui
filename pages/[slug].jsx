@@ -300,28 +300,31 @@ export default function Post ({ entry, availableLocales }) {
 
     const handleHrefLangLinks = () => {
         
-        // console.log('current locale: ', router.locale)
+        console.log('current locale: ', router.locale)
         
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
-        // console.log(`<link href="https://trends.aax.com" rel="home">`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="x-default"/>`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
+        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
+        console.log(`<link href="https://trends.aax.com" rel="home">`)
+        console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
         
-        // if ( availableLocales ) {
-        //     availableLocales.map( link => {
-        //         if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` )
-        //     })
-        // }
+        if ( availableLocales ) {
+            availableLocales.map( link => {
+                if ( link && link.data && link.locale === 'en') console.log(`<link href="https://trends.aax.com/${link.data.slug}" rel="alternate" rel="x-default"/>`)
+
+                if ( link && link.data && link.locale !== router.locale ) console.log( `<link href="https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` )
+            })
+        }
 
         return (
             <>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang="x-default"/>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
 
                 {
                     availableLocales && availableLocales.map( link => {
+                        if ( link && link.data && link.locale === 'en') {
+                            return <link href={`https://trends.aax.com/${link.data.slug}`} rel="alternate" hrefLang="x-default"/>
+                        }
                         if ( link && link.data && link.locale !== router.locale ) {
                             return <link key={link.locale} href={`https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}`} rel="alternate" hrefLang={link.locale}/>
                         }
@@ -464,7 +467,7 @@ export async function getStaticPaths() {
     const entriesData = await craftApolloClient().query({
         query: gql`
             query Posts {
-                entries(section: "posts") {
+                entries(section: "posts", limit: 1000) {
                     id
                     title
                     slug

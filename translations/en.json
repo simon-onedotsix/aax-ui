@@ -23,8 +23,10 @@
         "Results for": "Results for",
         "Article 404": "The English version of this article is coming up soon. Stay tuned!",
         "Generic 404": "Oops! The page you are looking for cannot currently be found.",
-        "Generic 500": "Error: Content not found."
+        "Generic 500": "Error: Content not found.",
         
+        "Sending": "Sending...",
+        "Thank you for subscribing!": "Thank you for subscribing!"
     }
 
 }

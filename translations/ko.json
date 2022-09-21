@@ -23,7 +23,10 @@
         "Results for": "...의 검색결과",
         "Article 404": "The Korean version of this article is coming up soon. Stay tuned!",
         "Generic 404": "찾는 페이지가 없습니다.",
-        "Generic 500": "Error: Content not found."
+        "Generic 500": "Error: Content not found.",
+        
+        "Sending": "전송중",
+        "Thank you for subscribing!": "구독해주셔서 감사합니다"
     }
 
 }

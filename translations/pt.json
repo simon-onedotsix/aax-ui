@@ -23,7 +23,10 @@
         "Results for": "Resultados para",
         "Article 404": "A versão em espanhol deste artigo ainda não está disponível. Fique ligado!",
         "Generic 404": "Ops! A página que você está procurando não pode ser encontrada no momento.",
-        "Generic 500": "Error: Content not found."
+        "Generic 500": "Error: Content not found.",
+        
+        "Sending": "Enviando...",
+        "Thank you for subscribing!": "Obrigado por se inscrever!"
     }
 
 }
