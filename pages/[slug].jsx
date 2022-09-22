@@ -322,7 +322,7 @@ export default function Post ({ entry, availableLocales }) {
 
                 {
                     availableLocales && availableLocales.map( link => {
-                        if ( link && link.data && link.locale === 'en') {
+                        if ( link && link.data && link.locale !== 'en') {
                             return <link href={`https://trends.aax.com/${link.data.slug}`} rel="alternate" hrefLang="x-default"/>
                         }
                         if ( link && link.data && link.locale !== router.locale ) {
