@@ -300,11 +300,13 @@ export default function Post ({ entry, availableLocales }) {
 
     const handleHrefLangLinks = () => {
         
+        // console.log('availableLocales: ', availableLocales)
         // console.log('current locale: ', router.locale)
+        
         
         // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
         // console.log(`<link href="https://trends.aax.com" rel="home">`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hreflang="${router.locale}"/>`)
+        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hrefLang="${router.locale}"/>`)
         
         // if ( availableLocales ) {
         //     availableLocales.map( link => {
@@ -313,7 +315,7 @@ export default function Post ({ entry, availableLocales }) {
         //         )
 
         //         if ( link && link.data && link.locale !== router.locale ) console.log( 
-        //             `<link href="https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}" rel="alternate" hreflang="${link.locale}"/>` 
+        //             `<link href="https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}" rel="alternate" hrefLang="${link.locale}"/>` 
         //         )
         //     })
         // }
@@ -330,6 +332,11 @@ export default function Post ({ entry, availableLocales }) {
                         if ( link && link.data && link.locale === 'en') {
                             return <link key={link.locale} href={`https://trends.aax.com/${link.data.slug}`} rel="alternate" hrefLang="x-default"/>
                         }
+                    })
+                }
+                {
+                    availableLocales && 
+                    availableLocales.map( link => {
                         if ( link && link.data && link.locale !== router.locale ) {
                             return <link key={link.locale} href={`https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}`} rel="alternate" hrefLang={link.locale}/>
                         }
