@@ -324,7 +324,7 @@ export default function Post ({ entry, availableLocales }) {
             <>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} hrefLang={router.locale}/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
 
                 {
                     availableLocales && 
@@ -479,7 +479,7 @@ export async function getStaticPaths() {
     const entriesData = await craftApolloClient().query({
         query: gql`
             query Posts {
-                entries(section: "posts", limit: 1000) {
+                entries(section: "posts", limit: 500) {
                     id
                     title
                     slug
