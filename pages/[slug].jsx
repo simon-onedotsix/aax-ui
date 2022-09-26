@@ -302,38 +302,15 @@ export default function Post ({ entry, availableLocales }) {
         
         // console.log('availableLocales: ', availableLocales)
         // console.log('current locale: ', router.locale)
-        
-        
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
-        // console.log(`<link href="https://trends.aax.com" rel="home">`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" hrefLang="${router.locale}"/>`)
-        
-        // if ( availableLocales ) {
-        //     availableLocales.map( link => {
-        //         if ( link && link.data && link.locale === 'en') console.log(
-        //             `<link href="https://trends.aax.com/${link.data.slug}" rel="alternate" rel="x-default"/>`
-        //         )
 
-        //         if ( link && link.data && link.locale !== router.locale ) console.log( 
-        //             `<link href="https://trends.aax.com${link.locale !== 'en' ? `/${link.locale}` : ''}/${link.data.slug}" rel="alternate" hrefLang="${link.locale}"/>` 
-        //         )
-        //     })
-        // }
 
         return (
             <>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
+                <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"/>
 
-                {
-                    availableLocales && 
-                    availableLocales.map( link => {
-                        if ( link && link.data && link.locale === 'en') {
-                            return <link key={link.locale} href={`https://trends.aax.com/${link.data.slug}`} rel="alternate" hrefLang="x-default"/>
-                        }
-                    })
-                }
                 {
                     availableLocales && 
                     availableLocales.map( link => {
@@ -451,6 +428,7 @@ export default function Post ({ entry, availableLocales }) {
         )
 
     } else if ( !entry ) {
+
         return (
             <section>
                 <h1 className='h fs-0 serif lh-2 maxw-55 pb-sm'>404</h1>
@@ -731,6 +709,12 @@ export async function getStaticProps({ params, locale }) {
     // console.log('page:', page)
     // console.log('availableLocales:', availableLocales)
     
+
+    if (!page) {
+        return {
+            notFound: true,
+        }
+    }
 
     return { 
         props: { 
