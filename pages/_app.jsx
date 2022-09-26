@@ -4,13 +4,13 @@ import Script from "next/script"
 import { gql } from "@apollo/client"
 import craftApolloClient from "./api/apollo"
 
+import NextNProgress from "nextjs-progressbar"
+
 import {NextIntlProvider} from 'next-intl'
 
 import Layout from '../fuselage/layout/layout'
 
 import '../css/index.css'
-
-
 
 
 export const LocalesContext = React.createContext()
@@ -32,6 +32,13 @@ export default function App({ Component, pageProps, globals, categories }) {
 					`}
 				</Script>
 				<Layout globals={globals} categories={categories}>
+					<NextNProgress 
+						color="#007bff"
+						startPosition={0.3}
+						stopDelayMs={200}
+						height={5}
+						showOnShallow={true}
+					/>
 					<Component {...pageProps} />
 				</Layout>
 			</NextIntlProvider>

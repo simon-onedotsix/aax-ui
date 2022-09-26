@@ -11,6 +11,7 @@ specifiers:
   next: 12.2.0
   next-intl: ^2.7.4
   next-sitemap: ^3.1.20
+  nextjs-progressbar: ^0.0.14
   prop-types: ^15.8.1
   react: 17.0.2
   react-dom: 17.0.2
@@ -29,6 +30,7 @@ dependencies:
   next: 12.2.0_sfoxds7t5ydpegc3knd667wn6m
   next-intl: 2.7.4_next@12.2.0+react@17.0.2
   next-sitemap: 3.1.20_p2qjwvoqhvjfuqs6jc57taups4
+  nextjs-progressbar: 0.0.14_next@12.2.0+react@17.0.2
   prop-types: 15.8.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -3324,8 +3326,24 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
+  /nextjs-progressbar/0.0.14_next@12.2.0+react@17.0.2:
+    resolution: {integrity: sha512-AXYXHDN6M52AwFnGqH/vlwyo0gbC9zM7QS/4ryOTI0RUqfze5FJl8uSrxKJMzK6hGFdDeQXcZoWsLGXeCVtTwg==}
+    peerDependencies:
+      next: '>= 6.0.0'
+      react: '>= 16.0.0'
+    dependencies:
+      next: 12.2.0_sfoxds7t5ydpegc3knd667wn6m
+      nprogress: 0.2.0
+      prop-types: 15.8.1
+      react: 17.0.2
+    dev: false
+
   /node-releases/2.0.5:
     resolution: {integrity: sha512-U9h1NLROZTq9uE1SNffn6WuPDg8icmi3ns4rEl/oTfIle4iLjTliCzgTsbaIFMq/Xn078/lfY/BL0GWZ+psK4Q==}
+    dev: false
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
     dev: false
 
   /nth-check/2.1.1:
