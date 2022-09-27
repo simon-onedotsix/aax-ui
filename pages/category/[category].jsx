@@ -7,6 +7,7 @@ import Head from 'next/head'
 
 import { handlePosts } from "../../lib/handle-posts"
 import { handleTags } from "../../lib/handle-tags"
+import { handleHrefLangLinks } from "../../lib/category-hreflang"
 
 import { CtaVideo } from "../../fuselage/components/cta-video/cta-video"
 import { CategorySearchButton } from '../../fuselage/components/category-search-button/category-search-button'
@@ -57,41 +58,6 @@ export default function CategoryPage ({ category, entries, tags }) {
 
     }
 
-    const handleHrefLangLinks = () => {
-        
-        // console.log('current locales: ', router.locales)
-        // console.log('current locale: ', router.locale)
-        
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="canonical"/>`)
-        // console.log(`<link href="https://trends.aax.com" rel="home">`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="alternate" hreflang="x-default"/>`)
-        // console.log(`<link href="https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}" rel="alternate" hreflang="${router.locale}"/>`)
-        
-        // if ( router.locales ) {
-        //     router.locales.map( locale => {
-        //         if ( router.locale != 'en') console.log( 
-        //             `<link href="https://trends.aax.com/${locale}${router.asPath}" rel="alternate" hreflang="${locale}"/>` 
-        //         )
-        //     })
-        // }
-
-        // return (
-        //     <>
-        //         <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
-        //         <link href="https://trends.aax.com" rel="home"/>
-        //         <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang="x-default"/>
-        //         <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
-
-        //         {
-        //             availableLocales && availableLocales.map( link => {
-        //                 if ( link && link.data && link.locale !== router.locale ) {
-        //                     return <link key={link.locale} href={`https://trends.aax.com/${link.locale}/${link.data.slug}`} rel="alternate" hrefLang={link.locale}/>
-        //                 }
-        //             })
-        //         }
-        //     </>
-        // )
-    }
 
 
     return (
@@ -108,6 +74,8 @@ export default function CategoryPage ({ category, entries, tags }) {
                 <meta content={metaTags && metaTags['og:title'].content} property="og:title" />
                 <meta content={metaTags && metaTags['og:description'].content} property="og:description" />
                 <meta content={metaTags && metaTags['og:image'].content} property="og:image"></meta>
+
+                { handleHrefLangLinks( router ) }
 			</Head>
 
             

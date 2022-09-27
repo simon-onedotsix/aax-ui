@@ -5,7 +5,11 @@ import { QueryPostForCard } from "../../graphql/queries"
 
 import Head from 'next/head'
 import Link from "next/link"
+import { useRouter } from 'next/router'
+
 import { useTranslations } from 'next-intl'
+
+import { handleHrefLangLinks } from "../../lib/category-hreflang"
 
 import { UnderlineBarLink } from '../../fuselage/components/u-bar-link/u-bar-link'
 
@@ -28,6 +32,10 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 	// console.log('trends:', trends)
 	// console.log('tutorials:', tutorials)
 	// console.log('videoCta:', videoCta)
+
+	const router = useRouter()
+    // console.log('ROUTER:', router)
+    // console.log('ROUTER:', router.locale)
 
 	const recommendations = featured && featured.featureArticles.length ? featured.featureArticles : null
 	const peopleAreWatching = featured && featured.peopleAreWatching.length ? featured.peopleAreWatching : null
@@ -259,6 +267,8 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 				<meta content={metaTags && metaTags['og:title'].content} property="og:title" />
 				<meta content={metaTags && metaTags['og:description'].content} property="og:description" />
 				<meta content={metaTags && metaTags['og:image'].content} property="og:image"></meta>
+
+				{ handleHrefLangLinks( router) }
 			</Head>
 
 			{handleMainFeature()}

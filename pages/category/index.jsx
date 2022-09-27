@@ -1,9 +1,12 @@
 import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import {useTranslations} from 'next-intl'
+
+import { handleHrefLangLinks } from "../../lib/category-hreflang"
 
 import { TagLink } from '../../fuselage/components/tag-link/tag-link'
 import { Button } from '../../fuselage/components/button/button'
@@ -11,6 +14,11 @@ import { CategorySearchButton } from '../../fuselage/components/category-search-
 import { ArticleCardLandscape } from '../../fuselage/components/article-card-landscape/article-card-landscape'
 
 export default function Categories({ categories }) {
+
+	const router = useRouter()
+    // console.log('ROUTER:', router)
+    // console.log('ROUTER:', router.locale)
+
 
 	const t = useTranslations('Global')
 
@@ -35,6 +43,7 @@ export default function Categories({ categories }) {
 				<title>AAX</title>
 				<meta name="description" content="AAX blog" />
 				<link rel="icon" href="/favicon.ico" />
+				{ handleHrefLangLinks( router ) }
 			</Head>
 
 		
