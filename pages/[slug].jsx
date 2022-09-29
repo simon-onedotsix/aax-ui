@@ -303,13 +303,19 @@ export default function Post ({ entry, availableLocales }) {
         // console.log('availableLocales: ', availableLocales)
         // console.log('current locale: ', router.locale)
 
+        let defaultEnPost = availableLocales.find( obj => obj.locale === 'en').data
+        // console.log('defaultEnPost:', defaultEnPost)
 
         return (
             <>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
                 <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
-                <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"/>
+                
+                {
+                    defaultEnPost &&
+                    <link href={`https://trends.aax.com/${defaultEnPost.slug}`} rel="alternate" hrefLang="x-default"/>
+                }
 
                 {
                     availableLocales && 
@@ -457,7 +463,7 @@ export async function getStaticPaths() {
     const entriesData = await craftApolloClient().query({
         query: gql`
             query Posts {
-                entries(section: "posts", limit: 500) {
+                entries(section: "posts", limit: 5) {
                     id
                     title
                     slug
