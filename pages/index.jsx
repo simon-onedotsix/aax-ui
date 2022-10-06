@@ -75,8 +75,8 @@ export default function Home({ entry, features, explainers, videos, news, press,
                 <>
                     <link href={`https://trends.aax.com${router.locale != 'en' ? `/${router.locale}` : ''}`} rel='canonical' />
                     <link href={metaLinks['home'].href} rel="home"/>
-                    <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="en"></link>
-                    <link href={`https://trends.aax.com${router.asPath}`} rel="alternate" hrefLang="x-default"></link>
+                    <link href={`https://trends.aax.com`} rel="alternate" hrefLang="en"></link>
+                    <link href={`https://trends.aax.com`} rel="alternate" hrefLang="x-default"></link>
 
                     { metaLinks.alternate.map( (link, index) => {
                         if ( link.hreflang !== 'en' && link.hreflang !== 'x-default' ) {
@@ -329,18 +329,6 @@ export default function Home({ entry, features, explainers, videos, news, press,
 			<Head>
 				{ handleMetaTags() }
 				{ handleMetaLinks() }
-
-				{/* <title>{metaTitle.title.title}</title>
-
-				<meta name="description" content={metaTags.description.content} />
-				<meta name="referrer" content={metaTags.referrer.content} />
-				<meta content={metaTags['og:locale'].content} property="og:locale" />
-				<meta content={metaTags['og:site_name'].content} property="og:site_name" />
-				<meta content={metaTags['og:type'].content} property="og:type" />
-				<meta content={metaTags['og:url'].content} property="og:url" />
-				<meta content={metaTags['og:title'].content} property="og:title" />
-				<meta content={metaTags['og:description'].content} property="og:description" />
-				<meta content={metaTags['og:image'].content} property="og:image"></meta> */}
 			</Head>
 
 
