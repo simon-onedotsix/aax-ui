@@ -1,5 +1,19 @@
+const securityHeaders = [
+	{
+		key: 'X-Frame-Options',
+		value: 'SAMEORIGIN'
+	},
+	{
+		key: 'X-XSS-Protection',
+		value: '1; mode=block'
+	}
+]
+
+
 module.exports = {
+
 	reactStrictMode: true,
+
 	images: {
 		domains: ['trends-svc.aax.com', 'aaxtrends.cogney.com', 'youtube.com'],
 	},
@@ -16,5 +30,15 @@ module.exports = {
 		});
 	
 		return config;
-	}
+	},
+
+	async headers() {
+		return [
+			{
+				// apply these headers to all routes in application
+				source: '/:path*',
+				headers: securityHeaders,
+			}
+		]
+	},
 }
