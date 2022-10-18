@@ -81,7 +81,7 @@ export default function Home({ entry, features, explainers, videos, news, press,
                     { metaLinks.alternate.map( (link, index) => {
                         if ( link.hreflang !== 'en' && link.hreflang !== 'x-default' ) {
                             return (
-                                <link key={index} href={`https://trends.aax.com/${link.hreflang}${router.asPath}`} rel="alternate" hrefLang={link.hreflang}/> 
+                                <link key={index} href={`https://trends.aax.com/${link.hreflang}`} rel="alternate" hrefLang={link.hreflang}/> 
                             )}
                         }
                     )}

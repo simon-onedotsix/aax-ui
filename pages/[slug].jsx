@@ -467,7 +467,7 @@ export async function getStaticPaths() {
     const entriesData = await craftApolloClient().query({
         query: gql`
             query Posts {
-                entries(section: "posts", limit: 5) {
+                entries(section: "posts", limit: 300) {
                     id
                     title
                     slug
