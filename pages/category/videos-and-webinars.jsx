@@ -23,8 +23,8 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 
 	const t = useTranslations('Global')
 
-	console.log('entry:', entry)
-	console.log('featured:', featured)
+	// console.log('entry:', entry)
+	// console.log('featured:', featured)
 	// console.log('ben:', ben)
 	// console.log('update:', update)
 	// console.log('bitcoin:', bitcoin)
@@ -270,6 +270,8 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 
 				{ handleHrefLangLinks( router) }
 			</Head>
+
+			<h1 className="h fs-1 serif c-primary mb-xs">{t("Videos and webinars")}</h1>
 
 			{handleMainFeature()}
 

@@ -26,7 +26,9 @@
         "Generic 500": "Error: Content not found.",
         
         "Sending": "傳送中",
-        "Thank you for subscribing!": "多謝您的訂閱！"
+        "Thank you for subscribing!": "多謝您的訂閱！",
+        
+        "Videos and webinars": "影片及研討會"
     }
 
 }

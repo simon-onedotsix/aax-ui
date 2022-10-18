@@ -26,7 +26,9 @@
         "Generic 500": "Error: Content not found.",
         
         "Sending": "Отправляется...",
-        "Thank you for subscribing!": "Спасибо за Вашу подписку!"
+        "Thank you for subscribing!": "Спасибо за Вашу подписку!",
+        
+        "Videos and webinars": "Видео и Вебинары"
     }
 
 }

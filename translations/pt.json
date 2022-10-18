@@ -26,7 +26,9 @@
         "Generic 500": "Error: Content not found.",
         
         "Sending": "Enviando...",
-        "Thank you for subscribing!": "Obrigado por se inscrever!"
+        "Thank you for subscribing!": "Obrigado por se inscrever!",
+        
+        "Videos and webinars": "Vídeos e webinars"
     }
 
 }
