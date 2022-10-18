@@ -44,7 +44,7 @@ export default function Post ({ entry, availableLocales }) {
 
     const t = useTranslations('Global')
 
-    // console.log('entry:', entry)
+    console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('SEO — links:', JSON.parse(entry.seomatic.metaLinkContainer))
@@ -255,6 +255,10 @@ export default function Post ({ entry, availableLocales }) {
 
     }
 
+    const handleSchemaAppend = () => {
+        if ( entry.schemaCode) return entry.schemaCode
+    }
+
     const handleMetaTags = () => {
         if ( entry && entry.seomatic ) {
             
@@ -339,7 +343,7 @@ export default function Post ({ entry, availableLocales }) {
                 <Head>                    
                     { handleMetaTags() }
                     { handleHrefLangLinks() }
-                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ handleSchema() }` }} />
+                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ handleSchema() } ${ handleSchemaAppend() }` }} />
                 </Head>
     
     
