@@ -123,9 +123,13 @@ export default function Post ({ entry, availableLocales }) {
     }
  
     const handleSchema = () => {
+        
+        const siteUrl = 'https://trends.aax.com'
+        let schema
+        
         if ( entry && entry.heroType && entry.hero[0].video ) {
             // video hero schema
-            return (
+            schema = (
                 `
                     {
                         "@context": "http://schema.org/",
@@ -137,15 +141,15 @@ export default function Post ({ entry, availableLocales }) {
                         "author": {
                             "@type": "Organization",
                             "name": "AAX Trends",
-                            "url": "${process.env.NEXT_PUBLIC_CMS_URL}"
+                            "url": "${siteUrl}"
                         },
                         "publisher": {
                             "@type": "Organization",
                             "name": "AAX Trends",
-                            "url": "${process.env.NEXT_PUBLIC_CMS_URL}",
+                            "url": "${siteUrl}",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "${process.env.NEXT_PUBLIC_CMS_URL}/assets/ui/AAX-trends-logo.svg"
+                                "url": "${siteUrl}/assets/ui/AAX-trends-logo.svg"
                             }
                         },
                         "headline": "${entry.title}",
@@ -160,19 +164,19 @@ export default function Post ({ entry, availableLocales }) {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "AAX Trends",
-                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}"
+                                "item": "${siteUrl}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "${entry.categories && entry.categories[0] ? entry.categories[0].title : ''}",
-                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories && entry.categories[0] ? entry.categories[0].slug : ''}"
+                                "item": "${siteUrl}/category/${entry.categories && entry.categories[0] ? entry.categories[0].slug : ''}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 3,
                                 "name": "${entry.categories && entry.categories[1] ? entry.categories[1].title : ''}",
-                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories && entry.categories[1] ? entry.categories[1].slug : ''}"
+                                "item": "${siteUrl}/category/${entry.categories && entry.categories[1] ? entry.categories[1].slug : ''}"
                             },
                             {
                                 "@type": "ListItem",
@@ -188,7 +192,7 @@ export default function Post ({ entry, availableLocales }) {
 
         } else {
             // image hero schema
-            return (
+            schema = (
                 `
                     {
                         "@context": "http://schema.org/",
@@ -208,10 +212,10 @@ export default function Post ({ entry, availableLocales }) {
                         "publisher": {
                             "@type": "Organization",
                             "name": "AAX Trends",
-                            "url": "${process.env.NEXT_PUBLIC_CMS_URL}",
+                            "url": "${siteUrl}",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "${process.env.NEXT_PUBLIC_CMS_URL}/assets/ui/AAX-trends-logo.svg"
+                                "url": "${siteUrl}/assets/ui/AAX-trends-logo.svg"
                             }
                         },
                         "headline": "${entry.title}",
@@ -226,19 +230,19 @@ export default function Post ({ entry, availableLocales }) {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "AAX Trends",
-                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}"
+                                "item": "${siteUrl}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": "${entry.categories.length && entry.categories[0].title}",
-                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories.length && entry.categories[0].slug}"
+                                "item": "${siteUrl}/category/${entry.categories.length && entry.categories[0].slug}"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 3,
                                 "name": "${entry.categories[1] ? entry.categories[1].title : null}",
-                                "item": "${process.env.NEXT_PUBLIC_CMS_URL}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
+                                "item": "${siteUrl}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
                             },
                             {
                                 "@type": "ListItem",
@@ -253,10 +257,12 @@ export default function Post ({ entry, availableLocales }) {
             )
         }
 
+        return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ schema }` }} />
+
     }
 
     const handleSchemaAppend = () => {
-        if ( entry.schemaCode) return entry.schemaCode
+        if ( entry.schemaCode) return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ entry.schemaCode }` }} />
     }
 
     const handleMetaTags = () => {
@@ -343,7 +349,8 @@ export default function Post ({ entry, availableLocales }) {
                 <Head>                    
                     { handleMetaTags() }
                     { handleHrefLangLinks() }
-                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ handleSchema() } ${ handleSchemaAppend() }` }} />
+                    { handleSchema() }
+                    { handleSchemaAppend() }
                 </Head>
     
     
@@ -358,17 +365,6 @@ export default function Post ({ entry, availableLocales }) {
                         : null
                     }
                 </section>
-    
-    
-                {/* <section className="mt-lg">
-                    <p className="fw-500 caps ls-2 c-primary pb-xs">Table of contents</p>
-                    <ul className='tableOfContents'>
-                        <li><Link href='#'><a>Mauris purus. Donec est nunc</a></Link></li>
-                        <li><Link href='#'><a>Ornare non, aliquet non tempus vel dolor. </a></Link></li>
-                        <li><Link href='#'><a>Integer sapien nibh</a></Link></li>
-                        <li><Link href='#'><a>Egestas ut cursus sit amet</a></Link></li>
-                    </ul>
-                </section> */}
     
     
                 <section className="mt-md maxw-55 formatted">
