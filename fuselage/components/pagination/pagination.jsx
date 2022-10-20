@@ -1,0 +1,182 @@
+import { useState, useEffect } from "react"
+import { useRouter } from 'next/router'
+
+import { ArticleCardLandscape } from "../../components/article-card-landscape/article-card-landscape"
+import { ArticleCardVideoLandscape } from "../../components/article-card-video-landscape/article-card-video-landscape"
+
+import FIRST from './img/pagination-first.svg'
+import LAST from './img/pagination-last.svg'
+import PREV from './img/pagination-prev.svg'
+import NEXT from './img/pagination-next.svg'
+
+import CSS from './pagination.module.css'
+
+
+
+export function Pagination({ data, pageLimit, dataLimit }) {
+    
+    const [ pages ] = useState(Math.ceil(data.length / dataLimit))
+    const [ currentPage, setCurrentPage ] = useState(1)
+
+    const router = useRouter()
+
+    useEffect( () => {
+        if ( router.query.page && router.query.page <= pages ) {
+            console.log('page query:', router)
+            setCurrentPage(parseInt(router.query.page))
+        }
+    }, [ router ])
+
+
+
+    // console.log('pagination data:', data)
+    // console.log('posts:', data.length)
+    // console.log('pages:', pages)
+    // console.log('currentPage:', currentPage)
+
+    
+
+    function goToNextPage() {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setCurrentPage((page) => page + 1)
+        updateRouter(currentPage + 1)
+    }
+  
+    function goToPreviousPage() {
+        setCurrentPage((page) => page - 1)
+        updateRouter(currentPage - 1)
+    }
+  
+    function changePage( event ) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        const pageNumber = Number(event.target.textContent)
+        setCurrentPage(pageNumber)
+        updateRouter(pageNumber)
+    }
+  
+    const getPaginatedData = () => {
+        const startIndex = currentPage * dataLimit - dataLimit
+        const endIndex = startIndex + dataLimit
+        return data.slice(startIndex, endIndex)
+    }
+
+    const getPaginationGroup = () => {
+        let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+        return new Array(pageLimit).fill().map((_, index) => start + index + 1)
+    }
+
+    function updateRouter ( page ) {
+        router.replace(`${router.pathname}?page=${page}`, undefined, { shallow: true })
+    }
+
+
+    
+    return (
+        <>
+
+            {/* render posts */}
+            
+            <div className={CSS.dataContainer}>
+                {
+                    getPaginatedData().map( entry => {
+
+                        let excerpt
+                        entry.excerpt ? excerpt = entry.excerpt : excerpt = entry.body
+                        
+                        if ( entry.heroType && entry.hero[0].video ) {
+                            return (
+                                <ArticleCardVideoLandscape
+                                    key={entry.id}
+                                    href={`/${entry.slug}`}
+                                    videoUrl={`https://www.youtube.com/watch?v=${entry.hero[0].video}`}
+                                    title={entry.title}
+                                    excerpt={excerpt}
+                                    date={entry.postDate}
+                                    categories={entry.categories}
+                                />
+                            )
+    
+                        } else {
+                            let heroImage
+                            if ( entry.hero.length && entry.hero[0].image.length ) { 
+                                heroImage = entry.hero[0].image[0].url
+                            } else {
+                                heroImage = '/assets/ui/fallback.png'
+                            }
+                            return (
+                                <ArticleCardLandscape 
+                                    key={entry.id}
+                                    href={`/${entry.slug}`}
+                                    title={entry.title}
+                                    excerpt={excerpt}
+                                    image={heroImage}
+                                    date={entry.postDate}
+                                    categories={entry.categories}
+    
+                                />
+                            )
+                        }
+                        
+                    })
+                }
+            </div>
+        
+
+
+            {/* pagiantion ui */}
+
+            <div className={CSS.pagination}>
+
+                {/* <p className="fs-sm fw-600 c-primary mr-sm">Page: {currentPage} / {pages}</p> */}
+
+
+                <button
+                    onClick={ () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                        setCurrentPage(1)
+                        updateRouter(1)
+                    }}
+                    className={`${CSS.prev} ${currentPage === 1 ? CSS.disabled : ''}`}
+                ><FIRST className={CSS.icon} /></button>
+
+
+                <button
+                    onClick={goToPreviousPage}
+                    className={`${CSS.prev} ${currentPage === 1 ? CSS.disabled : ''}`}
+                ><PREV className={CSS.icon} /></button>
+            
+
+                {
+                    getPaginationGroup().map((item, index) => {
+                        if ( data.length/dataLimit + 1 > item ) {
+                            return (
+                                <button
+                                    key={index}
+                                    onClick={changePage}
+                                    className={`${CSS.paginationItem} ${currentPage === item ? CSS.active : null}`}
+                                ><span>{item}</span></button>
+                            )
+                        }
+                    })
+                }
+            
+
+                <button
+                    onClick={goToNextPage}
+                    className={`${CSS.next} ${currentPage == pages ? CSS.disabled : ''}`}
+                ><NEXT className={CSS.icon} /></button>
+                
+
+                <button
+                    onClick={ () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                        setCurrentPage(Math.ceil(pages))
+                        updateRouter(Math.ceil(pages))
+                    }}
+                    className={`${CSS.next} ${currentPage == Math.ceil(pages) ? CSS.disabled : ''}`}
+                ><LAST className={CSS.icon} /></button>
+            </div>
+
+      </>
+    )
+}

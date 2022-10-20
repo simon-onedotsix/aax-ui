@@ -33,7 +33,7 @@ export const CryptoChart = ({ currency, code }) => {
             
             const chartLiveData = await chartLiveDataReq.json()
 
-            console.log('chartLiveData:', chartLiveData)
+            // console.log('chartLiveData:', chartLiveData)
 
 
             // current value
