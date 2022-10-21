@@ -72,7 +72,7 @@ export default function PaginationDev ({ category, entries, tags }) {
                 { handleHrefLangLinks( router ) }
 			</Head>
             
-            <h1 className="h fs-1 serif c-primary pb-sm">[pagination demo] { category ? category.title : 'fallback' }</h1>
+            
 
             {
                 entries.length > 0 ? (
@@ -80,6 +80,7 @@ export default function PaginationDev ({ category, entries, tags }) {
                         data={entries}
                         pageLimit={4}
                         dataLimit={20}
+                        heading={`Explainers`}
                     />
                 ) : (
                     <p className="fs-4 fw-600">{t("There are no posts in this category")}</p>

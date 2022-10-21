@@ -13,12 +13,15 @@ import CSS from './pagination.module.css'
 
 
 
-export function Pagination({ data, pageLimit, dataLimit }) {
+export function Pagination({ data, pageLimit, dataLimit, heading }) {
     
     const [ pages ] = useState(Math.ceil(data.length / dataLimit))
     const [ currentPage, setCurrentPage ] = useState(1)
 
     const router = useRouter()
+
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+    const scrollBehaviour = { top: 0, behavior: 'smooth' }
 
     useEffect( () => {
         if ( router.query.page && router.query.page <= pages ) {
@@ -37,18 +40,19 @@ export function Pagination({ data, pageLimit, dataLimit }) {
     
 
     function goToNextPage() {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+        window.scrollTo(scrollBehaviour)
         setCurrentPage((page) => page + 1)
         updateRouter(currentPage + 1)
     }
   
     function goToPreviousPage() {
+        window.scrollTo(scrollBehaviour)
         setCurrentPage((page) => page - 1)
         updateRouter(currentPage - 1)
     }
   
     function changePage( event ) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+        window.scrollTo(scrollBehaviour)
         const pageNumber = Number(event.target.textContent)
         setCurrentPage(pageNumber)
         updateRouter(pageNumber)
@@ -69,14 +73,21 @@ export function Pagination({ data, pageLimit, dataLimit }) {
         router.replace(`${router.pathname}?page=${page}`, undefined, { shallow: true })
     }
 
-
+    
     
     return (
         <>
 
+            <h1 className="h fs-1 serif c-primary">{ heading }</h1>
+
+            {
+                pages > 1 &&
+                <p className="fs-sm fw-600">Page: {currentPage} / {pages}</p>
+            }
+
             {/* render posts */}
             
-            <div className={CSS.dataContainer}>
+            <div className={`${CSS.dataContainer} mt-sm`}>
                 {
                     getPaginatedData().map( entry => {
 
@@ -125,57 +136,72 @@ export function Pagination({ data, pageLimit, dataLimit }) {
 
             {/* pagiantion ui */}
 
-            <div className={CSS.pagination}>
+            {
+                pages > 1 &&
 
-                {/* <p className="fs-sm fw-600 c-primary mr-sm">Page: {currentPage} / {pages}</p> */}
+                <div className={CSS.pagination}>
+
+                    <a
+                        href={ currentPage > 1 ? `${siteUrl}${router.pathname}?page=1` : `#`}
+                        onClick={ e => {
+                            e.preventDefault()
+                            window.scrollTo(scrollBehaviour)
+                            setCurrentPage(1)
+                            updateRouter(1)
+                        }}
+                        className={`${CSS.prev} ${currentPage === 1 ? CSS.disabled : ''}`}
+                    ><FIRST className={CSS.icon} /></a>
 
 
-                <button
-                    onClick={ () => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-                        setCurrentPage(1)
-                        updateRouter(1)
-                    }}
-                    className={`${CSS.prev} ${currentPage === 1 ? CSS.disabled : ''}`}
-                ><FIRST className={CSS.icon} /></button>
-
-
-                <button
-                    onClick={goToPreviousPage}
-                    className={`${CSS.prev} ${currentPage === 1 ? CSS.disabled : ''}`}
-                ><PREV className={CSS.icon} /></button>
-            
-
-                {
-                    getPaginationGroup().map((item, index) => {
-                        if ( data.length/dataLimit + 1 > item ) {
-                            return (
-                                <button
-                                    key={index}
-                                    onClick={changePage}
-                                    className={`${CSS.paginationItem} ${currentPage === item ? CSS.active : null}`}
-                                ><span>{item}</span></button>
-                            )
-                        }
-                    })
-                }
-            
-
-                <button
-                    onClick={goToNextPage}
-                    className={`${CSS.next} ${currentPage == pages ? CSS.disabled : ''}`}
-                ><NEXT className={CSS.icon} /></button>
+                    <a
+                        href={ currentPage > 1 ? `${siteUrl}${router.pathname}?page=${currentPage - 1}` : `#`}
+                        onClick={ e => {
+                            e.preventDefault()
+                            goToPreviousPage()
+                        }}
+                        className={`${CSS.prev} ${currentPage === 1 ? CSS.disabled : ''}`}
+                    ><PREV className={CSS.icon} /></a>
                 
 
-                <button
-                    onClick={ () => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-                        setCurrentPage(Math.ceil(pages))
-                        updateRouter(Math.ceil(pages))
-                    }}
-                    className={`${CSS.next} ${currentPage == Math.ceil(pages) ? CSS.disabled : ''}`}
-                ><LAST className={CSS.icon} /></button>
-            </div>
+                    {
+                        getPaginationGroup().map((item, index) => {
+                            if ( data.length/dataLimit + 1 > item ) {
+                                return (
+                                    <a
+                                        key={index}
+                                        href={ currentPage != item ? `${siteUrl}${router.pathname}?page=${item}` : `#` }
+                                        onClick={ e => {
+                                            e.preventDefault()
+                                            changePage( e )
+                                        }}
+                                        className={`${CSS.paginationItem} ${currentPage === item ? CSS.active : ''}`}
+                                    ><span>{item}</span></a>
+                                )
+                            }
+                        })
+                    }
+                
+
+                    <a
+                        href={ currentPage < pages ? `${siteUrl}${router.pathname}?page=${currentPage + 1}` : `#`}
+                        onClick={goToNextPage}
+                        className={`${CSS.next} ${currentPage == pages ? CSS.disabled : ''}`}
+                    ><NEXT className={CSS.icon} /></a>
+                    
+
+                    <a
+                        href={ currentPage < pages ? `${siteUrl}${router.pathname}?page=${pages}` : `#`}
+                        onClick={ e => {
+                            e.preventDefault()
+                            window.scrollTo(scrollBehaviour)
+                            setCurrentPage(Math.ceil(pages))
+                            updateRouter(Math.ceil(pages))
+                        }}
+                        className={`${CSS.next} ${currentPage == Math.ceil(pages) ? CSS.disabled : ''}`}
+                    ><LAST className={CSS.icon} /></a>
+                </div>
+            }
+
 
       </>
     )
