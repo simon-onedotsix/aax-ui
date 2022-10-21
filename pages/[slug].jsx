@@ -155,36 +155,6 @@ export default function Post ({ entry, availableLocales }) {
                         "headline": "${entry.title}",
                         "image": "[URL of image under h1]",
                         "datePublished": "${entry.postDate}"
-                    },
-                    {
-                        "@context": "http://schema.org/",
-                        "@type": "BreadcrumbList",
-                        "itemListElement": [
-                            {
-                                "@type": "ListItem",
-                                "position": 1,
-                                "name": "AAX Trends",
-                                "item": "${siteUrl}"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 2,
-                                "name": "${entry.categories && entry.categories[0] ? entry.categories[0].title : ''}",
-                                "item": "${siteUrl}/category/${entry.categories && entry.categories[0] ? entry.categories[0].slug : ''}"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 3,
-                                "name": "${entry.categories && entry.categories[1] ? entry.categories[1].title : ''}",
-                                "item": "${siteUrl}/category/${entry.categories && entry.categories[1] ? entry.categories[1].slug : ''}"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 4,
-                                "name": "${entry.title}",
-                                "item": "${metaTags['og:url'].content}"
-                            }
-                        ]
                     }
                 
                 `
@@ -221,36 +191,6 @@ export default function Post ({ entry, availableLocales }) {
                         "headline": "${entry.title}",
                         "image": "${entry.hero[0] && entry.hero[0].image.length ? entry.hero[0].image[0].url : null}",
                         "datePublished": "${entry.postDate}"
-                    },
-                    {
-                        "@context": "http://schema.org/",
-                        "@type": "BreadcrumbList",
-                        "itemListElement": [
-                            {
-                                "@type": "ListItem",
-                                "position": 1,
-                                "name": "AAX Trends",
-                                "item": "${siteUrl}"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 2,
-                                "name": "${entry.categories.length && entry.categories[0].title}",
-                                "item": "${siteUrl}/category/${entry.categories.length && entry.categories[0].slug}"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 3,
-                                "name": "${entry.categories[1] ? entry.categories[1].title : null}",
-                                "item": "${siteUrl}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
-                            },
-                            {
-                                "@type": "ListItem",
-                                "position": 4,
-                                "name": "${entry.title}",
-                                "item": "${metaTags['og:url'].content}"
-                            }
-                        ]
                     }
                     
                 `
@@ -260,8 +200,51 @@ export default function Post ({ entry, availableLocales }) {
         return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ schema }` }} />
 
     }
+    
+    const handleSchemaBreadcrumbList = () => {
+        
+        const siteUrl = 'https://trends.aax.com'
+        let schema = (
+            `
+                {
+                    "@context": "http://schema.org/",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "AAX Trends",
+                            "item": "${siteUrl}"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "${entry.categories.length && entry.categories[0].title}",
+                            "item": "${siteUrl}/category/${entry.categories.length && entry.categories[0].slug}"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": "${entry.categories[1] ? entry.categories[1].title : null}",
+                            "item": "${siteUrl}/category/${entry.categories[1] ? entry.categories[1].slug : null}"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 4,
+                            "name": "${entry.title}",
+                            "item": "${metaTags['og:url'].content}"
+                        }
+                    ]
+                }
+                
+            `
+        )
 
-    const handleSchemaAppend = () => {
+        return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ schema }` }} />
+
+    }
+
+    const handleSchemaCustomField = () => {
         if ( entry.schemaCode) return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `${ entry.schemaCode }` }} />
     }
 
@@ -350,7 +333,8 @@ export default function Post ({ entry, availableLocales }) {
                     { handleMetaTags() }
                     { handleHrefLangLinks() }
                     { handleSchema() }
-                    { handleSchemaAppend() }
+                    { handleSchemaBreadcrumbList() }
+                    { handleSchemaCustomField() }
                 </Head>
     
     
