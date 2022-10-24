@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useRouter } from 'next/router'
+import Link from "next/link"
 
 import { ArticleCardLandscape } from "../../components/article-card-landscape/article-card-landscape"
 import { ArticleCardVideoLandscape } from "../../components/article-card-video-landscape/article-card-video-landscape"
@@ -24,12 +25,12 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
     const scrollBehaviour = { top: 0, behavior: 'smooth' }
 
     useEffect( () => {
+        setCurrentPage(1)
+        setPages(Math.ceil(data.length / dataLimit))
         if ( router.query.page && router.query.page <= pages ) {
             console.log('page query:', router)
             setCurrentPage(parseInt(router.query.page))
         }
-        setCurrentPage(1)
-        setPages(Math.ceil(data.length / dataLimit))
     }, [ router ])
 
 
@@ -71,8 +72,15 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
         return new Array(pageLimit).fill().map((_, index) => start + index + 1)
     }
 
+    // function updateRouter ( page ) {
+    //     router.replace(`${router.pathname}?page=${page}`, undefined, { shallow: true })
+    // }
+   
     function updateRouter ( page ) {
-        router.replace(`${router.pathname}?page=${page}`, undefined, { shallow: true })
+        router.replace({
+            pathname: `/category/[category]`,
+            query: { category:router.query.category, page: page}
+        })
     }
 
     
@@ -144,7 +152,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                 <div className={CSS.pagination}>
 
                     <a
-                        href={ currentPage > 1 ? `${siteUrl}${router.pathname}?page=1` : `#`}
+                        href={ currentPage > 1 ? `${siteUrl}${router.asPath}?page=1` : `#`}
                         onClick={ e => {
                             e.preventDefault()
                             window.scrollTo(scrollBehaviour)
@@ -156,7 +164,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
 
 
                     <a
-                        href={ currentPage > 1 ? `${siteUrl}${router.pathname}?page=${currentPage - 1}` : `#`}
+                        href={ currentPage > 1 ? `${siteUrl}${router.asPath}?page=${currentPage - 1}` : `#`}
                         onClick={ e => {
                             e.preventDefault()
                             goToPreviousPage()
@@ -171,7 +179,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                                 return (
                                     <a
                                         key={index}
-                                        href={ currentPage != item ? `${siteUrl}${router.pathname}?page=${item}` : `#` }
+                                        href={ currentPage != item ? `${siteUrl}${router.asPath}?page=${item}` : `#` }
                                         onClick={ e => {
                                             e.preventDefault()
                                             changePage( e )
@@ -185,14 +193,14 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                 
 
                     <a
-                        href={ currentPage < pages ? `${siteUrl}${router.pathname}?page=${currentPage + 1}` : `#`}
+                        href={ currentPage < pages ? `${siteUrl}${router.asPath}?page=${currentPage + 1}` : `#`}
                         onClick={goToNextPage}
                         className={`${CSS.next} ${currentPage == pages ? CSS.disabled : ''}`}
                     ><NEXT className={CSS.icon} /></a>
                     
 
                     <a
-                        href={ currentPage < pages ? `${siteUrl}${router.pathname}?page=${pages}` : `#`}
+                        href={ currentPage < pages ? `${siteUrl}${router.asPath}?page=${pages}` : `#`}
                         onClick={ e => {
                             e.preventDefault()
                             window.scrollTo(scrollBehaviour)

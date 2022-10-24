@@ -24,7 +24,7 @@ export default function CategoryPage ({ category, entries, tags }) {
     // console.log('tags:', tags)
 
     const router = useRouter()
-    // console.log('ROUTER:', router)
+    console.log('ROUTER:', router)
     // console.log('ROUTER:', router.locale)
 
 
@@ -81,7 +81,7 @@ export default function CategoryPage ({ category, entries, tags }) {
 			</Head>
 
             
-            <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : 'fallback' }</h1>
+            <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : '' }</h1>
 
             {/* {
                 entries.length ?
