@@ -83,13 +83,13 @@ export default function CategoryPage ({ category, entries, tags }) {
             
             <h1 className="h fs-1 serif c-primary pb-sm">{ category ? category.title : 'fallback' }</h1>
 
-            {
+            {/* {
                 entries.length ?
                 handlePosts(entries)
                 : <p className="fs-6">{t("There are no posts in this category")}</p>
-            }
+            } */}
 
-            {/* {
+            {
                 entries.length > 0 ? (
                     <Pagination
                         data={entries}
@@ -99,7 +99,7 @@ export default function CategoryPage ({ category, entries, tags }) {
                 ) : (
                     <p className="fs-4 fw-600">{t("There are no posts in this category")}</p>
                 )
-            } */}
+            }
 
             {handleRelatedCategories()}
 
@@ -184,7 +184,7 @@ export async function getStaticProps({ params, preview, previewData, locale }) {
                     slug
                     title
                 }
-                entries(section: "posts", relatedToCategories: {slug: "${params.category}"} site: "${siteHandle}" limit: 50) {
+                entries(section: "posts", relatedToCategories: {slug: "${params.category}"} site: "${siteHandle}" limit: 800) {
                     ... on posts_Post_Entry {
                         id
                         slug

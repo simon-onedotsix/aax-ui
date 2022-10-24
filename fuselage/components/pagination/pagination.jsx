@@ -15,7 +15,7 @@ import CSS from './pagination.module.css'
 
 export function Pagination({ data, pageLimit, dataLimit, heading }) {
     
-    const [ pages ] = useState(Math.ceil(data.length / dataLimit))
+    const [ pages, setPages ] = useState(1)
     const [ currentPage, setCurrentPage ] = useState(1)
 
     const router = useRouter()
@@ -28,6 +28,8 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
             console.log('page query:', router)
             setCurrentPage(parseInt(router.query.page))
         }
+        setCurrentPage(1)
+        setPages(Math.ceil(data.length / dataLimit))
     }, [ router ])
 
 
@@ -80,14 +82,14 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
 
             <h1 className="h fs-1 serif c-primary">{ heading }</h1>
 
-            {
+            {/* {
                 pages > 1 &&
                 <p className="fs-sm fw-600">Page: {currentPage} / {pages}</p>
-            }
+            } */}
 
             {/* render posts */}
             
-            <div className={`${CSS.dataContainer} mt-sm`}>
+            <div className={CSS.dataContainer}>
                 {
                     getPaginatedData().map( entry => {
 
