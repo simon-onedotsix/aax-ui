@@ -71,10 +71,6 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
         let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
         return new Array(pageLimit).fill().map((_, index) => start + index + 1)
     }
-
-    // function updateRouter ( page ) {
-    //     router.replace(`${router.pathname}?page=${page}`, undefined, { shallow: true })
-    // }
    
     function updateRouter ( page ) {
         router.replace({
