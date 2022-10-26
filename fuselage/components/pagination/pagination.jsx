@@ -27,10 +27,23 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
     useEffect( () => {
         setCurrentPage(1)
         setPages(Math.ceil(data.length / dataLimit))
-        if ( router.query.page && router.query.page <= pages ) {
-            // console.log('page query:', router)
-            setCurrentPage(parseInt(router.query.page))
+
+        // sanitise non-numeric or out-of-range query param
+
+        let pageParam = router.query.page
+
+        if ( pageParam && pageParam >= 1 && pageParam <= pages ) {
+            setCurrentPage( parseInt(pageParam) )
+      
+        } else if ( pageParam ) {
+            // sanitise
+            router.replace({
+                pathname: `/category/[category]`,
+                query: { category:router.query.category, page: 1}
+            })
         }
+
+
     }, [ router ])
 
 
@@ -190,7 +203,10 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
 
                     <a
                         href={ currentPage < pages ? `${siteUrl}/category/${router.query.category}?page=${currentPage + 1}` : `#`}
-                        onClick={goToNextPage}
+                        onClick={ e => {
+                            e.preventDefault()
+                            goToNextPage()
+                        }}
                         className={`${CSS.next} ${currentPage == pages ? CSS.disabled : ''}`}
                     ><NEXT className={CSS.icon} /></a>
                     
