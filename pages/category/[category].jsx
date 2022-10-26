@@ -24,7 +24,7 @@ export default function CategoryPage ({ category, entries, tags }) {
     // console.log('tags:', tags)
 
     const router = useRouter()
-    console.log('ROUTER:', router)
+    // console.log('ROUTER:', router)
     // console.log('ROUTER:', router.locale)
 
 

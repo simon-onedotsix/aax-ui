@@ -28,7 +28,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
         setCurrentPage(1)
         setPages(Math.ceil(data.length / dataLimit))
         if ( router.query.page && router.query.page <= pages ) {
-            console.log('page query:', router)
+            // console.log('page query:', router)
             setCurrentPage(parseInt(router.query.page))
         }
     }, [ router ])
@@ -148,7 +148,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                 <div className={CSS.pagination}>
 
                     <a
-                        href={ currentPage > 1 ? `${siteUrl}${router.asPath}?page=1` : `#`}
+                        href={ currentPage > 1 ? `${siteUrl}/category/${router.query.category}?page=1` : `#`}
                         onClick={ e => {
                             e.preventDefault()
                             window.scrollTo(scrollBehaviour)
@@ -160,7 +160,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
 
 
                     <a
-                        href={ currentPage > 1 ? `${siteUrl}${router.asPath}?page=${currentPage - 1}` : `#`}
+                        href={ currentPage > 1 ? `${siteUrl}/category/${router.query.category}?page=${currentPage - 1}` : `#`}
                         onClick={ e => {
                             e.preventDefault()
                             goToPreviousPage()
@@ -175,7 +175,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                                 return (
                                     <a
                                         key={index}
-                                        href={ currentPage != item ? `${siteUrl}${router.asPath}?page=${item}` : `#` }
+                                        href={ currentPage != item ? `${siteUrl}/category/${router.query.category}?page=${item}` : `#` }
                                         onClick={ e => {
                                             e.preventDefault()
                                             changePage( e )
@@ -189,14 +189,14 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                 
 
                     <a
-                        href={ currentPage < pages ? `${siteUrl}${router.asPath}?page=${currentPage + 1}` : `#`}
+                        href={ currentPage < pages ? `${siteUrl}/category/${router.query.category}?page=${currentPage + 1}` : `#`}
                         onClick={goToNextPage}
                         className={`${CSS.next} ${currentPage == pages ? CSS.disabled : ''}`}
                     ><NEXT className={CSS.icon} /></a>
                     
 
                     <a
-                        href={ currentPage < pages ? `${siteUrl}${router.asPath}?page=${pages}` : `#`}
+                        href={ currentPage < pages ? `${siteUrl}/category/${router.query.category}?page=${pages}` : `#`}
                         onClick={ e => {
                             e.preventDefault()
                             window.scrollTo(scrollBehaviour)
