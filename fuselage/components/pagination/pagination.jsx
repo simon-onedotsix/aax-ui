@@ -86,10 +86,19 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
     }
    
     function updateRouter ( page ) {
-        router.replace({
-            pathname: `/category/[category]`,
-            query: { category:router.query.category, page: page}
-        })
+        if ( page === 1 ) {
+            // clear router (for clean canonical link)
+            router.replace({
+                pathname: `/category/[category]`,
+                query: { category:router.query.category}
+            })
+        } else {
+            // update router with page param
+            router.replace({
+                pathname: `/category/[category]`,
+                query: { category:router.query.category, page: page}
+            })
+        }
     }
 
     
