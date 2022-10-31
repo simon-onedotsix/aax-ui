@@ -39,7 +39,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
             // sanitise
             router.replace({
                 pathname: `/category/[category]`,
-                query: { category:router.query.category, page: 1}
+                query: { category:router.query.category}
             })
         }
 
