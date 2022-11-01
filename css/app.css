@@ -2,6 +2,12 @@
 
 html[lang="zh"] .serif {
     font-weight: 900;
+    font-family: 'Noto Serif TC', serif;
+}
+
+html[lang="vi"] .serif {
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
 }
 
 @media(max-width:599px){
