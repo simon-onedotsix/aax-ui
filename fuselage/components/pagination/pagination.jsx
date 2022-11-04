@@ -30,17 +30,21 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
 
         // sanitise non-numeric or out-of-range query param
 
+        // console.log('router:',router)
+
         let pageParam = router.query.page
 
-        if ( pageParam && pageParam >= 1 && pageParam <= pages ) {
+        // check if utm params are present
+        if (Object.keys(router.query).some(key => key.slice(0, 3) === 'utm')) {
+            sanitiseRouter()
+        }
+
+        // check page param
+        if ( pageParam && pageParam > 1 && pageParam <= pages ) {
             setCurrentPage( parseInt(pageParam) )
       
         } else if ( pageParam ) {
-            // sanitise
-            router.replace({
-                pathname: `/category/[category]`,
-                query: { category:router.query.category}
-            })
+            sanitiseRouter()
         }
 
 
@@ -99,6 +103,13 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
                 query: { category:router.query.category, page: page}
             })
         }
+    }
+
+    function sanitiseRouter () {
+        router.replace({
+            pathname: `/category/[category]`,
+            query: { category:router.query.category}
+        })
     }
 
     

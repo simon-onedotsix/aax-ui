@@ -27,7 +27,22 @@ export default function Post ({ entry, availableLocales }) {
     // connect locales context
     const { langs, setLangs } = React.useContext(LocalesContext)
 
+    const router = useRouter()
+    console.log('ROUTER:', router)
+    // console.log('ROUTER:', router.locale)
+
+    const t = useTranslations('Global')
+
+
     useEffect( () => {
+
+        // sanitise query params
+        if ( Object.keys(router.query).length > 1 ) {
+            router.replace({
+                pathname: `/[slug]`,
+                query: { slug:router.query.slug}
+            })
+        }
             
         // console.log('available translations:', availableLocales)        
 
@@ -37,12 +52,6 @@ export default function Post ({ entry, availableLocales }) {
     } ,[])
 
 
-
-    const router = useRouter()
-    // console.log('ROUTER:', router)
-    // console.log('ROUTER:', router.locale)
-
-    const t = useTranslations('Global')
 
     console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
@@ -447,7 +456,7 @@ export async function getStaticPaths() {
     const entriesData = await craftApolloClient().query({
         query: gql`
             query Posts {
-                entries(section: "posts", limit: 300) {
+                entries(section: "posts", limit: 3) {
                     id
                     title
                     slug

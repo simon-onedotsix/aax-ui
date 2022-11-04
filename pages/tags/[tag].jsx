@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
@@ -17,6 +19,18 @@ export default function TagPage ({ entries, tags }) {
 
     const router = useRouter()
     const tagTitle = tags.find( obj => obj.slug == router.query.tag )
+
+    useEffect( () => {
+
+        // sanitise query params
+        if ( Object.keys(router.query).length > 1 ) {
+            router.replace({
+                pathname: `/tags/[tag]`,
+                query: { tag:router.query.tag}
+            })
+        }
+        
+    } ,[])
 
 
     return (
