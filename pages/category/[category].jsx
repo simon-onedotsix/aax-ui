@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 import craftApolloClient from "../api/apollo"
 
-import {useTranslations} from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 

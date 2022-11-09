@@ -28,22 +28,13 @@ export default function Post ({ entry, availableLocales }) {
     const { langs, setLangs } = React.useContext(LocalesContext)
 
     const router = useRouter()
-    console.log('ROUTER:', router)
+    // console.log('ROUTER:', router)
     // console.log('ROUTER:', router.locale)
 
     const t = useTranslations('Global')
 
 
-    useEffect( () => {
-
-        // sanitise query params
-        if ( Object.keys(router.query).length > 1 ) {
-            router.replace({
-                pathname: `/[slug]`,
-                query: { slug:router.query.slug}
-            })
-        }
-            
+    useEffect( () => {            
         // console.log('available translations:', availableLocales)        
 
         // set locales context
@@ -304,15 +295,16 @@ export default function Post ({ entry, availableLocales }) {
         
         // console.log('availableLocales: ', availableLocales)
         // console.log('current locale: ', router.locale)
+        // console.log('router: ', router)
 
         let defaultEnPost = availableLocales.find( obj => obj.locale === 'en').data
         // console.log('defaultEnPost:', defaultEnPost)
 
         return (
             <>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="canonical"/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.query.slug}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`} rel="alternate" hrefLang={router.locale}/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.query.slug}`} rel="alternate" hrefLang={router.locale}/>
                 
                 {
                     defaultEnPost &&

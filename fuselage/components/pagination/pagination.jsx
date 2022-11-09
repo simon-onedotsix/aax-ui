@@ -35,9 +35,9 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
         let pageParam = router.query.page
 
         // check if utm params are present
-        if (Object.keys(router.query).some(key => key.slice(0, 3) === 'utm')) {
-            sanitiseRouter()
-        }
+        // if (Object.keys(router.query).some(key => key.slice(0, 3) === 'utm')) {
+        //     sanitiseRouter()
+        // }
 
         // check page param
         if ( pageParam && pageParam > 1 && pageParam <= pages ) {
