@@ -302,9 +302,9 @@ export default function Post ({ entry, availableLocales }) {
 
         return (
             <>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.query.slug}`} rel="canonical"/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}/${router.query.slug}`} rel="canonical"/>
                 <link href="https://trends.aax.com" rel="home"/>
-                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.query.slug}`} rel="alternate" hrefLang={router.locale}/>
+                <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}/${router.query.slug}`} rel="alternate" hrefLang={router.locale}/>
                 
                 {
                     defaultEnPost &&
