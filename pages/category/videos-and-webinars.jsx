@@ -9,8 +9,6 @@ import { useRouter } from 'next/router'
 
 import { useTranslations } from 'next-intl'
 
-import { handleHrefLangLinks } from "../../lib/category-hreflang"
-
 import { UnderlineBarLink } from '../../fuselage/components/u-bar-link/u-bar-link'
 
 import { FeatureVideo } from '../../fuselage/components/feature-video-card/feature-video-card'
@@ -252,6 +250,33 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
         )
     }
 
+	const handleVideoPageHrefLangLinks = () => {
+        
+		if ( !router ) return
+	
+		// console.log('current locales: ', router.locales)
+		// console.log('current locale: ', router.locale)
+		
+		// console.log('router:', router)
+		// console.log('path:', `/category/${router.query.category}`)
+	
+		let path = `/category/${router.query.category}`
+	
+		return (
+			<>
+				<link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${router.pathname}`} rel="canonical"/>
+				<link href="https://trends.aax.com" rel="home"/>
+				<link href={`https://trends.aax.com${router.pathname}`} rel="alternate" hrefLang="x-default"/>
+	
+				{
+					router.locales.map( locale => {
+						return <link key={locale} href={`https://trends.aax.com${locale !== 'en' ? `/${locale}` : ''}${router.pathname}`} rel="alternate" hrefLang={locale}/>
+					})
+				}
+			</>
+		)
+	}
+
 
 	return (
 		<>
@@ -268,7 +293,7 @@ export default function Home({ entry, featured, videoCta, update, ben, bitcoin, 
 				<meta content={metaTags && metaTags['og:description'].content} property="og:description" />
 				<meta content={metaTags && metaTags['og:image'].content} property="og:image"></meta>
 
-				{ handleHrefLangLinks( router) }
+				{ handleVideoPageHrefLangLinks() }
 			</Head>
 
 			<h1 className="h fs-1 serif c-primary mb-xs">{t("Videos and webinars")}</h1>
