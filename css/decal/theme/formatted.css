@@ -122,5 +122,15 @@
     }
 }
 
+
+.formatted .toc {
+    border: 2px solid #ddd !important;
+    padding: var(--space-xs);
+    margin: var(--space-sm) 0;
+}
+.formatted .toc ul ol,
+.formatted .toc ul ul { margin-top: var(--space-xs);}
+
+
 /* purgecss end ignore */
 

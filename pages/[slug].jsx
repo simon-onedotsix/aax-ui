@@ -350,7 +350,7 @@ export default function Post ({ entry, availableLocales }) {
                         : null
                     }
                 </section>
-    
+
     
                 <section className="mt-md maxw-55 formatted">
                     <div dangerouslySetInnerHTML={{__html: entry.body }} />
