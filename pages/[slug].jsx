@@ -28,7 +28,7 @@ export default function Post ({ entry, availableLocales }) {
     const { langs, setLangs } = React.useContext(LocalesContext)
 
     const router = useRouter()
-    // console.log('ROUTER:', router)
+    console.log('ROUTER:', router)
     // console.log('ROUTER:', router.locale)
 
     const t = useTranslations('Global')
@@ -44,7 +44,7 @@ export default function Post ({ entry, availableLocales }) {
 
 
 
-    console.log('entry:', entry)
+    // console.log('entry:', entry)
     // console.log('SEO — title:', JSON.parse(entry.seomatic.metaTitleContainer))
     // console.log('SEO — tags:', JSON.parse(entry.seomatic.metaTagContainer))
     // console.log('SEO — links:', JSON.parse(entry.seomatic.metaLinkContainer))
@@ -323,7 +323,13 @@ export default function Post ({ entry, availableLocales }) {
         )
     }
 
+    const buildShareUrl = ( basePath ) => {
 
+        let postPath = `${process.env.NEXT_PUBLIC_SITE_URL}${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`
+
+        console.log('share URL:', basePath + postPath)
+        return basePath + postPath
+    }
 
     // console.log('satus:', entry.status)
 
@@ -360,9 +366,13 @@ export default function Post ({ entry, availableLocales }) {
                 <section className='mt-md'>
                     <p className='fw-500 mb-xs'>{t('Share this article')}</p>
                 
-                    <ButtonSocial href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='facebook'/>
-                    <ButtonSocial href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='twitter'/>
-                    <ButtonSocial href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='linkedin'/>
+                    <ButtonSocial href={buildShareUrl(`https://www.facebook.com/sharer/sharer.php?u=`)} icon='facebook'/>
+                    <ButtonSocial href={buildShareUrl(`https://twitter.com/intent/tweet?url=`)} icon='twitter'/>
+                    <ButtonSocial href={buildShareUrl(`https://www.linkedin.com/sharing/share-offsite/?url=`)} icon='linkedin'/>
+                    
+                    {/* <ButtonSocial href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='facebook'/> */}
+                    {/* <ButtonSocial href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='twitter'/> */}
+                    {/* <ButtonSocial href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`} icon='linkedin'/> */}
                 </section>
     
     
