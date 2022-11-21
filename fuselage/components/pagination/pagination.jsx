@@ -117,7 +117,7 @@ export function Pagination({ data, pageLimit, dataLimit, heading }) {
     return (
         <>
 
-            <h1 className="h fs-1 serif c-primary">{ heading }</h1>
+            {/* <h1 className="h fs-1 serif c-primary">{ heading }</h1> */}
 
             {/* {
                 pages > 1 &&

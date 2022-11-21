@@ -5,16 +5,16 @@ export const handleHrefLangLinks = ( router ) => {
     // console.log('current locales: ', router.locales)
     // console.log('current locale: ', router.locale)
     // console.log('router:', router)
-    // console.log('path:', `/category/${router.query.category}`)
+    // console.log('path:', `/category${router.query.category ? `/${router.query.category}` : ''}`)
 
     let path
 
     if (router.query.page) {
         path = `/category/${router.query.category}?page=${router.query.page}`
     } else {
-        path = `/category/${router.query.category}`
+        path = `/category${router.query.category ? `/${router.query.category}` : ''}`
     }
-
+    
     return (
         <>
             <link href={`https://trends.aax.com${router.locale !== 'en' ? `/${router.locale}` : ''}${path}`} rel="canonical"/>
