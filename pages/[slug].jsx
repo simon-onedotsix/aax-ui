@@ -324,10 +324,7 @@ export default function Post ({ entry, availableLocales }) {
     }
 
     const buildShareUrl = ( basePath ) => {
-
         let postPath = `${process.env.NEXT_PUBLIC_SITE_URL}${router.locale !== 'en' ? `/${router.locale}` : ''}${router.asPath}`
-
-        console.log('share URL:', basePath + postPath)
         return basePath + postPath
     }
 
